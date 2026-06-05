@@ -342,9 +342,14 @@
     }
   }
 
-  // 返回簡報
+  // 返回簡報（回到原來那頁）
   function goBack() {
-    location.href = 'index.html';
+    const returnSlide = sessionStorage.getItem('returnSlide');
+    if (returnSlide !== null) {
+      location.href = 'index.html#/' + returnSlide;
+    } else {
+      location.href = 'index.html';
+    }
   }
 
   // 鍵盤控制
