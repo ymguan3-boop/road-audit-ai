@@ -149,8 +149,6 @@
     .radar-svg polygon.radar-stroke {
       stroke-dasharray: 800; stroke-dashoffset: 800;
     }
-    @keyframes radarDraw { 0% { stroke-dashoffset: 800; } 100% { stroke-dashoffset: 0; } }
-    @keyframes radarFill { 0% { opacity: 0; } 100% { opacity: 1; } }
     @keyframes radarLabel { 0% { opacity: 0; } 60% { opacity: 0; } 100% { opacity: 1; } }
     .radar-svg text.radar-label { animation: radarLabel 2s ease-out forwards; }
     .radar-list { display: flex; flex-wrap: wrap; gap: 4px 24px; justify-content: center; font-size: 0.55em; color: var(--text); line-height: 1.6; margin-top: 0.1em; }
@@ -276,11 +274,13 @@
     }
     #tip-overlay.open { display: flex; }
     #tip-box {
-      background: rgba(10,12,28,0.98); border: 1px solid var(--border);
-      border-radius: 12px; padding: 24px 28px; max-width: 520px;
-      box-shadow: 0 0 40px rgba(0,96,192,0.25);
-      color: var(--text); font-size: 18px; line-height: 1.6; text-align: center;
+      background: rgba(10,12,28,0.98); border: 1px solid var(--accent2);
+      border-radius: 12px; padding: 28px 36px; max-width: 540px;
+      box-shadow: 0 0 50px rgba(79,195,247,0.3);
+      color: var(--accent2); font-size: 22px; line-height: 1.7; text-align: center; font-weight: 700;
     }
+    #tip-box .tl { display: block; }
+    #tip-box .bl { display: block; color: #ff9100; font-size: 20px; }
 
     /* 其他 */
     .text-glow { text-shadow: 0 0 15px rgba(79,195,247,0.3); }
@@ -321,7 +321,7 @@
   <h2>問題意識</h2>
   <p>道路管理不是單一工程問題，而是資料、制度與財源彼此連動的治理問題。</p>
   <div class="stat-row" style="margin-top: 0.8em;">
-    <div class="stat-card" onclick="showTooltip(event)" style="cursor:pointer;" data-tip="宜蘭縣政府於100年1月24日公告宜蘭縣道路挖掘行政規費收費標準">
+    <div class="stat-card" onclick="showTooltip(event)" style="cursor:pointer;" data-tip="宜蘭縣政府於100年1月24日公告|宜蘭縣道路挖掘行政規費收費標準">
       <div class="num" style="color: var(--warn);">13+</div>
       <div class="label">年未調整之收費標準</div>
     </div>
@@ -556,8 +556,14 @@ function sortTable(col) {
       <line x1="160" y1="160" x2="245" y2="265" stroke="rgba(0,96,192,0.2)" stroke-width="1"/>
       <line x1="160" y1="160" x2="75" y2="265" stroke="rgba(0,96,192,0.2)" stroke-width="1"/>
       <line x1="160" y1="160" x2="30" y2="95" stroke="rgba(0,96,192,0.2)" stroke-width="1"/>
-      <polygon class="radar-stroke" points="160,80 230,125 215,235 105,235 90,125" fill="rgba(255,145,0,0.15)" stroke="var(--warn)" stroke-width="2" style="opacity:0;animation:radarDraw 1.5s ease-out forwards,radarFill 1.8s ease-out 0.3s forwards;"/>
-      <polygon class="radar-stroke" points="160,30 280,98 240,260 80,260 38,98" fill="rgba(79,195,247,0.18)" stroke="var(--accent2)" stroke-width="2.5" style="opacity:0;animation:radarDraw 1.5s ease-out 0.15s forwards,radarFill 1.8s ease-out 0.45s forwards;"/>
+      <polygon class="radar-stroke" points="160,80 230,125 215,235 105,235 90,125" fill="rgba(255,145,0,0.15)" stroke="var(--warn)" stroke-width="2" opacity="0">
+        <animate attributeName="stroke-dashoffset" from="800" to="0" dur="1.5s" begin="0s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" dur="0.6s" begin="0.3s" fill="freeze"/>
+      </polygon>
+      <polygon class="radar-stroke" points="160,30 280,98 240,260 80,260 38,98" fill="rgba(79,195,247,0.18)" stroke="var(--accent2)" stroke-width="2.5" opacity="0">
+        <animate attributeName="stroke-dashoffset" from="800" to="0" dur="1.5s" begin="0.15s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" dur="0.6s" begin="0.45s" fill="freeze"/>
+      </polygon>
       <text x="160" y="14" fill="var(--accent2)" font-size="18" text-anchor="middle" font-weight="700" class="radar-label">資料蒐集</text>
       <text x="310" y="92" fill="var(--accent2)" font-size="16" text-anchor="start" font-weight="700" class="radar-label">法規連結</text>
       <text x="252" y="280" fill="var(--accent2)" font-size="18" text-anchor="start" font-weight="700" class="radar-label">量化分析</text>
@@ -731,7 +737,7 @@ function sortTable(col) {
   // 佐證附件面板
   const attPerSlide = {
     0: [1, 2],                        // 封面
-    1: [11, 12, 13, 14],             // AI 工具鏈
+    1: [11, 12, 13, 14, 15],         // AI 工具鏈
     2: [3, 4, 16, 17],               // 問題意識
     3: [2, 10, 11, 12, 13],          // 把AI放進審計流程
     4: [3, 6, 7],                    // 三條驗證線
@@ -739,10 +745,10 @@ function sortTable(col) {
     6: [10, 11],                     // 重複缺失
     7: [8, 9],                       // 改善進制度
     8: [5, 6, 7, 8],                 // 改善成果
-    9: [11, 12, 13, 14],             // AI均衡
+    9: [11, 12, 13, 14, 15],         // AI均衡
     10: [10, 11, 12, 13],            // 何時導入
-    11: [11, 12, 13, 14],            // 六步驟
-    12: [5, 6, 7, 14],               // AI放大價值
+    11: [11, 12, 13, 14, 15],        // 六步驟
+    12: [5, 6, 7, 14, 15],           // AI放大價值
     13: []                            // 結束
   };
   const attTitles = {
@@ -759,7 +765,8 @@ function sortTable(col) {
     11: 'Excel 分類建置資料庫',
     12: 'QGIS 套疊管線圖資',
     13: 'Python 圖像比對輔助查核',
-     14: 'Claude 控制 QGIS / Gemini 串接 OpenStreet 輔助查核',
+     14: 'Claude 控制 QGIS 輔助查核',
+     15: 'Gemini 串接 OpenStreet 輔助查核',
      16: '8 個基金累計短絀',
      17: '230 件圖資未更新'
   };
@@ -788,7 +795,8 @@ function sortTable(col) {
   function showTooltip(e) {
     const tip = e.currentTarget.getAttribute('data-tip');
     if (!tip) return;
-    document.getElementById('tip-box').textContent = tip;
+    const parts = tip.split('|');
+    document.getElementById('tip-box').innerHTML = parts.map((p, i) => `<span class="${i === 0 ? 'tl' : 'bl'}">${p}</span>`).join('');
     document.getElementById('tip-overlay').classList.add('open');
   }
   function hideTooltip() {
@@ -796,11 +804,11 @@ function sortTable(col) {
   }
 </script>
 
-<button class="att-btn" onclick="toggleAttPanel()" title="開啟本頁對應的佐證附件">📎 佐證附件 <span class="badge">16</span></button>
+<button class="att-btn" onclick="toggleAttPanel()" title="開啟本頁對應的佐證附件">📎 佐證附件 <span class="badge">17</span></button>
 <div class="att-panel" id="att-panel">
   <h4>本頁對應附件</h4>
   <div id="att-panel-list"></div>
-  <a href="attachments.html" class="all-link">📁 查看全部 16 份附件 →</a>
+  <a href="attachments.html" class="all-link">📁 查看全部 17 份附件 →</a>
 </div>
 
 </body>

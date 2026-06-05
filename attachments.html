@@ -195,8 +195,8 @@
 
 <header>
   <button class="back-btn" onclick="goBack()">← 返回簡報</button>
-  <h1>📎 佐證附件總覽 <span class="sub">· 道路管理維護查核 (16 份附件)</span></h1>
-  <span class="counter" id="counter">16 份</span>
+  <h1>📎 佐證附件總覽 <span class="sub">· 道路管理維護查核 (17 份附件)</span></h1>
+  <span class="counter" id="counter">17 份</span>
 </header>
 
 <div class="container">
@@ -216,7 +216,7 @@
   </div>
   <div class="modal-footer">
     <div class="page-indicator" id="page-indicator">第 1 頁 / 共 1 頁</div>
-    <div class="modal-counter" id="modal-counter">附件 1 / 16</div>
+    <div class="modal-counter" id="modal-counter">附件 1 / 17</div>
   </div>
 </div>
 
@@ -236,7 +236,8 @@
     { num: 11, title: 'Excel 分類建置資料庫',                    pages: ['att11.png'] },
     { num: 12, title: 'QGIS 套疊管線圖資',                       pages: ['att12.jpg'] },
     { num: 13, title: 'Python 圖像比對輔助查核',                  pages: ['att13.png'] },
-    { num: 14, title: 'Claude 控制 QGIS / Gemini 串接 OpenStreet 輔助查核', pages: ['att14.png', 'att15.png'], multi: true },
+    { num: 14, title: 'Claude 控制 QGIS 輔助查核',                pages: ['att14.png'] },
+    { num: 15, title: 'Gemini 串接 OpenStreet 輔助查核',          pages: ['att15.png'] },
     { num: 16, title: '8 個基金累計短絀',                        pages: ['att16.png'] },
     { num: 17, title: '230 件圖資未更新',                        pages: ['att17.png'] }
   ];
@@ -300,12 +301,15 @@
     document.getElementById('modal-image').alt = `附件 ${a.num} - ${a.title}`;
     document.getElementById('page-indicator').textContent = `第 ${currentPage+1} 頁 / 共 ${a.pages.length} 頁`;
     document.getElementById('modal-counter').textContent = `附件 ${a.num} / ${atts.length}`;
-    // 左右頁按鈕 (頁面切換) - 只在多頁時啟用
-    const hasMulti = a.pages.length > 1;
+    // 左右按鈕：支援頁內 + 跨附件
+    const hasPrevPage = currentPage > 0;
+    const hasNextPage = currentPage < a.pages.length - 1;
+    const prevAtt = atts.findIndex(x => x.num === a.num - 1);
+    const nextAtt = atts.findIndex(x => x.num === a.num + 1);
     const leftBtn = document.getElementById('nav-left');
     const rightBtn = document.getElementById('nav-right');
-    const leftDisabled = !hasMulti || currentPage === 0;
-    const rightDisabled = !hasMulti || currentPage === a.pages.length - 1;
+    const leftDisabled = !hasPrevPage && prevAtt < 0;
+    const rightDisabled = !hasNextPage && nextAtt < 0;
     leftBtn.disabled = leftDisabled;
     rightBtn.disabled = rightDisabled;
     leftBtn.style.opacity = leftDisabled ? '0.25' : '1';
@@ -314,18 +318,25 @@
     rightBtn.style.cursor = rightDisabled ? 'not-allowed' : 'pointer';
   }
 
-  // 頁面切換
+  // 頁面切換（支援跨附件）
   function nextPage() {
     const a = atts[currentAtt];
     if (currentPage < a.pages.length - 1) {
       currentPage++;
       updateModal();
+    } else {
+      const next = atts.findIndex(x => x.num === a.num + 1);
+      if (next >= 0) { currentAtt = next; currentPage = 0; updateModal(); }
     }
   }
   function prevPage() {
     if (currentPage > 0) {
       currentPage--;
       updateModal();
+    } else {
+      const a = atts[currentAtt];
+      const prev = atts.findIndex(x => x.num === a.num - 1);
+      if (prev >= 0) { currentAtt = prev; currentPage = atts[prev].pages.length - 1; updateModal(); }
     }
   }
 
