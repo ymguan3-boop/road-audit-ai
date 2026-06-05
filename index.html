@@ -293,6 +293,27 @@
       opacity: 0.15; z-index: 0; pointer-events: none;
     }
     .bg-deco > * { position: relative; z-index: 1; }
+
+    /* 放大版 - 填滿版面 */
+    .scale-up .stat-card .num   { font-size: 2.8em !important; }
+    .scale-up .stat-card .label { font-size: 0.7em !important; }
+    .scale-up .stat-row { gap: 18px; }
+    .scale-up .conclusion-card { font-size: 0.75em !important; padding: 18px !important; }
+    .scale-up .conclusion-card .cc-title { font-size: 1.2em !important; }
+    .scale-up .sort-table-full { font-size: 0.65em !important; }
+    .scale-up .sort-table-full th,
+    .scale-up .sort-table-full td { padding: 10px 8px !important; }
+    .scale-up .radar-list { font-size: 0.65em !important; }
+    .scale-up .radar-svg { width: 460px !important; height: 460px !important; }
+    .scale-up .viz-wrap { height: 370px !important; }
+    .scale-up .viz-label { font-size: 0.85em !important; }
+    .scale-up .viz-num { font-size: 2.4em !important; }
+    .scale-up .viz-text { font-size: 0.7em !important; }
+    .scale-up .viz-tag { font-size: 0.7em !important; }
+    .scale-up .col-card .icon { font-size: 2.4em !important; }
+    .scale-up .col-card .col-title { font-size: 0.85em !important; }
+    .scale-up .col-card .col-desc { font-size: 0.7em !important; }
+    .scale-up .three-col { gap: 18px; }
   </style>
 </head>
 <body>
@@ -326,9 +347,9 @@
 </section>
 
 <!-- 第 3 頁：問題意識 -->
-<section class="bg-deco" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>問題意識</h2>
-  <p>道路管理不是單一工程問題，而是資料、制度與財源彼此連動的治理問題。</p>
+  <p style="font-size:0.9em;">道路管理不是單一工程問題，而是資料、制度與財源彼此連動的治理問題。</p>
   <div class="stat-row" style="margin-top: 0.8em;">
     <div class="stat-card" onclick="showTooltip(event)" style="cursor:pointer;" data-tip="宜蘭縣政府於100年1月24日公告|宜蘭縣道路挖掘行政規費收費標準">
       <div class="num" style="color: var(--warn);">13+</div>
@@ -364,30 +385,30 @@
 </section>
 
 <!-- 第 4 頁：把AI放進審計流程 -->
-<section class="bg-deco" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>把 AI 放進審計流程</h2>
-  <p style="font-size:1em;">
+  <p style="font-size:1.1em;">
     💡 不是取代專業判斷，而是擴大資料閱讀、重複缺失辨識及證據整理能力
   </p>
-  <div class="step-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 0.3em;">
-    <div class="step-card" style="padding: 18px 14px;">
-      <div class="step-num" style="font-size:2.2em;">1</div>
-      <div class="step-text" style="font-size:0.85em;"><a class="att-link" href="attachments.html?att=2" target="_self">ChatGPT<br>爬梳規定、機制、檢核措施</a></div>
+  <div class="step-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 0.2em;">
+    <div class="step-card" style="padding: 22px 16px;">
+      <div class="step-num" style="font-size:2.8em;">1</div>
+      <div class="step-text" style="font-size:1em;"><a class="att-link" href="attachments.html?att=2" target="_self">ChatGPT<br>爬梳規定、機制、檢核措施</a></div>
     </div>
-    <div class="step-card" style="padding: 18px 14px;">
-      <div class="step-num" style="font-size:2.2em;">2</div>
-      <div class="step-text" style="font-size:0.85em;"><a class="att-link" href="attachments.html?att=10" target="_self">NotebookLM<br>彙整各季評比成果報告</a></div>
+    <div class="step-card" style="padding: 22px 16px;">
+      <div class="step-num" style="font-size:2.8em;">2</div>
+      <div class="step-text" style="font-size:1em;"><a class="att-link" href="attachments.html?att=10" target="_self">NotebookLM<br>彙整各季評比成果報告</a></div>
     </div>
-    <div class="step-card" style="padding: 18px 14px;">
-      <div class="step-num" style="font-size:2.2em;">3</div>
-      <div class="step-text" style="font-size:0.85em;"><a class="att-link" href="attachments.html?att=11" target="_self">Excel<br>分類建置資料庫</a></div>
+    <div class="step-card" style="padding: 22px 16px;">
+      <div class="step-num" style="font-size:2.8em;">3</div>
+      <div class="step-text" style="font-size:1em;"><a class="att-link" href="attachments.html?att=11" target="_self">Excel<br>分類建置資料庫</a></div>
     </div>
-    <div class="step-card" style="padding: 18px 14px;">
-      <div class="step-num" style="font-size:2.2em;">4</div>
-      <div class="step-text" style="font-size:0.85em;"><a class="att-link" href="attachments.html?att=12" target="_self">QGIS + Python<br>地圖與資料複核</a></div>
+    <div class="step-card" style="padding: 22px 16px;">
+      <div class="step-num" style="font-size:2.8em;">4</div>
+      <div class="step-text" style="font-size:1em;"><a class="att-link" href="attachments.html?att=12" target="_self">QGIS + Python<br>地圖與資料複核</a></div>
     </div>
   </div>
-  <div class="quote-box" style="font-size:0.75em; margin-top:0.3em;">
+  <div class="quote-box" style="font-size:0.85em; margin-top:0.2em;">
     讓 AI 快速鎖定問題，再由審計人員以專業判斷確認<strong>法規依據、數據口徑及改善責任</strong>。
   </div>
 </section>
@@ -421,7 +442,7 @@
 </section>
 
 <!-- 第 9 頁：審計發現與改善成果 -->
-<section class="bg-deco" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>審計發現與改善成果</h2>
   <p>✓ 促請改善 → 機關回應 → 量化效益</p>
   <table class="sort-table-full" id="sortTable">
@@ -466,7 +487,7 @@ function sortTable(col) {
 </script>
 
 <!-- 第 10 頁：AI讓查核能力更均衡 (雷達圖) -->
-<section class="bg-deco" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>AI 讓查核能力更均衡</h2>
   <div class="radar-wrap">
     <svg class="radar-svg" viewBox="-70 -10 460 420">
@@ -503,7 +524,7 @@ function sortTable(col) {
 </section>
 
 <!-- 第 11 頁：何時導入生成式AI (VIZ 滑桿) -->
-<section class="bg-deco" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>何時導入生成式 AI</h2>
   <p>拖動下方滑桿，看導入前後的差異</p>
   <div class="viz-wrap">
@@ -549,28 +570,28 @@ function sortTable(col) {
 </section>
 
 <!-- 第 13 頁：AI放大審計價值 -->
-<section class="bg-deco" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>AI 放大審計價值</h2>
-  <p style="font-size:0.85em;">
+  <p style="font-size:0.95em;">
     把生成式 AI 放在審計專業流程中，放大資料整理、問題辨識及成果追蹤能力
   </p>
-  <div class="conclusion-grid" style="margin-top: 0.5em;">
-    <div class="conclusion-card positive " style="font-size:0.75em; padding:14px 16px;">
-      <div class="cc-title" style="font-size:1.1em;">✓ 本案具體成果</div>
+  <div class="conclusion-grid" style="margin-top: 0.4em;">
+    <div class="conclusion-card positive " style="font-size:0.85em; padding:16px 18px;">
+      <div class="cc-title" style="font-size:1.3em;">✓ 本案具體成果</div>
       <ul>
-        <li style="margin-bottom:6px;"><a class="att-link" href="attachments.html?att=6" target="_self">縣府修正道路挖掘行政規費收費標準</a></li>
-        <li style="margin-bottom:6px;"><a class="att-link" href="attachments.html?att=7" target="_self">114/5–7 月增加收入 50.1 萬元</a></li>
-        <li style="margin-bottom:6px;"><a class="att-link" href="attachments.html?att=12" target="_self">圖資修正 20,999 筆</a></li>
-        <li style="margin-bottom:6px;"><a class="att-link" href="attachments.html?att=9" target="_self">工作補充說明 6 點 → 18 點</a></li>
+        <li style="margin-bottom:7px;"><a class="att-link" href="attachments.html?att=6" target="_self">縣府修正道路挖掘行政規費收費標準</a></li>
+        <li style="margin-bottom:7px;"><a class="att-link" href="attachments.html?att=7" target="_self">114/5–7 月增加收入 50.1 萬元</a></li>
+        <li style="margin-bottom:7px;"><a class="att-link" href="attachments.html?att=12" target="_self">圖資修正 20,999 筆</a></li>
+        <li style="margin-bottom:7px;"><a class="att-link" href="attachments.html?att=9" target="_self">工作補充說明 6 點 → 18 點</a></li>
       </ul>
     </div>
-    <div class="conclusion-card positive " style="font-size:0.75em; padding:14px 16px;">
-      <div class="cc-title" style="font-size:1.1em;">📊 審計呈現</div>
+    <div class="conclusion-card positive " style="font-size:0.85em; padding:16px 18px;">
+      <div class="cc-title" style="font-size:1.3em;">📊 審計呈現</div>
       <ul>
-        <li style="margin-bottom:6px;"><a class="att-link" href="attachments.html?att=4" target="_self">列入決算審核報告</a></li>
-        <li style="margin-bottom:6px;"><a class="att-link" href="attachments.html?att=5" target="_self">發布重要政府審計資訊</a></li>
-        <li style="margin-bottom:6px;"><a class="att-link" href="attachments.html?att=3" target="_self">促成責任查處及制度改善</a></li>
-        <li style="margin-bottom:6px;"><a class="att-link" href="attachments.html?att=14&from=12" target="_self">可擴散至其他查核議題</a></li>
+        <li style="margin-bottom:7px;"><a class="att-link" href="attachments.html?att=4" target="_self">列入決算審核報告</a></li>
+        <li style="margin-bottom:7px;"><a class="att-link" href="attachments.html?att=5" target="_self">發布重要政府審計資訊</a></li>
+        <li style="margin-bottom:7px;"><a class="att-link" href="attachments.html?att=3" target="_self">促成責任查處及制度改善</a></li>
+        <li style="margin-bottom:7px;"><a class="att-link" href="attachments.html?att=14&from=12" target="_self">可擴散至其他查核議題</a></li>
       </ul>
     </div>
   </div>
