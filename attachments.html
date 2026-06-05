@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>佐證附件總覽 · 道路管理維護查核</title>
+  <style>
+    :root {
+      --accent:  #e8643a;
+      --accent2: #4fc3f7;
+      --success: #81c784;
+      --warn:    #ffb74d;
+      --bg:      #0f0f1e;
+      --bg2:     #1a1a2e;
+      --bg3:     #252544;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+      background: linear-gradient(135deg, var(--bg) 0%, #1a1a3a 100%);
+      color: #ddd;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(15,15,30,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 14px 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    header h1 {
+      margin: 0; font-size: 20px; color: #fff; flex: 1;
+    }
+    header h1 .sub { font-size: 13px; color: #888; font-weight: 400; margin-left: 8px; }
+    .back-btn {
+      background: var(--accent); color: #fff;
+      padding: 10px 18px; border-radius: 8px;
+      text-decoration: none; font-weight: 700; font-size: 14px;
+      display: inline-flex; align-items: center; gap: 6px;
+      border: none; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .back-btn:hover { background: #ff7752; transform: translateY(-1px); }
+    .counter {
+      background: rgba(79,195,247,0.15);
+      color: var(--accent2);
+      padding: 6px 14px; border-radius: 16px;
+      font-size: 13px; font-weight: 700;
+    }
+
+    /* Grid */
+    .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+    .intro {
+      background: rgba(255,255,255,0.04);
+      border-left: 4px solid var(--accent2);
+      padding: 12px 18px; border-radius: 6px;
+      margin-bottom: 24px; font-size: 14px; line-height: 1.7;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent2);
+      box-shadow: 0 8px 24px rgba(79,195,247,0.25);
+    }
+    .card.highlight {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(232,100,58,0.4);
+    }
+    .card .thumb {
+      width: 100%; height: 180px;
+      background: #000;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .card .thumb img {
+      max-width: 100%; max-height: 100%;
+      object-fit: contain;
+    }
+    .card .meta {
+      padding: 12px 14px;
+    }
+    .card .num {
+      display: inline-block;
+      background: var(--accent); color: #fff;
+      font-size: 11px; font-weight: 700;
+      padding: 2px 8px; border-radius: 10px;
+      margin-bottom: 6px;
+    }
+    .card .num.multi { background: var(--warn); color: #1a1a2e; }
+    .card .title { font-size: 14px; font-weight: 700; color: #fff; line-height: 1.4; }
+    .card .pages { font-size: 12px; color: #888; margin-top: 4px; }
+
+    /* Modal */
+    .modal {
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(0,0,0,0.95);
+      display: none; align-items: center; justify-content: center;
+      flex-direction: column;
+    }
+    .modal.open { display: flex; }
+    .modal-header {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 14px 20px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent);
+      display: flex; align-items: center; gap: 12px;
+      z-index: 2;
+    }
+    .modal-title {
+      flex: 1; color: #fff; font-size: 16px; font-weight: 700;
+    }
+    .modal-close, .modal-back {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 14px; border-radius: 6px;
+      cursor: pointer; font-size: 13px; font-weight: 700;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .modal-close:hover, .modal-back:hover { background: rgba(255,255,255,0.22); }
+    .modal-back { background: var(--accent); border-color: var(--accent); }
+    .modal-back:hover { background: #ff7752; }
+    .modal-image-wrap {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 70px 80px 80px;
+      overflow: hidden;
+      width: 100%; height: 100%;
+    }
+    .modal-image {
+      max-width: 100%; max-height: 100%;
+      object-fit: contain;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    }
+    .modal-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      font-size: 22px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+      z-index: 3;
+    }
+    .modal-nav:hover { background: rgba(79,195,247,0.4); }
+    .modal-nav.left { left: 16px; }
+    .modal-nav.right { right: 16px; }
+    .modal-nav:disabled { opacity: 0.25; cursor: not-allowed; }
+    .modal-footer {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 14px 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      z-index: 2;
+    }
+    .page-indicator {
+      color: #fff; font-size: 14px; font-weight: 700;
+      background: rgba(0,0,0,0.5);
+      padding: 6px 16px; border-radius: 14px;
+    }
+    .modal-counter {
+      color: #aaa; font-size: 12px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 16px; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+      .modal-image-wrap { padding: 70px 16px 80px; }
+      .modal-nav { width: 40px; height: 40px; font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <button class="back-btn" onclick="goBack()">← 返回簡報</button>
+  <h1>📎 佐證附件總覽 <span class="sub">· 道路管理維護查核 (15 份附件)</span></h1>
+  <span class="counter" id="counter">15 份</span>
+</header>
+
+<div class="container">
+  <div class="intro">
+    本頁收錄 15 份佐證附件，提供本創新提案相關法規、審核通知、查核成果、AI 工具操作畫面等佐證資料。<strong>附件不計入 14 頁簡報</strong>，可隨時開啟或關閉瀏覽。
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-header">
+    <button class="modal-back" onclick="goBack()">← 返回簡報</button>
+    <div class="modal-title" id="modal-title">附件 1：查核議題發現</div>
+    <button class="modal-close" onclick="closeModal()">✕ 關閉</button>
+  </div>
+  <button class="modal-nav left" id="nav-left" onclick="prevPage()">‹</button>
+  <button class="modal-nav right" id="nav-right" onclick="nextPage()">›</button>
+  <div class="modal-image-wrap">
+    <img class="modal-image" id="modal-image" src="" alt="" />
+  </div>
+  <div class="modal-footer">
+    <div class="page-indicator" id="page-indicator">第 1 頁 / 共 1 頁</div>
+    <div class="modal-counter" id="modal-counter">附件 1 / 15</div>
+  </div>
+</div>
+
+<script>
+  // 附件資料
+  const atts = [
+    { num: 1,  title: '查核議題發現',                          pages: ['att1.png'] },
+    { num: 2,  title: 'ChatGPT 爬梳規定、機制、檢核措施',         pages: ['att2.png'] },
+    { num: 3,  title: '審核通知及聲復',                          pages: ['att3.png'] },
+    { num: 4,  title: '113 年度總決算審核意見',                   pages: ['att4.jpg'] },
+    { num: 5,  title: '資訊發布',                                pages: ['att5.png'] },
+    { num: 6,  title: '修正收費標準',                            pages: ['att6.png'] },
+    { num: 7,  title: '調整收費標準後增加收入 50.1 萬元',         pages: ['att7.jpg'] },
+    { num: 8,  title: '南澳鄉 112 年宜路平專案追責函文',           pages: ['att8.png'] },
+    { num: 9,  title: '增訂工作補充說明',                        pages: ['att9.jpg'] },
+    { num: 10, title: 'NotebookLM 彙整各季評比成果報告',          pages: ['att10-1.png', 'att10-2.png'], multi: true },
+    { num: 11, title: 'Excel 分類建置資料庫',                    pages: ['att11.png'] },
+    { num: 12, title: 'QGIS 套疊管線圖資',                       pages: ['att12.jpg'] },
+    { num: 13, title: 'Python 圖像比對輔助查核',                  pages: ['att13.png'] },
+    { num: 14, title: 'Claude 控制 QGIS 輔助查核',                pages: ['att14.png'] },
+    { num: 15, title: 'Gemini 串接 OpenStreet 輔助查核',          pages: ['att15.png'] }
+  ];
+
+  let currentAtt = 0;
+  let currentPage = 0;
+
+  // 渲染卡片
+  function renderGrid() {
+    const grid = document.getElementById('grid');
+    const params = new URLSearchParams(location.search);
+    const highlightAtt = parseInt(params.get('att') || '0');
+    const fromSlide = params.get('from');
+
+    grid.innerHTML = atts.map((a, i) => {
+      const isHi = highlightAtt === a.num;
+      return `
+        <div class="card ${isHi ? 'highlight' : ''}" onclick="openAtt(${i})" data-num="${a.num}">
+          <div class="thumb">
+            <img src="attachments/${a.pages[0]}" alt="附件 ${a.num}" loading="lazy" />
+          </div>
+          <div class="meta">
+            <span class="num ${a.multi ? 'multi' : ''}">附件 ${a.num}${a.multi ? ' · 多頁' : ''}</span>
+            <div class="title">${a.title}</div>
+            <div class="pages">${a.pages.length} 頁${fromSlide !== null && isHi ? ' · 來自簡報第 ' + (parseInt(fromSlide)+1) + ' 頁' : ''}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // 自動捲到高亮卡片
+    if (highlightAtt > 0) {
+      setTimeout(() => {
+        const hi = document.querySelector('.card.highlight');
+        if (hi) hi.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 200);
+    }
+
+    document.getElementById('counter').textContent = atts.length + ' 份';
+  }
+
+  // 開啟附件
+  function openAtt(idx, page = 0) {
+    currentAtt = idx;
+    currentPage = Math.max(0, Math.min(page, atts[idx].pages.length - 1));
+    updateModal();
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function updateModal() {
+    const a = atts[currentAtt];
+    const img = atts[currentAtt].pages[currentPage];
+    document.getElementById('modal-title').textContent = `附件 ${a.num}：${a.title}${a.multi ? ` (${currentPage+1}/${a.pages.length})` : ''}`;
+    document.getElementById('modal-image').src = 'attachments/' + img;
+    document.getElementById('modal-image').alt = `附件 ${a.num} - ${a.title}`;
+    document.getElementById('page-indicator').textContent = `第 ${currentPage+1} 頁 / 共 ${a.pages.length} 頁`;
+    document.getElementById('modal-counter').textContent = `附件 ${a.num} / ${atts.length}`;
+    // 左右頁按鈕 (頁面切換) - 只在多頁時啟用
+    const hasMulti = a.pages.length > 1;
+    const leftBtn = document.getElementById('nav-left');
+    const rightBtn = document.getElementById('nav-right');
+    const leftDisabled = !hasMulti || currentPage === 0;
+    const rightDisabled = !hasMulti || currentPage === a.pages.length - 1;
+    leftBtn.disabled = leftDisabled;
+    rightBtn.disabled = rightDisabled;
+    leftBtn.style.opacity = leftDisabled ? '0.25' : '1';
+    rightBtn.style.opacity = rightDisabled ? '0.25' : '1';
+    leftBtn.style.cursor = leftDisabled ? 'not-allowed' : 'pointer';
+    rightBtn.style.cursor = rightDisabled ? 'not-allowed' : 'pointer';
+  }
+
+  // 頁面切換
+  function nextPage() {
+    const a = atts[currentAtt];
+    if (currentPage < a.pages.length - 1) {
+      currentPage++;
+      updateModal();
+    }
+  }
+  function prevPage() {
+    if (currentPage > 0) {
+      currentPage--;
+      updateModal();
+    }
+  }
+
+  // 返回簡報
+  function goBack() {
+    if (document.referrer && document.referrer.includes(location.host)) {
+      history.back();
+    } else {
+      location.href = 'index.html';
+    }
+  }
+
+  // 鍵盤控制
+  document.addEventListener('keydown', e => {
+    const modal = document.getElementById('modal');
+    if (!modal.classList.contains('open')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowRight') nextPage();
+    if (e.key === 'ArrowLeft') prevPage();
+  });
+
+  // 初始化
+  renderGrid();
+
+  // 處理 ?att=N 自動開啟
+  const params = new URLSearchParams(location.search);
+  const directAtt = parseInt(params.get('att') || '0');
+  if (directAtt > 0) {
+    const idx = atts.findIndex(a => a.num === directAtt);
+    if (idx >= 0) {
+      setTimeout(() => openAtt(idx), 400);
+    }
+  }
+</script>
+
+</body>
+</html>

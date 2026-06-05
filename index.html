@@ -145,17 +145,13 @@
     /* VIZ 滑桿 */
     .viz-wrap { position: relative; height: 320px; border-radius: 10px; overflow: hidden; margin-top: 0.6em; }
     .viz-half { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
-    .viz-before { background: rgba(255,183,77,0.12); }
-    .viz-after  { background: rgba(129,199,132,0.15); clip-path: inset(0 100% 0 0); }
-    .viz-divider { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(to bottom, transparent, #4fc3f7, transparent); box-shadow: 0 0 12px #4fc3f7; pointer-events: none; }
-    .viz-label { font-size: 0.45em; font-weight: 700; margin-bottom: 8px; }
-    .viz-label.before { color: var(--warn); }
-    .viz-label.after  { color: var(--success); }
-    .viz-num { font-size: 1.8em; font-weight: 800; }
-    .viz-before .viz-num { color: var(--warn); }
-    .viz-after .viz-num  { color: var(--success); }
-    .viz-text { font-size: 0.4em; color: #ddd; margin-top: 6px; line-height: 1.4; }
-    .viz-tag { position: absolute; top: 8px; font-size: 0.4em; color: #888; font-weight: 700; }
+    .viz-before { background: linear-gradient(135deg, rgba(255,183,77,0.92), rgba(255,152,0,0.92)); }
+    .viz-after  { background: linear-gradient(135deg, rgba(67,160,71,0.95), rgba(102,187,106,0.95)); clip-path: inset(0 100% 0 0); }
+    .viz-divider { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(to bottom, transparent, #fff, transparent); box-shadow: 0 0 12px #4fc3f7; pointer-events: none; }
+    .viz-label { font-size: 0.5em; font-weight: 700; margin-bottom: 8px; color: #fff; }
+    .viz-num { font-size: 1.8em; font-weight: 800; color: #fff; }
+    .viz-text { font-size: 0.4em; color: #fff; margin-top: 6px; line-height: 1.4; }
+    .viz-tag { position: absolute; top: 8px; font-size: 0.4em; color: #fff; font-weight: 700; }
     .viz-tag.left  { left: 12px; }
     .viz-tag.right { right: 12px; }
     #viz-slider { width: 100%; margin-top: 14px; }
@@ -165,6 +161,39 @@
     .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     .video-fallback { padding: 30px; background: rgba(255,255,255,0.05); border-radius: 12px; text-align: center; margin-top: 1em; }
     .video-fallback a { color: var(--accent2); font-size: 0.7em; text-decoration: none; }
+
+    /* 佐證附件按鈕 (右上角) */
+    .att-btn {
+      position: fixed; top: 14px; right: 14px; z-index: 1000;
+      background: rgba(232,100,58,0.92); color: #fff;
+      padding: 8px 14px; border-radius: 22px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      border: 2px solid rgba(255,255,255,0.4);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+      transition: all 0.2s;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      font-family: inherit;
+    }
+    .att-btn:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(232,100,58,0.55); }
+    .att-btn .badge { background: #fff; color: var(--accent); border-radius: 10px; padding: 1px 7px; font-size: 11px; }
+
+    /* 佐證附件彈出面板 */
+    .att-panel {
+      position: fixed; top: 60px; right: 14px; z-index: 1001;
+      background: rgba(20,20,40,0.97); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px; padding: 12px; min-width: 240px; max-width: 320px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      display: none; font-size: 13px; color: #ddd;
+    }
+    .att-panel.open { display: block; }
+    .att-panel h4 { margin: 0 0 8px 0; color: var(--accent2); font-size: 14px; }
+    .att-panel a { display: block; color: #fff; padding: 6px 8px; border-radius: 6px; text-decoration: none; font-size: 12.5px; line-height: 1.4; }
+    .att-panel a:hover { background: rgba(79,195,247,0.25); }
+    .att-panel .all-link { margin-top: 6px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.15); color: var(--accent); font-weight: 700; }
+
+    /* 內文關鍵字連結 */
+    .att-link { color: var(--accent2); border-bottom: 1px dashed var(--accent2); cursor: pointer; text-decoration: none; }
+    .att-link:hover { color: #fff; border-bottom-color: #fff; }
   </style>
 </head>
 <body>
@@ -182,7 +211,7 @@
       有效提升工作效率及審核意見品質
     </p>
     <div class="video-wrap" style="max-width: 720px; margin: 1.2em auto 0;">
-      <iframe src="https://www.youtube.com/embed/hwfGexyXraM" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/hwfGexyXraM?vq=hd720&hd=1&rel=0" allowfullscreen allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen></iframe>
     </div>
     <p class="author">宜蘭縣審計室 · 官毅明 · 115 年創新提案</p>
   </div>
@@ -260,19 +289,19 @@
   <div class="step-row" style="margin-top: 1.2em;">
     <div class="step-card">
       <div class="step-num">1</div>
-      <div class="step-text">ChatGPT<br>爬梳規定、機制、檢核措施</div>
+      <div class="step-text"><a class="att-link" href="attachments.html?att=2" target="_self">ChatGPT</a><br><a class="att-link" href="attachments.html?att=2" target="_self">爬梳規定、機制、檢核措施</a></div>
     </div>
     <div class="step-card">
       <div class="step-num">2</div>
-      <div class="step-text">NotebookLM<br>彙整各季評比成果報告</div>
+      <div class="step-text"><a class="att-link" href="attachments.html?att=10" target="_self">NotebookLM</a><br><a class="att-link" href="attachments.html?att=10" target="_self">彙整各季評比成果報告</a></div>
     </div>
     <div class="step-card">
       <div class="step-num">3</div>
-      <div class="step-text">Excel<br>分類建置資料庫</div>
+      <div class="step-text"><a class="att-link" href="attachments.html?att=11" target="_self">Excel</a><br><a class="att-link" href="attachments.html?att=11" target="_self">分類建置資料庫</a></div>
     </div>
     <div class="step-card">
       <div class="step-num">4</div>
-      <div class="step-text">QGIS + Python<br>地圖與資料複核</div>
+      <div class="step-text"><a class="att-link" href="attachments.html?att=12" target="_self">QGIS</a> + <a class="att-link" href="attachments.html?att=13" target="_self">Python</a><br><a class="att-link" href="attachments.html?att=12" target="_self">地圖與資料複核</a></div>
     </div>
   </div>
   <div class="quote-box" style="margin-top: 1.2em;">
@@ -350,7 +379,7 @@
   <div class="step-row" style="margin-top: 0.8em;">
     <div class="step-card">
       <div class="step-num">①</div>
-      <div class="step-text">NotebookLM<br>彙入各季宜路平成果</div>
+      <div class="step-text"><a class="att-link" href="attachments.html?att=10" target="_self">NotebookLM</a><br>彙入各季宜路平成果</div>
     </div>
     <div class="step-card">
       <div class="step-num">②</div>
@@ -358,7 +387,7 @@
     </div>
     <div class="step-card">
       <div class="step-num">③</div>
-      <div class="step-text">Excel 分類<br>重複缺失註記</div>
+      <div class="step-text"><a class="att-link" href="attachments.html?att=11" target="_self">Excel 分類</a><br>重複缺失註記</div>
     </div>
     <div class="step-card">
       <div class="step-num">④</div>
@@ -634,7 +663,72 @@
   Reveal.on('slidechanged', e => {
     if (e.currentSlide && e.currentSlide.querySelector('#viz-slider')) setupViz();
   });
+
+  // 佐證附件面板
+  const attPerSlide = {
+    0: [1, 2],                        // 封面
+    1: [11, 12, 13, 14, 15],          // AI 工具鏈
+    2: [3, 4],                        // 問題意識
+    3: [2, 10, 11, 12, 13],           // 把AI放進審計流程
+    4: [3, 6, 7],                     // 三條驗證線
+    5: [3, 6, 7],                     // 收費標準
+    6: [10, 11],                      // 重複缺失
+    7: [8, 9],                        // 改善進制度
+    8: [5, 6, 7, 8],                  // 改善成果
+    9: [11, 12, 13, 14, 15],          // AI均衡
+    10: [10, 11, 12, 13],             // 何時導入
+    11: [11, 12, 13, 14, 15],         // 六步驟
+    12: [5, 6, 7],                    // AI放大價值
+    13: []                            // 結束
+  };
+  const attTitles = {
+    1: '查核議題發現',
+    2: 'ChatGPT 爬梳規定、機制、檢核措施',
+    3: '審核通知及聲復',
+    4: '113 年度總決算審核意見',
+    5: '資訊發布',
+    6: '修正收費標準',
+    7: '調整收費標準後增加收入 50.1 萬元',
+    8: '南澳鄉 112 年宜路平專案追責函文',
+    9: '增訂工作補充說明',
+    10: 'NotebookLM 彙整各季評比成果報告',
+    11: 'Excel 分類建置資料庫',
+    12: 'QGIS 套疊管線圖資',
+    13: 'Python 圖像比對輔助查核',
+    14: 'Claude 控制 QGIS 輔助查核',
+    15: 'Gemini 串接 OpenStreet 輔助查核'
+  };
+  function renderAttPanel(idx) {
+    const atts = attPerSlide[idx] || [];
+    const list = document.getElementById('att-panel-list');
+    if (!list) return;
+    if (atts.length === 0) {
+      list.innerHTML = '<p style="color:#888;font-size:12px;margin:0;">本頁無對應附件</p>';
+      return;
+    }
+    list.innerHTML = atts.map(a => `<a href="attachments.html?att=${a}&from=${idx}">📎 附件 ${a}：${attTitles[a]}</a>`).join('');
+  }
+  function toggleAttPanel() {
+    document.getElementById('att-panel').classList.toggle('open');
+  }
+  Reveal.on('slidechanged', e => renderAttPanel(e.indexh));
+  Reveal.on('ready', e => renderAttPanel(0));
+  // 點外面關閉面板
+  document.addEventListener('click', e => {
+    const panel = document.getElementById('att-panel');
+    const btn = document.querySelector('.att-btn');
+    if (!panel || !btn) return;
+    if (!panel.contains(e.target) && !btn.contains(e.target)) panel.classList.remove('open');
+  });
 </script>
+
+<!-- 佐證附件浮動按鈕 (跨投影片) -->
+<button class="att-btn" onclick="toggleAttPanel()" title="開啟本頁對應的佐證附件">📎 佐證附件 <span class="badge">15</span></button>
+<div class="att-panel" id="att-panel">
+  <h4>本頁對應附件</h4>
+  <div id="att-panel-list"></div>
+  <a href="attachments.html" class="all-link">📁 查看全部 15 份附件 →</a>
+</div>
 
 </body>
 </html>
