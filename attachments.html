@@ -133,17 +133,14 @@
     .modal-title {
       flex: 1; color: var(--accent2); font-size: 16px; font-weight: 700;
     }
-    .modal-close, .modal-back {
-      background: rgba(0,96,192,0.25);
-      color: #fff;
+    .modal-back {
+      background: rgba(0,96,192,0.85); color: #fff;
       border: 1px solid rgba(79,195,247,0.3);
       padding: 8px 14px; border-radius: 6px;
       cursor: pointer; font-size: 13px; font-weight: 700;
       font-family: inherit;
       transition: all 0.2s;
     }
-    .modal-close:hover, .modal-back:hover { background: rgba(0,136,255,0.4); }
-    .modal-back { background: rgba(0,96,192,0.85); border-color: rgba(79,195,247,0.3); }
     .modal-back:hover { background: var(--accent3); box-shadow: 0 0 15px rgba(0,136,255,0.3); }
     .modal-image-wrap {
       flex: 1; display: flex; align-items: center; justify-content: center;
@@ -221,7 +218,6 @@
   <div class="modal-header">
     <button class="modal-back" onclick="goBack()">← 返回簡報</button>
     <div class="modal-title" id="modal-title">附件 1：查核議題發現</div>
-    <button class="modal-close" onclick="closeModal()">✕ 關閉</button>
   </div>
   <button class="modal-nav left" id="nav-left" onclick="prevPage()">‹</button>
   <button class="modal-nav right" id="nav-right" onclick="nextPage()">›</button>
