@@ -43,124 +43,26 @@
       margin-bottom: 1em;
       font-weight: 600;
     }
-    .title-slide h1 { color: #fff; margin: 0.3em 0; }
-    .title-slide .author { margin-top: 1.5em; font-size: 0.45em; color: #888; }
-
-    /* 統計卡 */
-    .stat-row { display: flex; gap: 16px; justify-content: center; margin-top: 1em; }
-    .stat-card {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 10px;
-      padding: 16px 18px;
-      text-align: center;
-      flex: 1;
+    .title-slide h1 { color: #fff; margin: 0.2em 0; font-size: 1.3em; line-height: 1.25; }
+    .title-slide h2 { font-size: 0.85em; }
+    .title-slide p.subtitle { font-size: 0.45em; color: #ccc; margin: 0.3em auto; max-width: 800px; line-height: 1.5; }
+    .title-slide .author { margin-top: 0.6em; font-size: 0.4em; color: #888; }
+    .title-slide .video-center {
+      display: flex; justify-content: center; align-items: center;
+      width: 100%; margin: 0.6em 0;
     }
-    .stat-card .num   { font-size: 1.6em; font-weight: 800; color: var(--accent); line-height: 1; }
-    .stat-card .label { font-size: 0.4em; color: #ccc; margin-top: 4px; }
-
-    /* 三大並列 */
-    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 0.6em; }
-    .col-card {
-      background: rgba(255,255,255,0.05);
-      border-top: 4px solid var(--accent2);
-      border-radius: 8px;
-      padding: 14px;
-      text-align: center;
+    .title-slide .video-center .video-wrap {
+      position: relative;
+      width: 100%; max-width: 720px;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px; overflow: hidden;
+      margin: 0;
+      padding-bottom: 0 !important;
+      height: auto !important;
     }
-    .col-card .icon { font-size: 1.6em; margin-bottom: 6px; }
-    .col-card .col-title { font-size: 0.5em; font-weight: 700; color: var(--accent2); margin-bottom: 6px; }
-    .col-card .col-desc  { font-size: 0.4em; color: #ccc; line-height: 1.5; }
-
-    /* 流程卡 */
-    .step-row { display: flex; gap: 10px; justify-content: space-between; margin-top: 0.5em; }
-    .step-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 8px;
-      padding: 10px 8px;
-      text-align: center;
-      flex: 1;
+    .title-slide .video-center .video-wrap iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
     }
-    .step-card .step-num { font-size: 0.7em; font-weight: 800; color: var(--accent); }
-    .step-card .step-text { font-size: 0.4em; color: #ccc; margin-top: 4px; line-height: 1.4; }
-
-    /* VS 對比 */
-    .vs-grid { display: grid; grid-template-columns: 1fr 50px 1fr; gap: 0; align-items: start; margin-top: 0.6em; }
-    .vs-col { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 14px; }
-    .vs-col.left-col  { border-top: 3px solid var(--warn); }
-    .vs-col.right-col { border-top: 3px solid var(--success); }
-    .vs-label { font-size: 0.55em; font-weight: 700; margin-bottom: 8px; }
-    .vs-label.left  { color: var(--warn); }
-    .vs-label.right { color: var(--success); }
-    .vs-center { display: flex; align-items: center; justify-content: center; font-size: 1.2em; font-weight: 900; color: #555; }
-    .vs-col ul { font-size: 0.4em; list-style: none; padding: 0; margin: 0; color: #ddd; }
-    .vs-col ul li { padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .vs-col ul li:last-child { border-bottom: none; }
-    .vs-col ul li::before { content: "✦ "; opacity: 0.5; }
-
-    /* 雷達圖 */
-    .radar-wrap { display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 0.5em; }
-    .radar-svg { width: 320px; height: 320px; }
-    .radar-list { font-size: 0.4em; color: #ccc; line-height: 1.8; max-width: 280px; }
-    .radar-list .lbl { color: var(--accent2); font-weight: 700; }
-
-    /* 時間軸 */
-    .timeline { position: relative; padding-left: 32px; margin-top: 0.6em; }
-    .timeline::before {
-      content: ''; position: absolute; left: 12px; top: 4px; bottom: 4px;
-      width: 2px; background: rgba(255,255,255,0.2);
-    }
-    .timeline-item { position: relative; margin-bottom: 12px; font-size: 0.45em; }
-    .timeline-item::before {
-      content: ''; position: absolute; left: -25px; top: 6px;
-      width: 9px; height: 9px; border-radius: 50%;
-      background: var(--accent); border: 2px solid #1a1a2e;
-    }
-    .timeline-item .ti-date { color: var(--accent); font-weight: 700; }
-    .timeline-item .ti-text { color: #ccc; margin-top: 2px; line-height: 1.5; }
-
-    /* 結論卡 */
-    .conclusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 0.7em; }
-    .conclusion-card { border-radius: 8px; padding: 14px; font-size: 0.42em; }
-    .conclusion-card.positive {
-      background: rgba(129,199,132,0.12);
-      border: 1px solid rgba(129,199,132,0.35);
-    }
-    .conclusion-card.caution {
-      background: rgba(255,183,77,0.1);
-      border: 1px solid rgba(255,183,77,0.3);
-    }
-    .conclusion-card .cc-title { font-size: 1.1em; font-weight: 700; margin-bottom: 6px; }
-    .conclusion-card.positive .cc-title { color: var(--success); }
-    .conclusion-card.caution  .cc-title { color: var(--warn); }
-    .conclusion-card ul { list-style: none; padding: 0; margin: 0; color: #ccc; line-height: 1.7; }
-    .conclusion-card ul li::before { content: "→ "; opacity: 0.6; }
-
-    /* 封底 */
-    .end-slide { text-align: center; }
-    .end-slide .big { font-size: 2.5em; margin-bottom: 0.2em; }
-    .end-slide .tagline { font-size: 0.6em; color: #aaa; }
-
-    /* VIZ 滑桿 */
-    .viz-wrap { position: relative; height: 320px; border-radius: 10px; overflow: hidden; margin-top: 0.6em; }
-    .viz-half { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
-    .viz-before { background: linear-gradient(135deg, rgba(255,183,77,0.92), rgba(255,152,0,0.92)); }
-    .viz-after  { background: linear-gradient(135deg, rgba(67,160,71,0.95), rgba(102,187,106,0.95)); clip-path: inset(0 100% 0 0); }
-    .viz-divider { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(to bottom, transparent, #fff, transparent); box-shadow: 0 0 12px #4fc3f7; pointer-events: none; }
-    .viz-label { font-size: 0.5em; font-weight: 700; margin-bottom: 8px; color: #fff; }
-    .viz-num { font-size: 1.8em; font-weight: 800; color: #fff; }
-    .viz-text { font-size: 0.4em; color: #fff; margin-top: 6px; line-height: 1.4; }
-    .viz-tag { position: absolute; top: 8px; font-size: 0.4em; color: #fff; font-weight: 700; }
-    .viz-tag.left  { left: 12px; }
-    .viz-tag.right { right: 12px; }
-    #viz-slider { width: 100%; margin-top: 14px; }
-
-    /* 影片嵌入 */
-    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; margin-top: 1em; }
-    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .video-fallback { padding: 30px; background: rgba(255,255,255,0.05); border-radius: 12px; text-align: center; margin-top: 1em; }
-    .video-fallback a { color: var(--accent2); font-size: 0.7em; text-decoration: none; }
 
     /* 佐證附件按鈕 (右上角) */
     .att-btn {
@@ -206,12 +108,14 @@
     <div class="tag">🏛 創新提案 · 道路管理查核</div>
     <h2 style="color: var(--accent2);">運用生成式 AI 多元技術方法</h2>
     <h1>加強查核道路管理維護情形</h1>
-    <p style="font-size: 0.55em; color: #ccc; margin-top: 0.5em;">
+    <p class="subtitle">
       促請檢討道路挖掘行政規費收費標準，以增裕財源，並維護道路品質<br>
       有效提升工作效率及審核意見品質
     </p>
-    <div class="video-wrap" style="max-width: 720px; margin: 1.2em auto 0;">
-      <iframe src="https://www.youtube.com/embed/hwfGexyXraM?vq=hd720&hd=1&rel=0" allowfullscreen allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen></iframe>
+    <div class="video-center">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/hwfGexyXraM?vq=hd720&hd=1&rel=0" allowfullscreen allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen></iframe>
+      </div>
     </div>
     <p class="author">宜蘭縣審計室 · 官毅明 · 115 年創新提案</p>
   </div>
@@ -617,12 +521,7 @@
 <!-- 第 14 頁：結束 -->
 <section>
   <div class="end-slide">
-    <div class="big">🙏 感謝聆聽</div>
-    <p style="font-size: 0.7em; color: #ccc; margin-top: 0.5em;">
-      運用生成式 AI 多元技術方法<br>加強查核道路管理維護情形
-    </p>
-    <p class="tagline">敬請各位長官及同仁不吝指教</p>
-    <p class="author" style="margin-top: 1.5em;">報告人：宜蘭縣審計室 官毅明</p>
+    <img src="images/ending_16x9.png" alt="結束及謝謝大家的聆聽" />
   </div>
 </section>
 
@@ -663,6 +562,8 @@
   Reveal.on('slidechanged', e => {
     if (e.currentSlide && e.currentSlide.querySelector('#viz-slider')) setupViz();
   });
+
+
 
   // 佐證附件面板
   const attPerSlide = {
