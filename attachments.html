@@ -60,13 +60,6 @@
 
     /* Grid */
     .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
-    .intro {
-      background: rgba(12,16,32,0.88);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--accent2);
-      padding: 12px 18px; border-radius: 8px;
-      margin-bottom: 24px; font-size: 14px; line-height: 1.7; color: var(--text);
-    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -202,14 +195,11 @@
 
 <header>
   <button class="back-btn" onclick="goBack()">← 返回簡報</button>
-  <h1>📎 佐證附件總覽 <span class="sub">· 道路管理維護查核 (17 份附件)</span></h1>
-  <span class="counter" id="counter">15 份</span>
+  <h1>📎 佐證附件總覽 <span class="sub">· 道路管理維護查核 (16 份附件)</span></h1>
+  <span class="counter" id="counter">16 份</span>
 </header>
 
 <div class="container">
-  <div class="intro">
-    本頁收錄 15 份佐證附件，提供本創新提案相關法規、審核通知、查核成果、AI 工具操作畫面等佐證資料。<strong>附件不計入 14 頁簡報</strong>，可隨時開啟或關閉瀏覽。
-  </div>
   <div class="grid" id="grid"></div>
 </div>
 
@@ -226,7 +216,7 @@
   </div>
   <div class="modal-footer">
     <div class="page-indicator" id="page-indicator">第 1 頁 / 共 1 頁</div>
-    <div class="modal-counter" id="modal-counter">附件 1 / 15</div>
+    <div class="modal-counter" id="modal-counter">附件 1 / 16</div>
   </div>
 </div>
 
@@ -246,8 +236,7 @@
     { num: 11, title: 'Excel 分類建置資料庫',                    pages: ['att11.png'] },
     { num: 12, title: 'QGIS 套疊管線圖資',                       pages: ['att12.jpg'] },
     { num: 13, title: 'Python 圖像比對輔助查核',                  pages: ['att13.png'] },
-    { num: 14, title: 'Claude 控制 QGIS 輔助查核',                pages: ['att14.png'] },
-    { num: 15, title: 'Gemini 串接 OpenStreet 輔助查核',          pages: ['att15.png'] },
+    { num: 14, title: 'Claude 控制 QGIS / Gemini 串接 OpenStreet 輔助查核', pages: ['att14.png', 'att15.png'], multi: true },
     { num: 16, title: '8 個基金累計短絀',                        pages: ['att16.png'] },
     { num: 17, title: '230 件圖資未更新',                        pages: ['att17.png'] }
   ];
@@ -346,7 +335,13 @@
     if (returnSlide !== null) {
       location.href = 'index.html#/' + returnSlide;
     } else {
-      location.href = 'index.html';
+      const params = new URLSearchParams(location.search);
+      const from = params.get('from');
+      if (from !== null) {
+        location.href = 'index.html#/' + from;
+      } else {
+        location.href = 'index.html';
+      }
     }
   }
 
