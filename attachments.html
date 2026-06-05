@@ -194,6 +194,11 @@
       .modal-image-wrap { padding: 70px 16px 80px; }
       .modal-nav { width: 40px; height: 40px; font-size: 18px; }
     }
+
+    /* Direct-load mode: hide grid/header, show modal immediately */
+    body.direct-load header,
+    body.direct-load .container { display: none; }
+    body.direct-load .modal { display: flex; }
   </style>
 </head>
 <body>
@@ -360,7 +365,8 @@
   if (directAtt > 0) {
     const idx = atts.findIndex(a => a.num === directAtt);
     if (idx >= 0) {
-      setTimeout(() => openAtt(idx), 400);
+      document.body.classList.add('direct-load');
+      openAtt(idx);
     }
   }
 </script>

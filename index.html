@@ -34,10 +34,10 @@
       font-weight: 700;
       letter-spacing: -0.02em;
     }
-    .reveal h1 { font-size: 1.6em; line-height: 1.3; color: #fff; text-shadow: 0 0 30px rgba(0,150,255,0.3); }
-    .reveal h2 { font-size: 1.2em; color: var(--accent2); text-shadow: 0 0 20px rgba(79,195,247,0.25); }
-    .reveal h3 { font-size: 0.75em; color: var(--accent3); }
-    .reveal p, .reveal li { font-size: 0.5em; line-height: 1.7; color: var(--text); }
+    .reveal h1 { font-size: 2.2em; line-height: 1.3; color: #fff; text-shadow: 0 0 30px rgba(0,150,255,0.3); }
+    .reveal h2 { font-size: 1.8em; color: var(--accent2); text-shadow: 0 0 20px rgba(79,195,247,0.25); }
+    .reveal h3 { font-size: 1.1em; color: var(--accent3); }
+    .reveal p, .reveal li { font-size: 0.75em; line-height: 1.7; color: var(--text); }
     .reveal .progress { color: var(--accent3); }
     .reveal .controls { color: var(--accent2); }
 
@@ -47,14 +47,14 @@
       display: inline-block;
       background: rgba(0,96,192,0.25);
       color: var(--accent2); border: 1px solid rgba(79,195,247,0.3);
-      padding: 5px 18px; border-radius: 24px;
-      font-size: 0.45em; letter-spacing: 0.1em;
+      padding: 8px 24px; border-radius: 28px;
+      font-size: 0.6em; letter-spacing: 0.1em;
       margin-bottom: 1em; font-weight: 600;
     }
-    .title-slide h1 { color: #fff; margin: 0.15em 0; font-size: 1.3em; line-height: 1.25; text-shadow: 0 0 40px rgba(0,136,255,0.4); }
-    .title-slide h2 { font-size: 0.75em; }
-    .title-slide p.subtitle { font-size: 0.4em; color: var(--text2); margin: 0.2em auto; max-width: 800px; line-height: 1.5; }
-    .title-slide .author { margin-top: 0.6em; font-size: 0.35em; color: var(--text2); letter-spacing: 0.05em; }
+    .title-slide h1 { color: #fff; margin: 0.15em 0; font-size: 2.0em; line-height: 1.25; text-shadow: 0 0 40px rgba(0,136,255,0.4); }
+    .title-slide h2 { font-size: 1.0em; }
+    .title-slide p.subtitle { font-size: 0.55em; color: var(--text2); margin: 0.2em auto; max-width: 800px; line-height: 1.5; }
+    .title-slide .author { margin-top: 0.8em; font-size: 0.5em; color: var(--text2); letter-spacing: 0.05em; }
     .title-slide .video-center {
       display: flex; justify-content: center; align-items: center;
       width: 100%; margin: 0.5em 0;
@@ -86,36 +86,35 @@
     /* 統計卡 */
     .stat-row { display: flex; gap: 14px; justify-content: center; margin-top: 0.8em; }
     .stat-card {
-      composes: card-base;
       background: var(--bg-card2);
-      border-radius: 10px; padding: 14px 18px; text-align: center;
+      border-radius: 10px; padding: 18px 22px; text-align: center;
       flex: 1; border-left: 3px solid var(--accent3);
       transition: all 0.3s ease;
     }
     .stat-card:hover { border-left-color: var(--accent2); box-shadow: var(--glow); }
-    .stat-card .num   { font-size: 1.5em; font-weight: 800; color: var(--accent2); line-height: 1; text-shadow: 0 0 12px rgba(79,195,247,0.3); }
-    .stat-card .label { font-size: 0.4em; color: var(--text2); margin-top: 4px; }
+    .stat-card .num   { font-size: 2.2em; font-weight: 800; color: var(--accent2); line-height: 1; text-shadow: 0 0 12px rgba(79,195,247,0.3); }
+    .stat-card .label { font-size: 0.55em; color: var(--text2); margin-top: 4px; }
 
     /* 三大並列 */
     .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 0.6em; }
     .col-card {
       background: var(--bg-card2);
       border: 1px solid var(--border);
-      border-radius: 10px; padding: 14px; text-align: center;
+      border-radius: 10px; padding: 18px; text-align: center;
       border-top: 3px solid var(--accent3);
       transition: all 0.3s ease;
     }
     .col-card:hover { border-top-color: var(--accent2); box-shadow: var(--glow); transform: translateY(-2px); }
-    .col-card .icon { font-size: 1.5em; margin-bottom: 6px; }
-    .col-card .col-title { font-size: 0.5em; font-weight: 700; color: var(--accent2); margin-bottom: 5px; }
-    .col-card .col-desc  { font-size: 0.4em; color: var(--text2); line-height: 1.5; }
+    .col-card .icon { font-size: 2.0em; margin-bottom: 6px; }
+    .col-card .col-title { font-size: 0.7em; font-weight: 700; color: var(--accent2); margin-bottom: 5px; }
+    .col-card .col-desc  { font-size: 0.55em; color: var(--text2); line-height: 1.5; }
 
     /* 流程卡 */
     .step-row { display: flex; gap: 10px; justify-content: space-between; margin-top: 0.5em; }
     .step-card {
       background: var(--bg-card2);
       border: 1px solid var(--border);
-      border-radius: 10px; padding: 12px 8px; text-align: center;
+      border-radius: 10px; padding: 14px 10px; text-align: center;
       flex: 1; position: relative; overflow: hidden;
       transition: all 0.3s ease;
     }
@@ -125,21 +124,21 @@
     }
     .step-card:hover { box-shadow: var(--glow); transform: translateY(-2px); }
     .step-card .step-num {
-      font-size: 0.7em; font-weight: 800; color: var(--accent2);
+      font-size: 1.0em; font-weight: 800; color: var(--accent2);
       text-shadow: 0 0 10px rgba(79,195,247,0.4);
     }
-    .step-card .step-text { font-size: 0.4em; color: var(--text); margin-top: 4px; line-height: 1.4; }
+    .step-card .step-text { font-size: 0.55em; color: var(--text); margin-top: 4px; line-height: 1.4; }
 
     /* VS 對比 */
     .vs-grid { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 0; align-items: start; margin-top: 0.5em; }
     .vs-col { background: var(--bg-card2); border-radius: 10px; padding: 14px; border: 1px solid var(--border); }
     .vs-col.left-col  { border-top: 3px solid var(--warn); }
     .vs-col.right-col { border-top: 3px solid var(--success); }
-    .vs-label { font-size: 0.5em; font-weight: 700; margin-bottom: 6px; }
+    .vs-label { font-size: 0.7em; font-weight: 700; margin-bottom: 6px; }
     .vs-label.left  { color: var(--warn); }
     .vs-label.right { color: var(--success); }
     .vs-center { display: flex; align-items: center; justify-content: center; font-size: 1em; font-weight: 900; color: var(--text2); }
-    .vs-col ul { font-size: 0.4em; list-style: none; padding: 0; margin: 0; color: var(--text); }
+    .vs-col ul { font-size: 0.55em; list-style: none; padding: 0; margin: 0; color: var(--text); }
     .vs-col ul li { padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
     .vs-col ul li:last-child { border-bottom: none; }
     .vs-col ul li::before { content: "✦ "; opacity: 0.5; color: var(--accent3); }
@@ -147,7 +146,7 @@
     /* 雷達圖 */
     .radar-wrap { display: flex; align-items: center; justify-content: center; gap: 24px; margin-top: 0.5em; }
     .radar-svg { width: 300px; height: 300px; filter: drop-shadow(0 0 10px rgba(79,195,247,0.15)); }
-    .radar-list { font-size: 0.4em; color: var(--text); line-height: 1.8; max-width: 280px; }
+    .radar-list { font-size: 0.6em; color: var(--text); line-height: 1.8; max-width: 280px; }
     .radar-list .lbl { font-weight: 700; }
 
     /* 時間軸 */
@@ -156,27 +155,27 @@
       content: ''; position: absolute; left: 12px; top: 4px; bottom: 4px;
       width: 2px; background: linear-gradient(to bottom, var(--accent3), var(--accent2), transparent);
     }
-    .timeline-item { position: relative; margin-bottom: 12px; font-size: 0.45em; padding: 8px 12px; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border); }
+    .timeline-item { position: relative; margin-bottom: 12px; font-size: 0.6em; padding: 8px 12px; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border); }
     .timeline-item::before {
       content: ''; position: absolute; left: -25px; top: 12px;
       width: 10px; height: 10px; border-radius: 50%;
       background: var(--accent3); border: 2px solid #080818;
       box-shadow: 0 0 8px rgba(0,136,255,0.4);
     }
-    .timeline-item .ti-date { color: var(--accent2); font-weight: 700; font-size: 0.9em; }
+    .timeline-item .ti-date { color: var(--accent2); font-weight: 700; font-size: 1.0em; }
     .timeline-item .ti-text { color: var(--text); margin-top: 3px; line-height: 1.5; }
 
     /* 結論卡 */
     .conclusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 0.6em; }
     .conclusion-card {
-      background: var(--bg-card2); border-radius: 10px; padding: 14px; font-size: 0.42em;
+      background: var(--bg-card2); border-radius: 10px; padding: 16px; font-size: 0.6em;
       border: 1px solid var(--border); transition: all 0.3s ease;
     }
     .conclusion-card:hover { box-shadow: var(--glow); }
     .conclusion-card.positive { border-left: 4px solid var(--success); }
     .conclusion-card.caution  { border-left: 4px solid var(--warn); }
     .conclusion-card.danger   { border-left: 4px solid var(--danger); }
-    .conclusion-card .cc-title { font-size: 1.05em; font-weight: 700; margin-bottom: 6px; }
+    .conclusion-card .cc-title { font-size: 1.1em; font-weight: 700; margin-bottom: 6px; }
     .conclusion-card.positive .cc-title { color: var(--success); }
     .conclusion-card.caution  .cc-title { color: var(--warn); }
     .conclusion-card.danger   .cc-title { color: var(--danger); }
@@ -188,15 +187,15 @@
     .end-slide img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
 
     /* VIZ 滑桿 */
-    .viz-wrap { position: relative; height: 280px; border-radius: 10px; overflow: hidden; margin-top: 0.5em; border: 1px solid var(--border); }
+    .viz-wrap { position: relative; height: 320px; border-radius: 10px; overflow: hidden; margin-top: 0.5em; border: 1px solid var(--border); }
     .viz-half { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
     .viz-before { background: linear-gradient(135deg, rgba(255,145,0,0.92), rgba(255,94,0,0.92)); }
     .viz-after  { background: linear-gradient(135deg, rgba(0,150,80,0.95), rgba(0,200,100,0.95)); clip-path: inset(0 100% 0 0); }
     .viz-divider { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(to bottom, transparent, #fff, transparent); box-shadow: 0 0 12px var(--accent2); pointer-events: none; }
-    .viz-label { font-size: 0.5em; font-weight: 700; margin-bottom: 8px; color: #fff; }
-    .viz-num { font-size: 1.6em; font-weight: 800; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.3); }
-    .viz-text { font-size: 0.4em; color: #fff; margin-top: 6px; line-height: 1.4; }
-    .viz-tag { position: absolute; top: 8px; font-size: 0.4em; color: #fff; font-weight: 700; text-shadow: 0 0 8px rgba(0,0,0,0.5); }
+    .viz-label { font-size: 0.7em; font-weight: 700; margin-bottom: 8px; color: #fff; }
+    .viz-num { font-size: 2.0em; font-weight: 800; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.3); }
+    .viz-text { font-size: 0.55em; color: #fff; margin-top: 6px; line-height: 1.4; }
+    .viz-tag { position: absolute; top: 10px; font-size: 0.55em; color: #fff; font-weight: 700; text-shadow: 0 0 8px rgba(0,0,0,0.5); }
     .viz-tag.left  { left: 12px; }
     .viz-tag.right { right: 12px; }
     #viz-slider { width: 100%; margin-top: 12px; }
@@ -204,7 +203,7 @@
     /* 引言框 */
     .quote-box {
       background: var(--bg-card2); border-left: 4px solid var(--accent3);
-      padding: 12px 16px; border-radius: 8px; font-size: 0.45em;
+      padding: 14px 18px; border-radius: 8px; font-size: 0.6em;
       color: var(--text); line-height: 1.6; margin-top: 0.8em;
       border: 1px solid var(--border);
     }
@@ -235,7 +234,7 @@
     }
     .att-panel.open { display: block; }
     .att-panel h4 { margin: 0 0 8px 0; color: var(--accent2); font-size: 14px; }
-    .att-panel a { display: block; color: #fff; padding: 6px 8px; border-radius: 6px; text-decoration: none; font-size: 12.5px; line-height: 1.4; }
+    .att-panel a { display: block; color: #fff; padding: 8px 10px; border-radius: 6px; text-decoration: none; font-size: 14px; line-height: 1.4; }
     .att-panel a:hover { background: rgba(0,96,192,0.25); }
     .att-panel .all-link { margin-top: 6px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.15); color: var(--accent3); font-weight: 700; }
 
@@ -496,31 +495,31 @@
   <h2>審計發現與改善成果</h2>
   <p>✓ 促請改善 → 機關回應 → 量化效益</p>
   <div class="stat-row" style="margin-top: 0.7em;">
-    <div class="stat-card">
+    <div class="stat-card" onclick="location.href='attachments.html?att=7'" style="cursor:pointer;">
       <div class="num" style="color: var(--success);">50.1 萬</div>
       <div class="label">114/5–7 月增加收入 (元)</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card" onclick="location.href='attachments.html?att=12'" style="cursor:pointer;">
       <div class="num" style="color: var(--accent2);">20,999</div>
       <div class="label">錯誤管線圖資修正 (筆)</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card" onclick="location.href='attachments.html?att=9'" style="cursor:pointer;">
       <div class="num" style="color: var(--accent);">6→18</div>
       <div class="label">工作補充說明修正 (點)</div>
     </div>
   </div>
   <div class="three-col" style="margin-top: 0.7em;">
-    <div class="col-card">
+    <div class="col-card" onclick="location.href='attachments.html?att=6'" style="cursor:pointer;">
       <div class="icon">💰</div>
       <div class="col-title">規費財源</div>
       <div class="col-desc">114/4/17 縣府修正施行<br>規費法檢討調整</div>
     </div>
-    <div class="col-card">
+    <div class="col-card" onclick="location.href='attachments.html?att=8'" style="cursor:pointer;">
       <div class="icon">📋</div>
       <div class="col-title">評比與責任</div>
       <div class="col-desc">函文追蹤改善<br>相關人員申誡</div>
     </div>
-    <div class="col-card">
+    <div class="col-card" onclick="location.href='attachments.html?att=12'" style="cursor:pointer;">
       <div class="icon">🗺</div>
       <div class="col-title">圖資與契約</div>
       <div class="col-desc">管線圖資修正 20,999 筆<br>開口契約管理強化</div>
@@ -640,19 +639,19 @@
     <div class="conclusion-card positive ">
       <div class="cc-title">✓ 本案具體成果</div>
       <ul>
-        <li>縣府修正道路挖掘行政規費收費標準</li>
-        <li>114/5–7 月增加收入 50.1 萬元</li>
-        <li>圖資修正 20,999 筆</li>
-        <li>工作補充說明 6 點 → 18 點</li>
+        <li><a class="att-link" href="attachments.html?att=6" target="_self">縣府修正道路挖掘行政規費收費標準</a></li>
+        <li><a class="att-link" href="attachments.html?att=7" target="_self">114/5–7 月增加收入 50.1 萬元</a></li>
+        <li><a class="att-link" href="attachments.html?att=12" target="_self">圖資修正 20,999 筆</a></li>
+        <li><a class="att-link" href="attachments.html?att=9" target="_self">工作補充說明 6 點 → 18 點</a></li>
       </ul>
     </div>
     <div class="conclusion-card positive ">
       <div class="cc-title">📊 審計呈現</div>
       <ul>
-        <li>列入決算審核報告</li>
-        <li>發布重要政府審計資訊</li>
-        <li>促成責任查處及制度改善</li>
-        <li>可擴散至其他查核議題</li>
+        <li><a class="att-link" href="attachments.html?att=4" target="_self">列入決算審核報告</a></li>
+        <li><a class="att-link" href="attachments.html?att=5" target="_self">發布重要政府審計資訊</a></li>
+        <li><a class="att-link" href="attachments.html?att=3" target="_self">促成責任查處及制度改善</a></li>
+        <li><a class="att-link" href="attachments.html?att=1" target="_self">可擴散至其他查核議題</a></li>
       </ul>
     </div>
   </div>
