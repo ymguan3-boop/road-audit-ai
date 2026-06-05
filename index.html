@@ -41,16 +41,6 @@
     .reveal .progress { color: var(--accent3); }
     .reveal .controls { color: var(--accent2); }
 
-    /* Fragment 動畫 */
-    .reveal .fragment { opacity: 0; transform: translateY(18px); transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-    .reveal .fragment.visible { opacity: 1; transform: translateY(0); }
-    .reveal .fragment.fade-left { transform: translateX(-20px); }
-    .reveal .fragment.fade-left.visible { transform: translateX(0); }
-    .reveal .fragment.fade-right { transform: translateX(20px); }
-    .reveal .fragment.fade-right.visible { transform: translateX(0); }
-    .reveal .fragment.zoom-in { transform: scale(0.85); }
-    .reveal .fragment.zoom-in.visible { transform: scale(1); }
-
     /* 封面 */
     .title-slide { text-align: center; }
     .title-slide .tag {
@@ -264,40 +254,40 @@
 <!-- 第 1 頁：前導影片 -->
 <section>
   <div class="title-slide">
-    <div class="tag fragment">🏛 創新提案 · 道路管理查核</div>
-    <h2 class="fragment" data-fragment-index="1">運用生成式 AI 多元技術方法</h2>
-    <h1 class="fragment" data-fragment-index="2">加強查核道路管理維護情形</h1>
-    <p class="subtitle fragment" data-fragment-index="3">
+    <div class="tag">🏛 創新提案 · 道路管理查核</div>
+    <h2>運用生成式 AI 多元技術方法</h2>
+    <h1>加強查核道路管理維護情形</h1>
+    <p class="subtitle">
       促請檢討道路挖掘行政規費收費標準，以增裕財源，並維護道路品質<br>
       有效提升工作效率及審核意見品質
     </p>
-    <div class="video-center fragment" data-fragment-index="4">
+    <div class="video-center">
       <div class="video-wrap">
         <iframe src="https://www.youtube.com/embed/hwfGexyXraM?vq=hd720&hd=1&rel=0" allowfullscreen allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen></iframe>
       </div>
     </div>
-    <p class="author fragment" data-fragment-index="5">宜蘭縣審計室 · 官毅明</p>
+    <p class="author">宜蘭縣審計室 · 官毅明</p>
   </div>
 </section>
 
 <!-- 第 2 頁：運用生成式AI加強道路管理維護查核 -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">運用生成式 AI 加強道路管理維護查核</h2>
-  <p class="fragment" data-fragment-index="1">
+  <h2>運用生成式 AI 加強道路管理維護查核</h2>
+  <p>
     本案的核心，是把生成式 AI 導入道路管理維護查核流程。
   </p>
   <div class="three-col">
-    <div class="col-card fragment fade-left" data-fragment-index="2">
+    <div class="col-card">
       <div class="icon">🛣</div>
       <div class="col-title">道路品質</div>
       <div class="col-desc">基金財務、道路挖掘管理、績效評比、改善追蹤</div>
     </div>
-    <div class="col-card fragment zoom-in" data-fragment-index="3">
+    <div class="col-card">
       <div class="icon">🤖</div>
       <div class="col-title">AI 工具鏈</div>
       <div class="col-desc">ChatGPT 爬梳、NotebookLM 彙整、Excel 建置、QGIS + Python 複核</div>
     </div>
-    <div class="col-card fragment fade-right" data-fragment-index="4">
+    <div class="col-card">
       <div class="icon">🔗</div>
       <div class="col-title">審計證據鏈</div>
       <div class="col-desc">促請縣府修正收費標準、增裕財源、維護品質、落實改善</div>
@@ -307,24 +297,24 @@
 
 <!-- 第 3 頁：問題意識 -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">問題意識</h2>
-  <p class="fragment" data-fragment-index="1">道路管理不是單一工程問題，而是資料、制度與財源彼此連動的治理問題。</p>
+  <h2>問題意識</h2>
+  <p>道路管理不是單一工程問題，而是資料、制度與財源彼此連動的治理問題。</p>
   <div class="stat-row" style="margin-top: 0.8em;">
-    <div class="stat-card fragment fade-left" data-fragment-index="2">
+    <div class="stat-card">
       <div class="num" style="color: var(--warn);">13+</div>
       <div class="label">年未調整之收費標準</div>
     </div>
-    <div class="stat-card fragment zoom-in" data-fragment-index="3">
+    <div class="stat-card">
       <div class="num" style="color: var(--accent2);">8/12</div>
       <div class="label">道路基金累計短絀</div>
     </div>
-    <div class="stat-card fragment fade-right" data-fragment-index="4">
+    <div class="stat-card">
       <div class="num" style="color: var(--danger);">230</div>
       <div class="label">完工逾 15 日未更新圖資</div>
     </div>
   </div>
   <div class="conclusion-grid" style="margin-top: 0.8em;">
-    <div class="conclusion-card caution fragment fade-left" data-fragment-index="5">
+    <div class="conclusion-card caution ">
       <div class="cc-title">⚠ 治理風險</div>
       <ul>
         <li>觀光交通需求增加，道路負荷加重</li>
@@ -332,7 +322,7 @@
         <li>涉及民眾安全及國家賠償風險</li>
       </ul>
     </div>
-    <div class="conclusion-card positive fragment fade-right" data-fragment-index="6">
+    <div class="conclusion-card positive ">
       <div class="cc-title">✓ 改善契機</div>
       <ul>
         <li>制度面缺口：收費標準逾 13 年未調</li>
@@ -345,49 +335,49 @@
 
 <!-- 第 4 頁：把AI放進審計流程 -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">把 AI 放進審計流程</h2>
-  <p class="fragment" data-fragment-index="1">
+  <h2>把 AI 放進審計流程</h2>
+  <p>
     💡 不是取代專業判斷，而是擴大資料閱讀、重複缺失辨識及證據整理能力
   </p>
   <div class="step-row" style="margin-top: 1em;">
-    <div class="step-card fragment fade-left" data-fragment-index="2">
+    <div class="step-card">
       <div class="step-num">1</div>
       <div class="step-text"><a class="att-link" href="attachments.html?att=2" target="_self">ChatGPT</a><br><a class="att-link" href="attachments.html?att=2" target="_self">爬梳規定、機制、檢核措施</a></div>
     </div>
-    <div class="step-card fragment zoom-in" data-fragment-index="3">
+    <div class="step-card">
       <div class="step-num">2</div>
       <div class="step-text"><a class="att-link" href="attachments.html?att=10" target="_self">NotebookLM</a><br><a class="att-link" href="attachments.html?att=10" target="_self">彙整各季評比成果報告</a></div>
     </div>
-    <div class="step-card fragment zoom-in" data-fragment-index="4">
+    <div class="step-card">
       <div class="step-num">3</div>
       <div class="step-text"><a class="att-link" href="attachments.html?att=11" target="_self">Excel</a><br><a class="att-link" href="attachments.html?att=11" target="_self">分類建置資料庫</a></div>
     </div>
-    <div class="step-card fragment fade-right" data-fragment-index="5">
+    <div class="step-card">
       <div class="step-num">4</div>
       <div class="step-text"><a class="att-link" href="attachments.html?att=12" target="_self">QGIS</a> + <a class="att-link" href="attachments.html?att=13" target="_self">Python</a><br><a class="att-link" href="attachments.html?att=12" target="_self">地圖與資料複核</a></div>
     </div>
   </div>
-  <div class="quote-box fragment" data-fragment-index="6">
+  <div class="quote-box">
     讓 AI 快速鎖定問題，再由審計人員以專業判斷確認<strong>法規依據、數據口徑及改善責任</strong>。
   </div>
 </section>
 
 <!-- 第 5 頁：三條驗證線 -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">三條驗證線</h2>
-  <p class="fragment" data-fragment-index="1">把海量資料轉化成可驗證的審計意見，三條線環環相扣</p>
+  <h2>三條驗證線</h2>
+  <p>把海量資料轉化成可驗證的審計意見，三條線環環相扣</p>
   <div class="three-col" style="margin-top: 0.8em;">
-    <div class="col-card fragment fade-left" data-fragment-index="2" style="border-top-color: var(--accent);">
+    <div class="col-card" style="border-top-color: var(--accent);">
       <div class="icon">💰</div>
       <div class="col-title" style="color: var(--accent);">財源是否足夠</div>
       <div class="col-desc">道路基金收支<br>成本變動<br>規費法定期檢討要求</div>
     </div>
-    <div class="col-card fragment zoom-in" data-fragment-index="3" style="border-top-color: var(--warn);">
+    <div class="col-card" style="border-top-color: var(--warn);">
       <div class="icon">🔁</div>
       <div class="col-title" style="color: var(--warn);">缺失是否重複</div>
       <div class="col-desc">彙整各季評比成果<br>反覆出現的坑洞修補<br>稽查及巡查問題</div>
     </div>
-    <div class="col-card fragment fade-right" data-fragment-index="4" style="border-top-color: var(--success);">
+    <div class="col-card" style="border-top-color: var(--success);">
       <div class="icon">📋</div>
       <div class="col-title" style="color: var(--success);">制度是否落實</div>
       <div class="col-desc">評分結果、公所責任<br>圖資更新、懲處機制<br>是否真正運作</div>
@@ -397,26 +387,26 @@
 
 <!-- 第 6 頁：收費標準跟不上成本 -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">收費標準跟不上成本</h2>
-  <p class="fragment" data-fragment-index="1">
+  <h2>收費標準跟不上成本</h2>
+  <p>
     ⚠ 100 年訂定 → 113 年查核時已逾 13 年未調整
   </p>
   <div class="stat-row" style="margin-top: 0.8em;">
-    <div class="stat-card fragment fade-left" data-fragment-index="2">
+    <div class="stat-card">
       <div class="num" style="color: var(--success);">45.16 億</div>
       <div class="label">12 個基金總收入 (110-112)</div>
     </div>
-    <div class="stat-card fragment zoom-in" data-fragment-index="3">
+    <div class="stat-card">
       <div class="num" style="color: var(--warn);">48.70 億</div>
       <div class="label">12 個基金總支出 (110-112)</div>
     </div>
-    <div class="stat-card fragment fade-right" data-fragment-index="4">
+    <div class="stat-card">
       <div class="num" style="color: var(--accent2);">-3,539 萬</div>
       <div class="label">淨短絀金額</div>
     </div>
   </div>
   <div class="conclusion-grid" style="margin-top: 0.8em;">
-    <div class="conclusion-card caution fragment fade-left" data-fragment-index="5">
+    <div class="conclusion-card caution ">
       <div class="cc-title">📈 成本壓力</div>
       <ul>
         <li>瀝青混凝土指數近年上漲</li>
@@ -424,7 +414,7 @@
         <li>12 個基金中 8 個累計短絀</li>
       </ul>
     </div>
-    <div class="conclusion-card positive fragment fade-right" data-fragment-index="6">
+    <div class="conclusion-card positive ">
       <div class="cc-title">✓ 應對方向</div>
       <ul>
         <li>依規費法定期檢討收費標準</li>
@@ -437,28 +427,28 @@
 
 <!-- 第 7 頁：讓重複缺失浮上來 -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">讓重複缺失浮上來</h2>
-  <p class="fragment" data-fragment-index="1">用 NotebookLM 彙入各季評比報告，找出反覆出現的缺失</p>
+  <h2>讓重複缺失浮上來</h2>
+  <p>用 NotebookLM 彙入各季評比報告，找出反覆出現的缺失</p>
   <div class="step-row" style="margin-top: 0.8em;">
-    <div class="step-card fragment fade-left" data-fragment-index="2">
+    <div class="step-card">
       <div class="step-num">①</div>
       <div class="step-text"><a class="att-link" href="attachments.html?att=10" target="_self">NotebookLM</a><br>彙入各季宜路平成果</div>
     </div>
-    <div class="step-card fragment zoom-in" data-fragment-index="3">
+    <div class="step-card">
       <div class="step-num">②</div>
       <div class="step-text">關鍵字搜尋<br>各鄉鎮市 / 改進建議</div>
     </div>
-    <div class="step-card fragment zoom-in" data-fragment-index="4">
+    <div class="step-card">
       <div class="step-num">③</div>
       <div class="step-text"><a class="att-link" href="attachments.html?att=11" target="_self">Excel 分類</a><br>重複缺失註記</div>
     </div>
-    <div class="step-card fragment fade-right" data-fragment-index="5">
+    <div class="step-card">
       <div class="step-num">④</div>
       <div class="step-text">ChatGPT 分析<br>相似度與重複頻率</div>
     </div>
   </div>
   <div class="conclusion-grid" style="margin-top: 0.8em;">
-    <div class="conclusion-card caution fragment fade-left" data-fragment-index="6">
+    <div class="conclusion-card caution ">
       <div class="cc-title">🔍 高頻重複缺失</div>
       <ul>
         <li><strong>壯圍鄉</strong>：坑洞方正切割</li>
@@ -466,7 +456,7 @@
         <li><strong>南澳鄉</strong>：自主巡查</li>
       </ul>
     </div>
-    <div class="conclusion-card positive fragment fade-right" data-fragment-index="7">
+    <div class="conclusion-card positive ">
       <div class="cc-title">✓ 後續行動</div>
       <ul>
         <li>成為要求強化追蹤改善的依據</li>
@@ -479,22 +469,22 @@
 
 <!-- 第 8 頁：改善要進入制度 -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">改善要進入制度</h2>
-  <p class="fragment" data-fragment-index="1">審計意見不只停留在指出問題，而能推動制度調整</p>
+  <h2>改善要進入制度</h2>
+  <p>審計意見不只停留在指出問題，而能推動制度調整</p>
   <div class="timeline" style="margin-top: 0.6em;">
-    <div class="timeline-item fragment fade-left" data-fragment-index="2">
+    <div class="timeline-item">
       <div class="ti-date">評比制度面</div>
       <div class="ti-text">部分評比項目屬未辦理或無作為，仍可落在 0–40 分給分區間，且部分分數與事實未盡相符</div>
     </div>
-    <div class="timeline-item fragment fade-left" data-fragment-index="3">
+    <div class="timeline-item">
       <div class="ti-date">責任落實面</div>
       <div class="ti-text">南澳鄉 112 年宜路平專案總評比 52 分、評等丙等，卻未即時依規定查處相關人員責任</div>
     </div>
-    <div class="timeline-item fragment fade-left" data-fragment-index="4">
+    <div class="timeline-item">
       <div class="ti-date">圖資治理面</div>
       <div class="ti-text">道路挖掘完工圖資更新、管線資料完整性待提升</div>
     </div>
-    <div class="timeline-item fragment fade-left" data-fragment-index="5">
+    <div class="timeline-item">
       <div class="ti-date">契約管理面</div>
       <div class="ti-text">開口契約履約照片管理需強化</div>
     </div>
@@ -503,34 +493,34 @@
 
 <!-- 第 9 頁：審計發現與改善成果 -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">審計發現與改善成果</h2>
-  <p class="fragment" data-fragment-index="1">✓ 促請改善 → 機關回應 → 量化效益</p>
+  <h2>審計發現與改善成果</h2>
+  <p>✓ 促請改善 → 機關回應 → 量化效益</p>
   <div class="stat-row" style="margin-top: 0.7em;">
-    <div class="stat-card fragment fade-left" data-fragment-index="2">
+    <div class="stat-card">
       <div class="num" style="color: var(--success);">50.1 萬</div>
       <div class="label">114/5–7 月增加收入 (元)</div>
     </div>
-    <div class="stat-card fragment zoom-in" data-fragment-index="3">
+    <div class="stat-card">
       <div class="num" style="color: var(--accent2);">20,999</div>
       <div class="label">錯誤管線圖資修正 (筆)</div>
     </div>
-    <div class="stat-card fragment fade-right" data-fragment-index="4">
+    <div class="stat-card">
       <div class="num" style="color: var(--accent);">6→18</div>
       <div class="label">工作補充說明修正 (點)</div>
     </div>
   </div>
   <div class="three-col" style="margin-top: 0.7em;">
-    <div class="col-card fragment fade-left" data-fragment-index="5">
+    <div class="col-card">
       <div class="icon">💰</div>
       <div class="col-title">規費財源</div>
       <div class="col-desc">114/4/17 縣府修正施行<br>規費法檢討調整</div>
     </div>
-    <div class="col-card fragment zoom-in" data-fragment-index="6">
+    <div class="col-card">
       <div class="icon">📋</div>
       <div class="col-title">評比與責任</div>
       <div class="col-desc">函文追蹤改善<br>相關人員申誡</div>
     </div>
-    <div class="col-card fragment fade-right" data-fragment-index="7">
+    <div class="col-card">
       <div class="icon">🗺</div>
       <div class="col-title">圖資與契約</div>
       <div class="col-desc">管線圖資修正 20,999 筆<br>開口契約管理強化</div>
@@ -540,9 +530,9 @@
 
 <!-- 第 10 頁：AI讓查核能力更均衡 (雷達圖) -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">AI 讓查核能力更均衡</h2>
+  <h2>AI 讓查核能力更均衡</h2>
   <div class="radar-wrap">
-    <svg class="radar-svg fragment fade-left" data-fragment-index="1" viewBox="0 0 320 320">
+    <svg class="radar-svg" viewBox="-40 -5 400 400">
       <polygon points="160,20 290,95 245,265 75,265 30,95" fill="none" stroke="rgba(0,96,192,0.12)" stroke-width="1"/>
       <polygon points="160,50 260,110 230,250 90,250 60,110" fill="none" stroke="rgba(0,96,192,0.12)" stroke-width="1"/>
       <polygon points="160,80 230,125 215,235 105,235 90,125" fill="none" stroke="rgba(0,96,192,0.12)" stroke-width="1"/>
@@ -561,7 +551,7 @@
       <text x="68" y="280" fill="var(--accent2)" font-size="13" text-anchor="end" font-weight="700">改善追蹤</text>
       <text x="22" y="92" fill="var(--accent2)" font-size="13" text-anchor="end" font-weight="700">審核品質</text>
     </svg>
-    <div class="radar-list fragment fade-right" data-fragment-index="2">
+    <div class="radar-list">
       <p style="margin: 0 0 8px 0;"><span class="lbl" style="color: var(--accent2);">■ AI 輔助後</span>：五面向全面提升</p>
       <p style="margin: 0;"><span class="lbl" style="color: var(--warn);">■ 傳統人工</span>：資料蒐集、重複缺失、改善追蹤較耗時</p>
       <p style="margin-top: 10px; color: var(--text2);">讓資料蒐集、法規連結、量化分析、改善追蹤及審核意見品質都更均衡、更有依據。</p>
@@ -571,9 +561,9 @@
 
 <!-- 第 11 頁：何時導入生成式AI (VIZ 滑桿) -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">何時導入生成式 AI</h2>
-  <p class="fragment" data-fragment-index="1">拖動下方滑桿，看導入前後的差異</p>
-  <div class="viz-wrap fragment" data-fragment-index="2">
+  <h2>何時導入生成式 AI</h2>
+  <p>拖動下方滑桿，看導入前後的差異</p>
+  <div class="viz-wrap">
     <div class="viz-tag left">導入前</div>
     <div class="viz-tag right">導入後</div>
     <div class="viz-half viz-before">
@@ -588,19 +578,19 @@
     </div>
     <div class="viz-divider" id="viz-divider"></div>
   </div>
-  <input id="viz-slider" type="range" min="0" max="100" value="50" class="fragment" data-fragment-index="3" />
+  <input id="viz-slider" type="range" min="0" max="100" value="50" />
   <div class="three-col" style="margin-top: 0.7em;">
-    <div class="col-card fragment fade-left" data-fragment-index="4">
+    <div class="col-card">
       <div class="icon">📚</div>
       <div class="col-title">資料量大</div>
       <div class="col-desc">多季、多單位、多份報告，適合先用 AI 彙整及比對</div>
     </div>
-    <div class="col-card fragment zoom-in" data-fragment-index="5">
+    <div class="col-card">
       <div class="icon">🔗</div>
       <div class="col-title">證據分散</div>
       <div class="col-desc">法規、函復、基金收支、圖資與照片分散於不同文件</div>
     </div>
-    <div class="col-card fragment fade-right" data-fragment-index="6">
+    <div class="col-card">
       <div class="icon">🔄</div>
       <div class="col-title">需要追蹤</div>
       <div class="col-desc">審計意見、機關回復、資訊發布及量化效益串成閉環</div>
@@ -610,30 +600,30 @@
 
 <!-- 第 12 頁：六步驟審計方法 -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">六步驟審計方法</h2>
-  <p class="fragment" data-fragment-index="1">可複製到其他查核議題的標準化方法</p>
+  <h2>六步驟審計方法</h2>
+  <p>可複製到其他查核議題的標準化方法</p>
   <div class="step-row" style="margin-top: 0.7em; flex-wrap: wrap; gap: 8px;">
-    <div class="step-card fragment fade-left" data-fragment-index="2">
+    <div class="step-card">
       <div class="step-num">1</div>
       <div class="step-text">界定查核議題<br>永續運輸、道路品質、民眾安全</div>
     </div>
-    <div class="step-card fragment fade-left" data-fragment-index="3">
+    <div class="step-card">
       <div class="step-num">2</div>
       <div class="step-text">整合多源資料<br>法規、評比、基金、函復、公開資訊</div>
     </div>
-    <div class="step-card fragment zoom-in" data-fragment-index="4">
+    <div class="step-card">
       <div class="step-num">3</div>
       <div class="step-text">AI 初篩<br>制度落差與重複缺失</div>
     </div>
-    <div class="step-card fragment zoom-in" data-fragment-index="5">
+    <div class="step-card">
       <div class="step-num">4</div>
       <div class="step-text">專業複核<br>數據、法規及權責</div>
     </div>
-    <div class="step-card fragment fade-right" data-fragment-index="6">
+    <div class="step-card">
       <div class="step-num">5</div>
       <div class="step-text">提出審計意見<br>可改善、可追蹤、可量化</div>
     </div>
-    <div class="step-card fragment fade-right" data-fragment-index="7">
+    <div class="step-card">
       <div class="step-num">6</div>
       <div class="step-text">方法延伸<br>道路景觀、委託報告、跨域評比</div>
     </div>
@@ -642,12 +632,12 @@
 
 <!-- 第 13 頁：AI放大審計價值 -->
 <section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2 class="fragment">AI 放大審計價值</h2>
-  <p class="fragment" data-fragment-index="1">
+  <h2>AI 放大審計價值</h2>
+  <p>
     把生成式 AI 放在審計專業流程中，放大資料整理、問題辨識及成果追蹤能力
   </p>
   <div class="conclusion-grid" style="margin-top: 0.8em;">
-    <div class="conclusion-card positive fragment fade-left" data-fragment-index="2">
+    <div class="conclusion-card positive ">
       <div class="cc-title">✓ 本案具體成果</div>
       <ul>
         <li>縣府修正道路挖掘行政規費收費標準</li>
@@ -656,7 +646,7 @@
         <li>工作補充說明 6 點 → 18 點</li>
       </ul>
     </div>
-    <div class="conclusion-card positive fragment fade-right" data-fragment-index="3">
+    <div class="conclusion-card positive ">
       <div class="cc-title">📊 審計呈現</div>
       <ul>
         <li>列入決算審核報告</li>
