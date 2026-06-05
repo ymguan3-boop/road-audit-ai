@@ -186,32 +186,24 @@
     .end-slide { position: relative; width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center; padding: 0; margin: 0; overflow: hidden; }
     .end-slide img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
 
-    /* 圖片頁 + 互動表格疊加 */
-    .img-slide { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 8px; }
-    .img-slide img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; box-shadow: 0 0 24px rgba(0,0,0,0.4); }
-
-    .slide9-wrap { position: relative; display: inline-block; width: 100%; height: 100%; }
-    .slide9-wrap img { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; }
-    .sort-table-wrap {
-      position: absolute; right: 4%; top: 14%; width: 44%; max-height: 72%;
-      background: rgba(8,8,24,0.88); border: 1px solid var(--border);
-      border-radius: 8px; padding: 10px; overflow-y: auto;
-      backdrop-filter: blur(4px);
+    /* 全頁互動表格 */
+    .sort-table-full {
+      width: 100%; border-collapse: collapse; font-size: 0.5em; color: var(--text);
     }
-    .sort-table {
-      width: 100%; border-collapse: collapse; font-size: 13px; color: var(--text);
-    }
-    .sort-table th {
-      background: rgba(0,96,192,0.35); color: var(--accent2); padding: 8px 6px;
+    .sort-table-full th {
+      background: rgba(0,96,192,0.35); color: var(--accent2); padding: 10px 8px;
       text-align: center; cursor: pointer; white-space: nowrap;
       border-bottom: 2px solid var(--accent3); user-select: none;
       transition: background 0.2s;
     }
-    .sort-table th:hover { background: rgba(0,96,192,0.5); }
-    .sort-table th .arrow { display: inline-block; width: 16px; color: var(--accent2); }
-    .sort-table td { padding: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: center; }
-    .sort-table tr:hover td { background: rgba(0,96,192,0.12); }
-    .sort-table .att-link { font-size: 12px; }
+    .sort-table-full th:hover { background: rgba(0,96,192,0.5); }
+    .sort-table-full th .arrow { display: inline-block; width: 16px; color: var(--accent2); }
+    .sort-table-full td { padding: 8px 6px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: center; }
+    .sort-table-full tr:hover td { background: rgba(0,96,192,0.12); }
+
+    /* 圖片頁 */
+    .img-slide { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 8px; }
+    .img-slide img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; box-shadow: 0 0 24px rgba(0,0,0,0.4); }
 
     /* VIZ 滑桿 */
     .viz-wrap { position: relative; height: 320px; border-radius: 10px; overflow: hidden; margin-top: 0.5em; border: 1px solid var(--border); }
@@ -484,48 +476,31 @@
 </section>
 
 <!-- 第 9 頁：審計發現與改善成果 -->
-<section>
-  <div class="slide9-wrap">
-    <img src="images/slide9.png" alt="審計發現與改善成果" />
-    <div class="sort-table-wrap">
-      <table class="sort-table" id="sortTable">
-        <thead>
-          <tr>
-            <th onclick="sortTable(0)">項目 <span class="arrow" id="arr0"></span></th>
-            <th onclick="sortTable(1)">改善前 <span class="arrow" id="arr1"></span></th>
-            <th onclick="sortTable(2)">改善後 <span class="arrow" id="arr2"></span></th>
-            <th onclick="sortTable(3)">附件 <span class="arrow" id="arr3"></span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>道路挖掘行政規費收費標準</td><td>100年訂定未調整</td><td>114年修正施行</td>
-            <td><a class="att-link" href="attachments.html?att=6" target="_self">附件6</a></td>
-          </tr>
-          <tr>
-            <td>114/5-7月增加收入</td><td>無</td><td>50.1萬元</td>
-            <td><a class="att-link" href="attachments.html?att=7" target="_self">附件7</a></td>
-          </tr>
-          <tr>
-            <td>錯誤管線圖資修正</td><td>20,999筆錯誤</td><td>全數修正</td>
-            <td><a class="att-link" href="attachments.html?att=12" target="_self">附件12</a></td>
-          </tr>
-          <tr>
-            <td>工作補充說明</td><td>6點</td><td>18點</td>
-            <td><a class="att-link" href="attachments.html?att=9" target="_self">附件9</a></td>
-          </tr>
-          <tr>
-            <td>南澳鄉宜路平追責</td><td>未查處人員責任</td><td>函文申誡</td>
-            <td><a class="att-link" href="attachments.html?att=8" target="_self">附件8</a></td>
-          </tr>
-          <tr>
-            <td>基金收支改善</td><td>8/12累計短絀</td><td>促請檢討調整</td>
-            <td><a class="att-link" href="attachments.html?att=3" target="_self">附件3</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<section data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+  <h2>審計發現與改善成果</h2>
+  <p>✓ 促請改善 → 機關回應 → 量化效益</p>
+  <table class="sort-table-full" id="sortTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">項目 <span class="arrow" id="arr0"></span></th>
+        <th onclick="sortTable(1)">改善前 <span class="arrow" id="arr1"></span></th>
+        <th onclick="sortTable(2)">改善後 <span class="arrow" id="arr2"></span></th>
+        <th onclick="sortTable(3)" style="width:80px;">附件 <span class="arrow" id="arr3"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>道路挖掘行政規費收費標準</td><td>100年訂定後逾13年未調整</td><td>114年4月縣府修正施行</td><td><a class="att-link" href="attachments.html?att=6" target="_self">附件6</a></td></tr>
+      <tr><td>增加規費收入</td><td>無</td><td>114/5-7月增加50.1萬元</td><td><a class="att-link" href="attachments.html?att=7" target="_self">附件7</a></td></tr>
+      <tr><td>錯誤管線圖資修正</td><td>20,999筆錯誤</td><td>全數修正完畢</td><td><a class="att-link" href="attachments.html?att=12" target="_self">附件12</a></td></tr>
+      <tr><td>工作補充說明修正</td><td>6點</td><td>擴充至18點</td><td><a class="att-link" href="attachments.html?att=9" target="_self">附件9</a></td></tr>
+      <tr><td>南澳鄉宜路平追責</td><td>未查處人員責任</td><td>函文追究相關人員申誡</td><td><a class="att-link" href="attachments.html?att=8" target="_self">附件8</a></td></tr>
+      <tr><td>道路基金短絀改善</td><td>12個基金中8個累計短絀</td><td>促請縣府檢討收費標準</td><td><a class="att-link" href="attachments.html?att=3" target="_self">附件3</a></td></tr>
+      <tr><td>道路挖掘完工圖資更新</td><td>230件逾15日未更新</td><td>促請改善圖資更新時效</td><td><a class="att-link" href="attachments.html?att=12" target="_self">附件12</a></td></tr>
+      <tr><td>開口契約履約管理</td><td>照片管理待強化</td><td>契約管理機制強化</td><td><a class="att-link" href="attachments.html?att=9" target="_self">附件9</a></td></tr>
+      <tr><td>評比制度調整</td><td>部分評比分數與事實未符</td><td>函請檢討評比制度</td><td><a class="att-link" href="attachments.html?att=4" target="_self">附件4</a></td></tr>
+      <tr><td>審計資訊發布</td><td>內部審核意見</td><td>發布重要政府審計資訊</td><td><a class="att-link" href="attachments.html?att=5" target="_self">附件5</a></td></tr>
+    </tbody>
+  </table>
 </section>
 <script>
 let sortDir = [0,0,0,0];
@@ -669,7 +644,7 @@ function sortTable(col) {
         <li><a class="att-link" href="attachments.html?att=4" target="_self">列入決算審核報告</a></li>
         <li><a class="att-link" href="attachments.html?att=5" target="_self">發布重要政府審計資訊</a></li>
         <li><a class="att-link" href="attachments.html?att=3" target="_self">促成責任查處及制度改善</a></li>
-        <li><a class="att-link" href="attachments.html?att=1" target="_self">可擴散至其他查核議題</a></li>
+        <li>可擴散至其他查核議題：<a class="att-link" href="attachments.html?att=14" target="_self">Claude 控制 QGIS</a>、<a class="att-link" href="attachments.html?att=15" target="_self">Gemini 串接 OpenStreet</a></li>
       </ul>
     </div>
   </div>
