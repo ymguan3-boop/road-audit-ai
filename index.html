@@ -344,6 +344,17 @@
     .achieve-card:hover { box-shadow: 0 0 18px rgba(79,195,247,0.2); transform: translateY(-2px); }
     .audit-tag { transition: all 0.3s ease; display: inline-block; }
     .audit-tag:hover { transform: translateY(-1px); box-shadow: 0 0 12px rgba(79,195,247,0.15); }
+    /* 彩色卡片網格 */
+    .v-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; }
+    .v-card {
+      background: var(--bg-card2); border-radius: 8px; padding: 8px 10px;
+      border: 1px solid var(--border); transition: all 0.3s ease;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .v-card:hover { box-shadow: 0 0 18px rgba(79,195,247,0.2); transform: translateY(-3px); }
+    .v-card .v-icon { font-size: 1.6em; margin-bottom: 2px; }
+    .v-card .v-title { font-size: 0.8em; font-weight: 700; margin-bottom: 2px; }
+    .v-card .v-desc { font-size: 0.65em; color: var(--text2); line-height: 1.3; margin-bottom: 4px; }
     /* 噪音偵測器 */
     .noise-detector { position: absolute; inset: 0; z-index: 20; pointer-events: none; }
     .mic-icon {
@@ -644,40 +655,64 @@ function sortTable(col) {
 <!-- 第 13 頁：AI放大審計價值 -->
 <section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>AI 放大審計價值</h2>
-  <p style="font-size:1.0em; margin-bottom:0.2em; color:var(--text2);">
+  <p style="font-size:0.85em; margin-bottom:0.3em; color:var(--text2);">
     把生成式 AI 放在審計專業流程中，放大資料整理、問題辨識及成果追蹤能力
   </p>
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:10px;">
-    <div class="achieve-card" style="background:var(--bg-card2); border-radius:10px; padding:10px 14px; border:1px solid var(--border); border-left:4px solid var(--success);">
-      <div style="font-size:0.75em; color:var(--text2); margin-bottom:2px;">📋 收費標準</div>
-      <a class="att-link" href="attachments.html?att=6" target="_self" style="font-size:0.85em; font-weight:600;">縣府修正道路挖掘行政規費收費標準</a>
+
+  <div style="text-align:left; font-size:0.85em; font-weight:700; color:#4dd0e1; margin-bottom:6px; letter-spacing:0.05em;">▎審計成果</div>
+  <div class="v-grid">
+    <div class="v-card" style="border-top:3px solid #4dd0e1;">
+      <div class="v-icon" style="color:#4dd0e1;">📋</div>
+      <div class="v-title" style="color:#4dd0e1;">修正收費標準</div>
+      <div class="v-desc">縣府修正道路挖掘行政規費收費標準</div>
+      <a class="att-link" href="attachments.html?att=6" target="_self" style="font-size:0.75em;">查看詳情 →</a>
     </div>
-    <div class="achieve-card" style="background:var(--bg-card2); border-radius:10px; padding:10px 14px; border:1px solid var(--border); border-left:4px solid var(--warn);">
-      <div style="font-size:0.75em; color:var(--text2); margin-bottom:2px;">💰 增加收入</div>
-      <a class="att-link" href="attachments.html?att=7" target="_self" style="font-size:0.85em; font-weight:600;">114/5–7 月增加收入 50.1 萬元</a>
+    <div class="v-card" style="border-top:3px solid #ffab40;">
+      <div class="v-icon" style="color:#ffab40;">💰</div>
+      <div class="v-title" style="color:#ffab40;">增加規費收入</div>
+      <div class="v-desc">114/5–7 月增加收入 50.1 萬元</div>
+      <a class="att-link" href="attachments.html?att=7" target="_self" style="font-size:0.75em;">查看詳情 →</a>
     </div>
-    <div class="achieve-card" style="background:var(--bg-card2); border-radius:10px; padding:10px 14px; border:1px solid var(--border); border-left:4px solid var(--accent2);">
-      <div style="font-size:0.75em; color:var(--text2); margin-bottom:2px;">🗺️ 圖資修正</div>
-      <a class="att-link" href="attachments.html?att=12" target="_self" style="font-size:0.85em; font-weight:600;">圖資修正 20,999 筆</a>
+    <div class="v-card" style="border-top:3px solid #69f0ae;">
+      <div class="v-icon" style="color:#69f0ae;">🗺️</div>
+      <div class="v-title" style="color:#69f0ae;">圖資錯誤修正</div>
+      <div class="v-desc">20,999 筆錯誤管線圖資全數修正完畢</div>
+      <a class="att-link" href="attachments.html?att=12" target="_self" style="font-size:0.75em;">查看詳情 →</a>
     </div>
-    <div class="achieve-card" style="background:var(--bg-card2); border-radius:10px; padding:10px 14px; border:1px solid var(--border); border-left:4px solid var(--accent3);">
-      <div style="font-size:0.75em; color:var(--text2); margin-bottom:2px;">📝 補充說明</div>
-      <a class="att-link" href="attachments.html?att=9" target="_self" style="font-size:0.85em; font-weight:600;">工作補充說明 6 點 → 18 點</a>
+    <div class="v-card" style="border-top:3px solid #ea80fc;">
+      <div class="v-icon" style="color:#ea80fc;">📝</div>
+      <div class="v-title" style="color:#ea80fc;">補充說明擴充</div>
+      <div class="v-desc">工作補充說明由 6 點擴充至 18 點</div>
+      <a class="att-link" href="attachments.html?att=9" target="_self" style="font-size:0.75em;">查看詳情 →</a>
     </div>
   </div>
-  <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px;">
-    <span class="audit-tag" style="background:rgba(79,195,247,0.12); border:1px solid rgba(79,195,247,0.2); border-radius:20px; padding:5px 12px; font-size:0.7em;">
-      <a class="att-link" href="attachments.html?att=4" target="_self" style="border:none;">📄 列入決算審核報告</a>
-    </span>
-    <span class="audit-tag" style="background:rgba(0,200,100,0.12); border:1px solid rgba(0,200,100,0.2); border-radius:20px; padding:5px 12px; font-size:0.7em;">
-      <a class="att-link" href="attachments.html?att=5" target="_self" style="border:none;">📢 發布重要政府審計資訊</a>
-    </span>
-    <span class="audit-tag" style="background:rgba(255,145,0,0.12); border:1px solid rgba(255,145,0,0.2); border-radius:20px; padding:5px 12px; font-size:0.7em;">
-      <a class="att-link" href="attachments.html?att=3" target="_self" style="border:none;">⚖️ 促成責任查處及制度改善</a>
-    </span>
-    <span class="audit-tag" style="background:rgba(156,39,176,0.12); border:1px solid rgba(156,39,176,0.2); border-radius:20px; padding:5px 12px; font-size:0.7em;">
-      <a class="att-link" href="attachments.html?att=14&from=12" target="_self" style="border:none;">🔄 可擴散至其他查核議題</a>
-    </span>
+
+  <div style="text-align:left; font-size:0.85em; font-weight:700; color:#ffd740; margin:10px 0 6px 0; letter-spacing:0.05em;">▎延伸應用價值</div>
+  <div class="v-grid">
+    <div class="v-card" style="border-top:3px solid #ffd740;">
+      <div class="v-icon" style="color:#ffd740;">📄</div>
+      <div class="v-title" style="color:#ffd740;">列入審核報告</div>
+      <div class="v-desc">審計成果列入決算審核報告</div>
+      <a class="att-link" href="attachments.html?att=4" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+    </div>
+    <div class="v-card" style="border-top:3px solid #1de9b6;">
+      <div class="v-icon" style="color:#1de9b6;">📢</div>
+      <div class="v-title" style="color:#1de9b6;">資訊發布</div>
+      <div class="v-desc">發布重要政府審計資訊</div>
+      <a class="att-link" href="attachments.html?att=5" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+    </div>
+    <div class="v-card" style="border-top:3px solid #ff5252;">
+      <div class="v-icon" style="color:#ff5252;">⚖️</div>
+      <div class="v-title" style="color:#ff5252;">制度改善</div>
+      <div class="v-desc">促成責任查處及制度改善</div>
+      <a class="att-link" href="attachments.html?att=3" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+    </div>
+    <div class="v-card" style="border-top:3px solid #b388ff;">
+      <div class="v-icon" style="color:#b388ff;">🔄</div>
+      <div class="v-title" style="color:#b388ff;">擴散應用</div>
+      <div class="v-desc">可擴散至其他查核議題</div>
+      <a class="att-link" href="attachments.html?att=14&from=12" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+    </div>
   </div>
 </section>
 
