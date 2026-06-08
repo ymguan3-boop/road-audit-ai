@@ -194,6 +194,10 @@
     /* 全頁互動表格 */
     .sort-table-full {
       width: 100%; border-collapse: collapse; font-size: 0.5em; color: var(--text);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .sort-table-full th, .sort-table-full td {
+      border: 1px solid rgba(255,255,255,0.08); padding: 8px 6px; text-align: center;
     }
     .sort-table-full th {
       background: rgba(0,96,192,0.35); color: var(--accent2); padding: 10px 8px;
@@ -203,8 +207,17 @@
     }
     .sort-table-full th:hover { background: rgba(0,96,192,0.5); }
     .sort-table-full th .arrow { display: inline-block; width: 16px; color: var(--accent2); }
-    .sort-table-full td { padding: 8px 6px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: center; }
-    .sort-table-full tr:hover td { background: rgba(0,96,192,0.12); }
+    .sort-table-full td { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .sort-table-full tr:hover td { background: rgba(255,255,255,0.04); }
+    /* 各欄不同色 */
+    .sort-table-full th:nth-child(1) { background: rgba(79,195,247,0.3); }
+    .sort-table-full th:nth-child(2) { background: rgba(255,145,0,0.3); }
+    .sort-table-full th:nth-child(3) { background: rgba(0,200,100,0.3); }
+    .sort-table-full th:nth-child(4) { background: rgba(156,39,176,0.3); }
+    .sort-table-full td:nth-child(1) { background: rgba(79,195,247,0.06); }
+    .sort-table-full td:nth-child(2) { background: rgba(255,145,0,0.06); }
+    .sort-table-full td:nth-child(3) { background: rgba(0,200,100,0.06); }
+    .sort-table-full td:nth-child(4) { background: rgba(156,39,176,0.06); }
 
     /* 圖片頁 */
     .img-slide { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 8px; }
@@ -306,6 +319,7 @@
     .scale-15 .radar-list { font-size: 1.0em !important; }
     .scale-15 .radar-svg { width: 620px !important; height: 620px !important; }
     .scale-15 .radar-wrap { margin-top: 0 !important; gap: 0; }
+    .scale-15 .scale-15 .radar-panels { margin-top: -6px; }
     .scale-15 .viz-wrap { height: 480px !important; }
     .scale-15 .viz-label { font-size: 1.3em !important; }
     .scale-15 .viz-num { font-size: 3.6em !important; }
@@ -316,7 +330,7 @@
     .scale-15 .col-card .col-desc { font-size: 1.0em !important; }
     .scale-15 .three-col { gap: 20px; }
     /* 雷達圖特色面板 */
-    .radar-panels { display: flex; gap: 10px; margin-top: 4px; width: 100%; max-width: 700px; }
+    .radar-panels { display: flex; gap: 10px; margin-top: -4px; width: 100%; max-width: 700px; }
     .radar-panel { flex: 1; border-radius: 10px; padding: 10px 14px; text-align: center; border: 1px solid; }
     .radar-panel.ai { background: rgba(0,200,100,0.1); border-color: rgba(0,200,100,0.3); }
     .radar-panel.trad { background: rgba(255,145,0,0.1); border-color: rgba(255,145,0,0.3); }
@@ -326,13 +340,14 @@
     .radar-panel .rp-body { font-size: 0.85em; color: var(--text2); line-height: 1.4; }
     .radar-summary { font-size: 0.85em; color: var(--text2); text-align: center; width: 100%; max-width: 700px; margin-top: 4px; }
     /* 噪音偵測器 */
-    .noise-detector { position: absolute; bottom: 12px; left: 14px; z-index: 20; }
+    .noise-detector { position: absolute; inset: 0; z-index: 20; pointer-events: none; }
     .mic-icon {
+      position: absolute; bottom: 12px; left: 14px;
       width: 36px; height: 36px; border-radius: 50%;
       background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; color: rgba(255,255,255,0.5);
-      transition: all 0.3s; font-size: 18px;
+      transition: all 0.3s; font-size: 18px; pointer-events: auto; z-index: 21;
     }
     .mic-icon:hover { background: rgba(255,255,255,0.25); color: #fff; }
     .mic-icon.active { color: #ff3b30; border-color: #ff3b30; animation: micPulse 1s infinite; }
@@ -340,23 +355,24 @@
       0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,48,0.4); }
       50% { box-shadow: 0 0 0 8px rgba(255,59,48,0); }
     }
-    .heart-container { position: absolute; bottom: 42px; left: 18px; pointer-events: none; }
+    .heart-container { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
     .heart-bubble {
-      position: absolute; bottom: 0; left: 0;
-      animation: heartFloat 2.2s ease-out forwards;
-      pointer-events: none; line-height: 1;
+      position: absolute;
+      animation: heartFloat 2.5s ease-out forwards;
+      pointer-events: none; line-height: 1; opacity: 0.4;
+      filter: drop-shadow(0 0 3px rgba(255,80,80,0.2));
     }
     @keyframes heartFloat {
-      0% { opacity: 1; transform: translateY(0) scale(1); }
-      80% { opacity: 0.8; }
-      100% { opacity: 0; transform: translateY(-140px) scale(1.4); }
+      0% { opacity: 0.5; transform: translateY(0) scale(0.8); }
+      30% { opacity: 0.6; }
+      100% { opacity: 0; transform: translateY(-160px) scale(1.3); }
     }
     .heart-bubble.pop {
-      animation: heartPop 0.5s ease-out forwards !important;
+      animation: heartPop 0.4s ease-out forwards !important;
     }
     @keyframes heartPop {
-      0% { transform: scale(1); opacity: 1; }
-      40% { transform: scale(2.8); opacity: 0.8; }
+      0% { transform: scale(1); opacity: 0.5; }
+      40% { transform: scale(3); opacity: 0.3; }
       100% { transform: scale(0); opacity: 0; }
     }
   </style>
@@ -535,7 +551,7 @@ function sortTable(col) {
 <section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>AI 讓查核能力更均衡</h2>
   <div class="radar-wrap">
-    <svg class="radar-svg" viewBox="-70 -10 460 420">
+     <svg class="radar-svg" viewBox="-150 -10 560 420">
       <polygon points="160,20 290,95 245,265 75,265 30,95" fill="none" stroke="rgba(0,96,192,0.12)" stroke-width="1"/>
       <polygon points="160,50 260,110 230,250 90,250 60,110" fill="none" stroke="rgba(0,96,192,0.12)" stroke-width="1"/>
       <polygon points="160,80 230,125 215,235 105,235 90,125" fill="none" stroke="rgba(0,96,192,0.12)" stroke-width="1"/>
@@ -623,26 +639,26 @@ function sortTable(col) {
 <!-- 第 13 頁：AI放大審計價值 -->
 <section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>AI 放大審計價值</h2>
-  <p style="font-size:1.6em;">
+  <p style="font-size:1.3em; margin-bottom:0.1em;">
     把生成式 AI 放在審計專業流程中，放大資料整理、問題辨識及成果追蹤能力
   </p>
-  <div class="conclusion-grid" style="display:flex; flex-direction:column; gap:18px; margin-top:0.2em;">
-    <div class="conclusion-card positive " style="font-size:1.6em; padding:20px 24px;">
-      <div class="cc-title" style="font-size:1.4em;">✓ 本案具體成果</div>
-      <ul>
-        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=6" target="_self">縣府修正道路挖掘行政規費收費標準</a></li>
-        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=7" target="_self">114/5–7 月增加收入 50.1 萬元</a></li>
-        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=12" target="_self">圖資修正 20,999 筆</a></li>
-        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=9" target="_self">工作補充說明 6 點 → 18 點</a></li>
+  <div class="conclusion-grid" style="display:flex; flex-direction:column; gap:12px; margin-top:0.1em;">
+    <div class="conclusion-card positive " style="font-size:0.95em; padding:12px 18px;">
+      <div class="cc-title" style="font-size:1.3em; margin-bottom:4px;">✓ 本案具體成果</div>
+      <ul style="line-height:1.6;">
+        <li style="margin-bottom:3px;"><a class="att-link" href="attachments.html?att=6" target="_self">縣府修正道路挖掘行政規費收費標準</a></li>
+        <li style="margin-bottom:3px;"><a class="att-link" href="attachments.html?att=7" target="_self">114/5–7 月增加收入 50.1 萬元</a></li>
+        <li style="margin-bottom:3px;"><a class="att-link" href="attachments.html?att=12" target="_self">圖資修正 20,999 筆</a></li>
+        <li style="margin-bottom:3px;"><a class="att-link" href="attachments.html?att=9" target="_self">工作補充說明 6 點 → 18 點</a></li>
       </ul>
     </div>
-    <div class="conclusion-card positive " style="font-size:1.6em; padding:20px 24px;">
-      <div class="cc-title" style="font-size:1.4em;">📊 審計呈現</div>
-      <ul>
-        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=4" target="_self">列入決算審核報告</a></li>
-        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=5" target="_self">發布重要政府審計資訊</a></li>
-        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=3" target="_self">促成責任查處及制度改善</a></li>
-        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=14&from=12" target="_self">可擴散至其他查核議題</a></li>
+    <div class="conclusion-card positive " style="font-size:0.95em; padding:12px 18px;">
+      <div class="cc-title" style="font-size:1.3em; margin-bottom:4px;">📊 審計呈現</div>
+      <ul style="line-height:1.6;">
+        <li style="margin-bottom:3px;"><a class="att-link" href="attachments.html?att=4" target="_self">列入決算審核報告</a></li>
+        <li style="margin-bottom:3px;"><a class="att-link" href="attachments.html?att=5" target="_self">發布重要政府審計資訊</a></li>
+        <li style="margin-bottom:3px;"><a class="att-link" href="attachments.html?att=3" target="_self">促成責任查處及制度改善</a></li>
+        <li style="margin-bottom:3px;"><a class="att-link" href="attachments.html?att=14&from=12" target="_self">可擴散至其他查核議題</a></li>
       </ul>
     </div>
   </div>
@@ -800,12 +816,12 @@ function sortTable(col) {
       startNoiseDetection(mic);
     }
   }
-  async function startNoiseDetection(mic) {
+  async   function startNoiseDetection(mic) {
     try {
       micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 256;
+      analyser.fftSize = 128;
       source = audioCtx.createMediaStreamSource(micStream);
       source.connect(analyser);
       noiseActive = true;
@@ -823,9 +839,9 @@ function sortTable(col) {
     analyser.getByteFrequencyData(data);
     const avg = data.reduce((a,b) => a+b, 0) / data.length;
     const volume = Math.min(1, avg / 128);
-    if (volume > 0.04) {
+    if (volume > 0.03) {
       const now = Date.now();
-      const interval = Math.max(100, 300 - volume * 200);
+      const interval = Math.max(80, 250 - volume * 180);
       if (now - lastHeartTime > interval) {
         createHeart(volume);
         lastHeartTime = now;
@@ -838,12 +854,16 @@ function sortTable(col) {
     const heart = document.createElement('div');
     heart.className = 'heart-bubble';
     heart.textContent = '❤️';
-    const size = 14 + volume * 50;
+    const size = 12 + volume * 60;
     heart.style.fontSize = size + 'px';
-    heart.style.left = (Math.random() * 40 - 20) + 'px';
+    heart.style.left = (Math.random() * 88 + 6) + '%';
+    heart.style.top = (Math.random() * 70 + 5) + '%';
     container.appendChild(heart);
-    if (volume > 0.75) {
-      setTimeout(() => { heart.classList.add('pop'); }, 600);
+    if (volume > 0.7) {
+      heart.style.color = '#ff3b30';
+      setTimeout(() => { heart.classList.add('pop'); }, 300);
+    } else {
+      heart.style.color = '#ff6b81';
     }
     setTimeout(() => { if (heart.parentNode) heart.remove(); }, 3000);
   }
