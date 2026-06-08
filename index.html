@@ -294,27 +294,71 @@
     }
     .bg-deco > * { position: relative; z-index: 1; }
 
-    /* 放大版 - 填滿版面 */
-    .scale-up .stat-card .num   { font-size: 2.8em !important; }
-    .scale-up .stat-card .label { font-size: 0.7em !important; }
-    .scale-up .stat-row { gap: 18px; }
-    .scale-up .conclusion-card { font-size: 0.95em !important; padding: 22px !important; }
-    .scale-up .conclusion-card .cc-title { font-size: 1.5em !important; }
-    .scale-up .sort-table-full { font-size: 0.65em !important; }
-    .scale-up .sort-table-full th,
-    .scale-up .sort-table-full td { padding: 10px 8px !important; }
-    .scale-up .radar-list { font-size: 0.85em !important; }
-    .scale-up .radar-svg { width: 560px !important; height: 560px !important; }
-    .scale-up .radar-wrap { margin-top: 0.1em; }
-    .scale-up .viz-wrap { height: 420px !important; }
-    .scale-up .viz-label { font-size: 1.1em !important; }
-    .scale-up .viz-num { font-size: 3.0em !important; }
-    .scale-up .viz-text { font-size: 0.9em !important; }
-    .scale-up .viz-tag { font-size: 0.9em !important; }
-    .scale-up .col-card .icon { font-size: 3.0em !important; }
-    .scale-up .col-card .col-title { font-size: 1.0em !important; }
-    .scale-up .col-card .col-desc { font-size: 0.85em !important; }
-    .scale-up .three-col { gap: 18px; }
+    /* 放大版 1.5x - 填滿版面 */
+    .scale-15 .stat-card .num   { font-size: 3.8em !important; }
+    .scale-15 .stat-card .label { font-size: 0.9em !important; }
+    .scale-15 .stat-row { gap: 20px; }
+    .scale-15 .conclusion-card { font-size: 1.15em !important; padding: 22px !important; }
+    .scale-15 .conclusion-card .cc-title { font-size: 1.8em !important; }
+    .scale-15 .sort-table-full { font-size: 0.85em !important; }
+    .scale-15 .sort-table-full th,
+    .scale-15 .sort-table-full td { padding: 12px 10px !important; }
+    .scale-15 .radar-list { font-size: 1.0em !important; }
+    .scale-15 .radar-svg { width: 620px !important; height: 620px !important; }
+    .scale-15 .radar-wrap { margin-top: 0 !important; gap: 0; }
+    .scale-15 .viz-wrap { height: 480px !important; }
+    .scale-15 .viz-label { font-size: 1.3em !important; }
+    .scale-15 .viz-num { font-size: 3.6em !important; }
+    .scale-15 .viz-text { font-size: 1.05em !important; }
+    .scale-15 .viz-tag { font-size: 1.05em !important; }
+    .scale-15 .col-card .icon { font-size: 3.6em !important; }
+    .scale-15 .col-card .col-title { font-size: 1.2em !important; }
+    .scale-15 .col-card .col-desc { font-size: 1.0em !important; }
+    .scale-15 .three-col { gap: 20px; }
+    /* 雷達圖特色面板 */
+    .radar-panels { display: flex; gap: 10px; margin-top: 4px; width: 100%; max-width: 700px; }
+    .radar-panel { flex: 1; border-radius: 10px; padding: 10px 14px; text-align: center; border: 1px solid; }
+    .radar-panel.ai { background: rgba(0,200,100,0.1); border-color: rgba(0,200,100,0.3); }
+    .radar-panel.trad { background: rgba(255,145,0,0.1); border-color: rgba(255,145,0,0.3); }
+    .radar-panel .rp-title { font-size: 1.0em; font-weight: 700; margin-bottom: 4px; }
+    .radar-panel.ai .rp-title { color: var(--success); }
+    .radar-panel.trad .rp-title { color: var(--warn); }
+    .radar-panel .rp-body { font-size: 0.85em; color: var(--text2); line-height: 1.4; }
+    .radar-summary { font-size: 0.85em; color: var(--text2); text-align: center; width: 100%; max-width: 700px; margin-top: 4px; }
+    /* 噪音偵測器 */
+    .noise-detector { position: absolute; bottom: 12px; left: 14px; z-index: 20; }
+    .mic-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: rgba(255,255,255,0.5);
+      transition: all 0.3s; font-size: 18px;
+    }
+    .mic-icon:hover { background: rgba(255,255,255,0.25); color: #fff; }
+    .mic-icon.active { color: #ff3b30; border-color: #ff3b30; animation: micPulse 1s infinite; }
+    @keyframes micPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,48,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(255,59,48,0); }
+    }
+    .heart-container { position: absolute; bottom: 42px; left: 18px; pointer-events: none; }
+    .heart-bubble {
+      position: absolute; bottom: 0; left: 0;
+      animation: heartFloat 2.2s ease-out forwards;
+      pointer-events: none; line-height: 1;
+    }
+    @keyframes heartFloat {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      80% { opacity: 0.8; }
+      100% { opacity: 0; transform: translateY(-140px) scale(1.4); }
+    }
+    .heart-bubble.pop {
+      animation: heartPop 0.5s ease-out forwards !important;
+    }
+    @keyframes heartPop {
+      0% { transform: scale(1); opacity: 1; }
+      40% { transform: scale(2.8); opacity: 0.8; }
+      100% { transform: scale(0); opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -348,13 +392,13 @@
 </section>
 
 <!-- 第 3 頁：問題意識 -->
-<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>問題意識</h2>
-  <p style="font-size:0.9em;">道路管理不是單一工程問題，而是資料、制度與財源彼此連動的治理問題。</p>
-  <div class="stat-row" style="margin-top: 0.8em;">
-    <div class="stat-card" onclick="showTooltip(event)" style="cursor:pointer;" data-tip="宜蘭縣政府於100年1月24日公告|宜蘭縣道路挖掘行政規費收費標準">
-      <div class="num" style="color: var(--warn);">13+</div>
-      <div class="label">年未調整之收費標準</div>
+  <p style="font-size:0.85em;">道路管理不是單一工程問題，而是資料、制度與財源彼此連動的治理問題。</p>
+  <div class="stat-row" style="margin-top: 0.4em; gap: 18px;">
+    <div class="stat-card" onclick="showTooltip(event)" style="cursor:pointer; padding:16px 20px;" data-tip="宜蘭縣政府於100年1月24日公告|宜蘭縣道路挖掘行政規費收費標準">
+      <div class="num" style="color: var(--warn); font-size:3.8em;">13+</div>
+      <div class="label" style="font-size:0.9em;">年未調整之收費標準</div>
     </div>
     <div class="stat-card" onclick="sessionStorage.setItem('returnSlide','2'); location.href='attachments.html?att=16'" style="cursor:pointer;">
       <div class="num" style="color: var(--accent2);">8/12</div>
@@ -386,30 +430,30 @@
 </section>
 
 <!-- 第 4 頁：把AI放進審計流程 -->
-<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>把 AI 放進審計流程</h2>
-  <p style="font-size:1.1em;">
+  <p style="font-size:1.0em;">
     💡 不是取代專業判斷，而是擴大資料閱讀、重複缺失辨識及證據整理能力
   </p>
-  <div class="step-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 0.2em;">
-    <div class="step-card" style="padding: 22px 16px;">
-      <div class="step-num" style="font-size:2.8em;">1</div>
-      <div class="step-text" style="font-size:1em;"><a class="att-link" href="attachments.html?att=2" target="_self">ChatGPT<br>爬梳規定、機制、檢核措施</a></div>
+  <div class="step-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 0.2em;">
+    <div class="step-card" style="padding: 24px 18px;">
+      <div class="step-num" style="font-size:3.2em;">1</div>
+      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=2" target="_self">ChatGPT<br>爬梳規定、機制、檢核措施</a></div>
     </div>
-    <div class="step-card" style="padding: 22px 16px;">
-      <div class="step-num" style="font-size:2.8em;">2</div>
-      <div class="step-text" style="font-size:1em;"><a class="att-link" href="attachments.html?att=10" target="_self">NotebookLM<br>彙整各季評比成果報告</a></div>
+    <div class="step-card" style="padding: 24px 18px;">
+      <div class="step-num" style="font-size:3.2em;">2</div>
+      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=10" target="_self">NotebookLM<br>彙整各季評比成果報告</a></div>
     </div>
-    <div class="step-card" style="padding: 22px 16px;">
-      <div class="step-num" style="font-size:2.8em;">3</div>
-      <div class="step-text" style="font-size:1em;"><a class="att-link" href="attachments.html?att=11" target="_self">Excel<br>分類建置資料庫</a></div>
+    <div class="step-card" style="padding: 24px 18px;">
+      <div class="step-num" style="font-size:3.2em;">3</div>
+      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=11" target="_self">Excel<br>分類建置資料庫</a></div>
     </div>
-    <div class="step-card" style="padding: 22px 16px;">
-      <div class="step-num" style="font-size:2.8em;">4</div>
-      <div class="step-text" style="font-size:1em;"><a class="att-link" href="attachments.html?att=12" target="_self">QGIS + Python<br>地圖與資料複核</a></div>
+    <div class="step-card" style="padding: 24px 18px;">
+      <div class="step-num" style="font-size:3.2em;">4</div>
+      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=12" target="_self">QGIS + Python<br>地圖與資料複核</a></div>
     </div>
   </div>
-  <div class="quote-box" style="font-size:0.85em; margin-top:0.2em;">
+  <div class="quote-box" style="font-size:0.9em; margin-top:0.3em;">
     讓 AI 快速鎖定問題，再由審計人員以專業判斷確認<strong>法規依據、數據口徑及改善責任</strong>。
   </div>
 </section>
@@ -443,7 +487,7 @@
 </section>
 
 <!-- 第 9 頁：審計發現與改善成果 -->
-<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>審計發現與改善成果</h2>
   <p>✓ 促請改善 → 機關回應 → 量化效益</p>
   <table class="sort-table-full" id="sortTable">
@@ -488,7 +532,7 @@ function sortTable(col) {
 </script>
 
 <!-- 第 10 頁：AI讓查核能力更均衡 (雷達圖) -->
-<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>AI 讓查核能力更均衡</h2>
   <div class="radar-wrap">
     <svg class="radar-svg" viewBox="-70 -10 460 420">
@@ -516,18 +560,24 @@ function sortTable(col) {
       <text x="65" y="284" fill="var(--accent2)" font-size="20" text-anchor="end" font-weight="700" class="radar-label">改善追蹤</text>
       <text x="-2" y="95" fill="var(--accent2)" font-size="22" text-anchor="end" font-weight="700" class="radar-label">審核品質</text>
     </svg>
-    <div class="radar-list">
-      <p style="margin:0;"><span class="lbl" style="color: var(--accent2); font-size:1.3em;">■ AI 輔助後</span>：五面向全面提升</p>
-      <p style="margin:0;"><span class="lbl" style="color: var(--warn); font-size:1.3em;">■ 傳統人工</span>：資料蒐集、重複缺失、改善追蹤較耗時</p>
-      <p style="margin:0; color: var(--text2); width:100%; text-align:center;">資料蒐集、法規連結、量化分析、改善追蹤及審核意見品質都更均衡、更有依據。</p>
+    <div class="radar-panels">
+      <div class="radar-panel ai">
+        <div class="rp-title">AI 輔助後</div>
+        <div class="rp-body">五面向全面提升，資料蒐集、法規連結、量化分析、改善追蹤及審核意見品質更均衡、更有依據</div>
+      </div>
+      <div class="radar-panel trad">
+        <div class="rp-title">傳統人工</div>
+        <div class="rp-body">資料蒐集耗時、重複缺失辨識不易、改善追蹤效率低，審核意見品質參差不齊</div>
+      </div>
     </div>
+    <div class="radar-summary">✓ 導入生成式 AI 後，五大查核能力顯著提升，審核意見品質更一致、更有依據</div>
   </div>
 </section>
 
 <!-- 第 11 頁：何時導入生成式AI (VIZ 滑桿) -->
-<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>何時導入生成式 AI</h2>
-  <p style="font-size:0.8em;">拖動下方滑桿，看導入前後的差異</p>
+  <p style="font-size:0.9em;">拖動下方滑桿，看導入前後的差異</p>
   <div class="viz-wrap">
     <div class="viz-tag left">導入前</div>
     <div class="viz-tag right">導入後</div>
@@ -571,28 +621,28 @@ function sortTable(col) {
 </section>
 
 <!-- 第 13 頁：AI放大審計價值 -->
-<section class="bg-deco scale-up" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>AI 放大審計價值</h2>
-  <p style="font-size:1.0em;">
+  <p style="font-size:1.6em;">
     把生成式 AI 放在審計專業流程中，放大資料整理、問題辨識及成果追蹤能力
   </p>
-  <div class="conclusion-grid" style="display:flex; flex-direction:column; gap:14px; margin-top:0.3em;">
-    <div class="conclusion-card positive " style="font-size:0.95em; padding:16px 20px;">
-      <div class="cc-title" style="font-size:1.5em;">✓ 本案具體成果</div>
+  <div class="conclusion-grid" style="display:flex; flex-direction:column; gap:18px; margin-top:0.2em;">
+    <div class="conclusion-card positive " style="font-size:1.6em; padding:20px 24px;">
+      <div class="cc-title" style="font-size:1.4em;">✓ 本案具體成果</div>
       <ul>
-        <li style="margin-bottom:8px;"><a class="att-link" href="attachments.html?att=6" target="_self">縣府修正道路挖掘行政規費收費標準</a></li>
-        <li style="margin-bottom:8px;"><a class="att-link" href="attachments.html?att=7" target="_self">114/5–7 月增加收入 50.1 萬元</a></li>
-        <li style="margin-bottom:8px;"><a class="att-link" href="attachments.html?att=12" target="_self">圖資修正 20,999 筆</a></li>
-        <li style="margin-bottom:8px;"><a class="att-link" href="attachments.html?att=9" target="_self">工作補充說明 6 點 → 18 點</a></li>
+        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=6" target="_self">縣府修正道路挖掘行政規費收費標準</a></li>
+        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=7" target="_self">114/5–7 月增加收入 50.1 萬元</a></li>
+        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=12" target="_self">圖資修正 20,999 筆</a></li>
+        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=9" target="_self">工作補充說明 6 點 → 18 點</a></li>
       </ul>
     </div>
-    <div class="conclusion-card positive " style="font-size:0.95em; padding:16px 20px;">
-      <div class="cc-title" style="font-size:1.5em;">📊 審計呈現</div>
+    <div class="conclusion-card positive " style="font-size:1.6em; padding:20px 24px;">
+      <div class="cc-title" style="font-size:1.4em;">📊 審計呈現</div>
       <ul>
-        <li style="margin-bottom:8px;"><a class="att-link" href="attachments.html?att=4" target="_self">列入決算審核報告</a></li>
-        <li style="margin-bottom:8px;"><a class="att-link" href="attachments.html?att=5" target="_self">發布重要政府審計資訊</a></li>
-        <li style="margin-bottom:8px;"><a class="att-link" href="attachments.html?att=3" target="_self">促成責任查處及制度改善</a></li>
-        <li style="margin-bottom:8px;"><a class="att-link" href="attachments.html?att=14&from=12" target="_self">可擴散至其他查核議題</a></li>
+        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=4" target="_self">列入決算審核報告</a></li>
+        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=5" target="_self">發布重要政府審計資訊</a></li>
+        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=3" target="_self">促成責任查處及制度改善</a></li>
+        <li style="margin-bottom:10px;"><a class="att-link" href="attachments.html?att=14&from=12" target="_self">可擴散至其他查核議題</a></li>
       </ul>
     </div>
   </div>
@@ -602,6 +652,10 @@ function sortTable(col) {
 <section>
   <div class="end-slide">
     <img src="images/ending_16x9.png" alt="結束及謝謝大家的聆聽" />
+    <div class="noise-detector" id="noiseDetector">
+      <div class="mic-icon" id="micIcon" onclick="toggleNoiseDetection()" title="點擊啟動噪音偵測">🎤</div>
+      <div class="heart-container" id="heartContainer"></div>
+    </div>
   </div>
 </section>
 
@@ -625,7 +679,7 @@ function sortTable(col) {
     slideNumber: 'c/t',
     width: 1280,
     height: 720,
-    margin: 0.08
+    margin: 0.04
   });
 
   // VIZ 滑桿控制
@@ -728,6 +782,70 @@ function sortTable(col) {
   }
   function hideTooltip() {
     document.getElementById('tip-overlay').classList.remove('open');
+  }
+
+  // 噪音偵測器 (第14頁)
+  let audioCtx, analyser, micStream, source;
+  let noiseActive = false, noiseAnimId = null, lastHeartTime = 0;
+  function toggleNoiseDetection() {
+    const mic = document.getElementById('micIcon');
+    if (noiseActive) {
+      noiseActive = false;
+      if (noiseAnimId) cancelAnimationFrame(noiseAnimId);
+      if (micStream) micStream.getTracks().forEach(t => t.stop());
+      if (audioCtx) audioCtx.close();
+      mic.classList.remove('active');
+      mic.textContent = '🎤';
+    } else {
+      startNoiseDetection(mic);
+    }
+  }
+  async function startNoiseDetection(mic) {
+    try {
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 256;
+      source = audioCtx.createMediaStreamSource(micStream);
+      source.connect(analyser);
+      noiseActive = true;
+      mic.classList.add('active');
+      mic.textContent = '🔴';
+      processNoiseLoop();
+    } catch(e) {
+      mic.textContent = '🚫';
+      setTimeout(() => { mic.textContent = '🎤'; }, 2000);
+    }
+  }
+  function processNoiseLoop() {
+    if (!noiseActive) return;
+    const data = new Uint8Array(analyser.frequencyBinCount);
+    analyser.getByteFrequencyData(data);
+    const avg = data.reduce((a,b) => a+b, 0) / data.length;
+    const volume = Math.min(1, avg / 128);
+    if (volume > 0.04) {
+      const now = Date.now();
+      const interval = Math.max(100, 300 - volume * 200);
+      if (now - lastHeartTime > interval) {
+        createHeart(volume);
+        lastHeartTime = now;
+      }
+    }
+    noiseAnimId = requestAnimationFrame(processNoiseLoop);
+  }
+  function createHeart(volume) {
+    const container = document.getElementById('heartContainer');
+    const heart = document.createElement('div');
+    heart.className = 'heart-bubble';
+    heart.textContent = '❤️';
+    const size = 14 + volume * 50;
+    heart.style.fontSize = size + 'px';
+    heart.style.left = (Math.random() * 40 - 20) + 'px';
+    container.appendChild(heart);
+    if (volume > 0.75) {
+      setTimeout(() => { heart.classList.add('pop'); }, 600);
+    }
+    setTimeout(() => { if (heart.parentNode) heart.remove(); }, 3000);
   }
 </script>
 
