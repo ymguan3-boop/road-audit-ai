@@ -227,8 +227,8 @@
     .sort-table-full th:hover { background: rgba(0,96,192,0.5); }
     .sort-table-full th .arrow { display: inline-block; width: 16px; color: var(--accent2); }
     .sort-table-full td { border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .sort-table-full tbody tr:nth-child(odd) td { background: rgba(79,195,247,0.15) !important; }
-    .sort-table-full tbody tr:nth-child(even) td { background: rgba(255,145,0,0.10) !important; }
+    :where(.sort-table-full) tbody tr:nth-child(odd) td { background: rgba(79,195,247,0.15); }
+    :where(.sort-table-full) tbody tr:nth-child(even) td { background: rgba(255,145,0,0.10); }
     .sort-table-full tr:hover td { background: rgba(255,255,255,0.12) !important; }
     /* 各欄不同色 */
     .sort-table-full th:nth-child(1) { background: rgba(79,195,247,0.3); }
@@ -355,13 +355,13 @@
     .scale-15 .radar-panel .rp-title { font-size: 1.5em !important; }
     .scale-15 .radar-panel .rp-body { font-size: 1.1em !important; }
     .scale-15 .radar-summary { font-size: 1.15em !important; line-height: 1.5 !important; }
-    .scale-15 .v-card { padding: 20px 22px !important; }
-    .scale-15 .v-card .v-title { font-size: 1.6em !important; }
-    .scale-15 .v-card .v-desc { font-size: 1.3em !important; }
-    .scale-15 .v-card .v-icon { font-size: 3.2em !important; }
-    .scale-15 .v-card a.att-link { font-size: 1.5em !important; }
+    .scale-15 .v-card { padding: 8px 10px !important; }
+    .scale-15 .v-card .v-title { font-size: 0.64em !important; }
+    .scale-15 .v-card .v-desc { font-size: 0.52em !important; }
+    .scale-15 .v-card .v-icon { font-size: 1.28em !important; }
+    .scale-15 .v-card a.att-link { font-size: 0.6em !important; }
     .scale-15 .sort-table-full a.att-link { font-size: 1.0em !important; }
-    .scale-15 .v-grid { gap: 16px; }
+    .scale-15 .v-grid { gap: 6px; }
     /* 雷達圖特色面板 */
     .radar-panels { display: flex; gap: 10px; margin-top: 0; width: 100%; max-width: 700px; }
     .radar-panel { flex: 1; border-radius: 10px; padding: 10px 14px; text-align: center; border: 1px solid; }
@@ -703,15 +703,16 @@ function sortTable(col) {
 
 <!-- 第 13 頁：AI放大審計價值 -->
 <section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+  <div style="padding:20px;">
   <h2>AI 放大審計價值</h2>
-  <p style="font-size:1.7em; margin-bottom:0.4em; color:var(--text2);">
+  <p style="font-size:0.7em; margin-bottom:0.2em; color:var(--text2);">
      把生成式 AI 放在審計專業流程中，放大資料整理、問題辨識及成果追蹤能力
    </p>
 
-   <div style="display:flex; gap:20px; align-items:stretch;">
+   <div style="display:flex; gap:12px; align-items:stretch;">
     <div style="flex:7; min-width:0;">
-      <div style="text-align:left; font-size:1.7em; font-weight:700; color:#4dd0e1; margin-bottom:6px; letter-spacing:0.05em;">▎審計成果</div>
-      <div class="v-grid" style="grid-template-columns:1fr 1fr;">
+      <div style="text-align:left; font-size:0.7em; font-weight:700; color:#4dd0e1; margin-bottom:4px; letter-spacing:0.05em;">▎審計成果</div>
+      <div class="v-grid">
         <div class="v-card" style="border-top:3px solid #4dd0e1;">
           <div class="v-icon" style="color:#4dd0e1;">📋</div>
           <div class="v-title" style="color:#4dd0e1;">修正收費標準</div>
@@ -757,7 +758,7 @@ function sortTable(col) {
       </div>
     </div>
     <div style="flex:3; min-width:0; display:flex; flex-direction:column;">
-      <div style="text-align:left; font-size:1.7em; font-weight:700; color:#b388ff; margin-bottom:6px; letter-spacing:0.05em;">▎延伸應用價值</div>
+      <div style="text-align:left; font-size:0.7em; font-weight:700; color:#b388ff; margin-bottom:4px; letter-spacing:0.05em;">▎延伸應用價值</div>
       <div class="v-grid-wide" style="flex:1;">
         <div class="v-card" style="border-top:3px solid #b388ff; min-height:120px; justify-content:center;">
           <div class="v-icon" style="color:#b388ff;">🔄</div>
@@ -767,6 +768,7 @@ function sortTable(col) {
         </div>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
