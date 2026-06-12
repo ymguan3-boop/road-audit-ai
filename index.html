@@ -150,7 +150,26 @@
       stroke-dasharray: 800; stroke-dashoffset: 800;
     }
     @keyframes radarLabel { 0% { opacity: 0; } 60% { opacity: 0; } 100% { opacity: 1; } }
-    .radar-svg text.radar-label { animation: radarLabel 2s ease-out forwards; }
+    @keyframes charJump {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-6px); }
+      50% { transform: translateY(-1px); }
+      75% { transform: translateY(-4px); }
+    }
+    @keyframes labelFlash {
+      0%, 100% { filter: brightness(1); }
+      5% { filter: brightness(2.4); }
+      10% { filter: brightness(1.3); }
+      15% { filter: brightness(1.8); }
+      20% { filter: brightness(1); }
+    }
+    .radar-svg text.radar-label {
+      animation-name: radarLabel, charJump, labelFlash;
+      animation-duration: 2s, 0.7s, 2s;
+      animation-timing-function: ease-out, ease-in-out, ease-out;
+      animation-fill-mode: forwards, infinite, forwards;
+      animation-iteration-count: 1, infinite, 1;
+    }
     .radar-list { display: flex; flex-wrap: wrap; gap: 4px 24px; justify-content: center; font-size: 0.55em; color: var(--text); line-height: 1.6; margin-top: 0.1em; }
     .radar-list .lbl { font-weight: 700; }
 
@@ -203,7 +222,7 @@
       background: rgba(0,96,192,0.35); color: var(--accent2); padding: 10px 8px;
       text-align: center; cursor: pointer; white-space: nowrap;
       border-bottom: 2px solid var(--accent3); user-select: none;
-      transition: background 0.2s;
+      transition: background 0.2s; font-weight: 700;
     }
     .sort-table-full th:hover { background: rgba(0,96,192,0.5); }
     .sort-table-full th .arrow { display: inline-block; width: 16px; color: var(--accent2); }
@@ -329,6 +348,14 @@
     .scale-15 .col-card .col-title { font-size: 1.2em !important; }
     .scale-15 .col-card .col-desc { font-size: 1.0em !important; }
     .scale-15 .three-col { gap: 20px; }
+    .scale-15 .radar-panel .rp-title { font-size: 1.5em !important; }
+    .scale-15 .radar-panel .rp-body { font-size: 1.1em !important; }
+    .scale-15 .radar-summary { font-size: 1.15em !important; line-height: 1.5 !important; }
+    .scale-15 .v-card { padding: 12px 14px !important; }
+    .scale-15 .v-card .v-title { font-size: 1.05em !important; }
+    .scale-15 .v-card .v-desc { font-size: 0.85em !important; }
+    .scale-15 .v-card .v-icon { font-size: 2.4em !important; }
+    .scale-15 .v-grid { gap: 10px; }
     /* 雷達圖特色面板 */
     .radar-panels { display: flex; gap: 10px; margin-top: 0; width: 100%; max-width: 700px; }
     .radar-panel { flex: 1; border-radius: 10px; padding: 10px 14px; text-align: center; border: 1px solid; }
@@ -587,11 +614,26 @@ function sortTable(col) {
         <animate attributeName="stroke-dashoffset" from="800" to="0" dur="1.5s" begin="indefinite" fill="freeze"/>
         <animate attributeName="opacity" from="0" to="1" dur="0.6s" begin="indefinite" fill="freeze"/>
       </polygon>
-      <text x="160" y="12" fill="var(--accent2)" font-size="22" text-anchor="middle" font-weight="700" class="radar-label">資料蒐集</text>
-      <text x="315" y="95" fill="var(--accent2)" font-size="20" text-anchor="start" font-weight="700" class="radar-label">法規連結</text>
-      <text x="250" y="284" fill="var(--accent2)" font-size="22" text-anchor="start" font-weight="700" class="radar-label">量化分析</text>
-      <text x="65" y="284" fill="var(--accent2)" font-size="20" text-anchor="end" font-weight="700" class="radar-label">改善追蹤</text>
-      <text x="-2" y="95" fill="var(--accent2)" font-size="22" text-anchor="end" font-weight="700" class="radar-label">審核品質</text>
+      <text x="116" y="12" fill="#4fc3f7" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0s">資</text>
+      <text x="138" y="12" fill="#4fc3f7" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.08s">料</text>
+      <text x="160" y="12" fill="#4fc3f7" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.16s">蒐</text>
+      <text x="182" y="12" fill="#4fc3f7" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.24s">集</text>
+      <text x="315" y="95" fill="#ff9100" font-size="20" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0s">法</text>
+      <text x="335" y="95" fill="#ff9100" font-size="20" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.08s">規</text>
+      <text x="355" y="95" fill="#ff9100" font-size="20" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.16s">連</text>
+      <text x="375" y="95" fill="#ff9100" font-size="20" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.24s">結</text>
+      <text x="250" y="284" fill="#00e676" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0s">量</text>
+      <text x="272" y="284" fill="#00e676" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.08s">化</text>
+      <text x="294" y="284" fill="#00e676" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.16s">分</text>
+      <text x="316" y="284" fill="#00e676" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.24s">析</text>
+      <text x="-15" y="284" fill="#ea80fc" font-size="20" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0s">改</text>
+      <text x="5" y="284" fill="#ea80fc" font-size="20" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.08s">善</text>
+      <text x="25" y="284" fill="#ea80fc" font-size="20" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.16s">追</text>
+      <text x="45" y="284" fill="#ea80fc" font-size="20" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.24s">蹤</text>
+      <text x="-90" y="95" fill="#ff5252" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0s">審</text>
+      <text x="-68" y="95" fill="#ff5252" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.08s">核</text>
+      <text x="-46" y="95" fill="#ff5252" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.16s">品</text>
+      <text x="-24" y="95" fill="#ff5252" font-size="22" text-anchor="start" font-weight="700" class="radar-label" style="animation-delay:0s,0.24s">質</text>
     </svg>
     <div class="radar-panels" style="transform:translate(40px,-8px)">
       <div class="radar-panel ai">
@@ -660,59 +702,64 @@ function sortTable(col) {
     把生成式 AI 放在審計專業流程中，放大資料整理、問題辨識及成果追蹤能力
   </p>
 
-  <div style="text-align:left; font-size:0.85em; font-weight:700; color:#4dd0e1; margin-bottom:5px; letter-spacing:0.05em;">▎審計成果</div>
-  <div class="v-grid">
-    <div class="v-card" style="border-top:3px solid #4dd0e1;">
-      <div class="v-icon" style="color:#4dd0e1;">📋</div>
-      <div class="v-title" style="color:#4dd0e1;">修正收費標準</div>
-      <div class="v-desc">縣府修正道路挖掘行政規費收費標準</div>
-      <a class="att-link" href="attachments.html?att=6" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+  <div style="display:flex; gap:16px; align-items:stretch;">
+    <div style="flex:7; min-width:0;">
+      <div style="text-align:left; font-size:0.75em; font-weight:700; color:#4dd0e1; margin-bottom:4px; letter-spacing:0.05em;">▎審計成果</div>
+      <div class="v-grid" style="grid-template-columns:1fr 1fr 1fr;">
+        <div class="v-card" style="border-top:3px solid #4dd0e1;">
+          <div class="v-icon" style="color:#4dd0e1;">📋</div>
+          <div class="v-title" style="color:#4dd0e1;">修正收費標準</div>
+          <div class="v-desc">縣府修正道路挖掘行政規費收費標準</div>
+          <a class="att-link" href="attachments.html?att=6" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #ffab40;">
+          <div class="v-icon" style="color:#ffab40;">💰</div>
+          <div class="v-title" style="color:#ffab40;">增加規費收入</div>
+          <div class="v-desc">114/5–7 月增加收入 50.1 萬元</div>
+          <a class="att-link" href="attachments.html?att=7" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #69f0ae;">
+          <div class="v-icon" style="color:#69f0ae;">🗺️</div>
+          <div class="v-title" style="color:#69f0ae;">圖資錯誤修正</div>
+          <div class="v-desc">20,999 筆錯誤管線圖資全數修正完畢</div>
+          <a class="att-link" href="attachments.html?att=12" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #ea80fc;">
+          <div class="v-icon" style="color:#ea80fc;">📝</div>
+          <div class="v-title" style="color:#ea80fc;">補充說明擴充</div>
+          <div class="v-desc">工作補充說明由 6 點擴充至 18 點</div>
+          <a class="att-link" href="attachments.html?att=9" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #ffd740;">
+          <div class="v-icon" style="color:#ffd740;">📄</div>
+          <div class="v-title" style="color:#ffd740;">列入審核報告</div>
+          <div class="v-desc">審計成果列入決算審核報告</div>
+          <a class="att-link" href="attachments.html?att=4" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #1de9b6;">
+          <div class="v-icon" style="color:#1de9b6;">📢</div>
+          <div class="v-title" style="color:#1de9b6;">資訊發布</div>
+          <div class="v-desc">發布重要政府審計資訊</div>
+          <a class="att-link" href="attachments.html?att=5" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #ff5252;">
+          <div class="v-icon" style="color:#ff5252;">⚖️</div>
+          <div class="v-title" style="color:#ff5252;">制度改善</div>
+          <div class="v-desc">促成責任查處及制度改善</div>
+          <a class="att-link" href="attachments.html?att=3" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+      </div>
     </div>
-    <div class="v-card" style="border-top:3px solid #ffab40;">
-      <div class="v-icon" style="color:#ffab40;">💰</div>
-      <div class="v-title" style="color:#ffab40;">增加規費收入</div>
-      <div class="v-desc">114/5–7 月增加收入 50.1 萬元</div>
-      <a class="att-link" href="attachments.html?att=7" target="_self" style="font-size:0.75em;">查看詳情 →</a>
-    </div>
-    <div class="v-card" style="border-top:3px solid #69f0ae;">
-      <div class="v-icon" style="color:#69f0ae;">🗺️</div>
-      <div class="v-title" style="color:#69f0ae;">圖資錯誤修正</div>
-      <div class="v-desc">20,999 筆錯誤管線圖資全數修正完畢</div>
-      <a class="att-link" href="attachments.html?att=12" target="_self" style="font-size:0.75em;">查看詳情 →</a>
-    </div>
-    <div class="v-card" style="border-top:3px solid #ea80fc;">
-      <div class="v-icon" style="color:#ea80fc;">📝</div>
-      <div class="v-title" style="color:#ea80fc;">補充說明擴充</div>
-      <div class="v-desc">工作補充說明由 6 點擴充至 18 點</div>
-      <a class="att-link" href="attachments.html?att=9" target="_self" style="font-size:0.75em;">查看詳情 →</a>
-    </div>
-    <div class="v-card" style="border-top:3px solid #ffd740;">
-      <div class="v-icon" style="color:#ffd740;">📄</div>
-      <div class="v-title" style="color:#ffd740;">列入審核報告</div>
-      <div class="v-desc">審計成果列入決算審核報告</div>
-      <a class="att-link" href="attachments.html?att=4" target="_self" style="font-size:0.75em;">查看詳情 →</a>
-    </div>
-    <div class="v-card" style="border-top:3px solid #1de9b6;">
-      <div class="v-icon" style="color:#1de9b6;">📢</div>
-      <div class="v-title" style="color:#1de9b6;">資訊發布</div>
-      <div class="v-desc">發布重要政府審計資訊</div>
-      <a class="att-link" href="attachments.html?att=5" target="_self" style="font-size:0.75em;">查看詳情 →</a>
-    </div>
-    <div class="v-card" style="border-top:3px solid #ff5252;">
-      <div class="v-icon" style="color:#ff5252;">⚖️</div>
-      <div class="v-title" style="color:#ff5252;">制度改善</div>
-      <div class="v-desc">促成責任查處及制度改善</div>
-      <a class="att-link" href="attachments.html?att=3" target="_self" style="font-size:0.75em;">查看詳情 →</a>
-    </div>
-  </div>
-
-  <div style="text-align:left; font-size:0.85em; font-weight:700; color:#b388ff; margin:8px 0 5px 0; letter-spacing:0.05em;">▎延伸應用價值</div>
-  <div class="v-grid-wide">
-    <div class="v-card" style="border-top:3px solid #b388ff;">
-      <div class="v-icon" style="color:#b388ff;">🔄</div>
-      <div class="v-title" style="color:#b388ff;">擴散應用</div>
-      <div class="v-desc">可擴散至其他查核議題，將 AI 輔助查核方法延伸至不同業務領域</div>
-      <a class="att-link" href="attachments.html?att=14&from=12" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+    <div style="flex:3; min-width:0; display:flex; flex-direction:column;">
+      <div style="text-align:left; font-size:0.75em; font-weight:700; color:#b388ff; margin-bottom:4px; letter-spacing:0.05em;">▎延伸應用價值</div>
+      <div class="v-grid-wide" style="flex:1;">
+        <div class="v-card" style="border-top:3px solid #b388ff; min-height:120px; justify-content:center;">
+          <div class="v-icon" style="color:#b388ff;">🔄</div>
+          <div class="v-title" style="color:#b388ff;">擴散應用</div>
+          <div class="v-desc">可擴散至其他查核議題，將 AI 輔助查核方法延伸至不同業務領域</div>
+          <a class="att-link" href="attachments.html?att=14&from=12" target="_self" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
