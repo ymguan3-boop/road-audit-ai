@@ -316,6 +316,40 @@
     #tip-box .tl { display: block; }
     #tip-box .bl { display: block; color: #ff9100; font-size: 20px; }
 
+    /* 第9頁 toast */
+    #toast-improve {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.85); border: 1px solid var(--accent2);
+      border-radius: 30px; padding: 14px 36px;
+      box-shadow: 0 0 40px rgba(79,195,247,0.25);
+      color: #fff; font-size: 1.2em; font-weight: bold;
+      white-space: nowrap; opacity: 0; transition: opacity 0.5s;
+      z-index: 100; pointer-events: none;
+    }
+    #toast-improve.show { opacity: 1; }
+
+    /* ChatGPT prompt overlay */
+    #prompt-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.6);
+    }
+    #prompt-overlay.open { display: flex; }
+    #prompt-box {
+      background: rgba(10,12,28,0.98); border: 1px solid var(--accent2);
+      border-radius: 12px; padding: 32px 40px; max-width: 680px;
+      box-shadow: 0 0 50px rgba(79,195,247,0.3);
+      color: var(--text); font-size: 1.1em; line-height: 1.8;
+      text-align: left;
+    }
+    #prompt-box .prompt-att-link { color: var(--warn); font-weight: bold; cursor: pointer; text-decoration: underline; }
+    #prompt-box .prompt-att-link:hover { color: #fff; }
+    #prompt-close {
+      display: block; margin-top: 16px; text-align: center;
+      color: var(--accent2); cursor: pointer; font-size: 0.9em;
+    }
+    #prompt-close:hover { color: #fff; }
+
     /* 其他 */
     .text-glow { text-shadow: 0 0 15px rgba(79,195,247,0.3); }
 
@@ -618,6 +652,7 @@
       <tr><td>審計資訊發布</td><td>內部審核意見</td><td>發布重要政府審計資訊</td><td><a class="att-link" href="attachments.html?att=5" target="_self">附件5</a></td></tr>
     </tbody>
   </table>
+  <div id="toast-improve">共10項改善成果，每1項都有改善前後對比！</div>
 </section>
 <script>
 let sortDir = [0,0,0,0];
@@ -743,7 +778,7 @@ function sortTable(col) {
   <div class="step-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 0.2em;">
     <div class="step-card" style="padding: 24px 18px;">
       <div class="step-num" style="font-size:3.2em;">1</div>
-      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=2" target="_self">ChatGPT<br>爬梳規定、機制、檢核措施</a></div>
+      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="javascript:void(0)" onclick="showChatGPTPrompt(event)">ChatGPT<br>爬梳規定、機制、檢核措施</a></div>
     </div>
     <div class="step-card" style="padding: 24px 18px;">
       <div class="step-num" style="font-size:3.2em;">2</div>
@@ -786,6 +821,13 @@ function sortTable(col) {
 
 <div id="tip-overlay" onclick="hideTooltip()">
   <div id="tip-box" onclick="event.stopPropagation()"></div>
+</div>
+
+<div id="prompt-overlay" onclick="hideChatGPTPrompt()">
+  <div id="prompt-box" onclick="event.stopPropagation()">
+    <p>運用OpenAI人工智慧程式(ChatGPT)下達PROMPT：請宜蘭縣政府為提升道路品質，已訂定之「規定」、「機制」及實施之「檢核措施」有哪些，請分項條列式顯示，並將來源出處或網址顯示於各項後方。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=2','_self')">（詳附件）</span></p>
+    <div id="prompt-close" onclick="hideChatGPTPrompt()">［ 關閉 ］</div>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
@@ -886,6 +928,12 @@ function sortTable(col) {
       const svg = document.querySelector('.radar-svg');
       if (svg) svg.querySelectorAll('animate').forEach(a => { try { a.beginElement(); } catch(e) {} });
     }
+    // 第9頁 toast
+    const toast = document.getElementById('toast-improve');
+    if (toast) {
+      toast.classList.remove('show');
+      if (e.indexh === 8) setTimeout(() => toast.classList.add('show'), 400);
+    }
   });
   Reveal.on('ready', e => renderAttPanel(0));
   document.addEventListener('click', e => {
@@ -904,6 +952,13 @@ function sortTable(col) {
   }
   function hideTooltip() {
     document.getElementById('tip-overlay').classList.remove('open');
+  }
+  function showChatGPTPrompt(e) {
+    e.preventDefault();
+    document.getElementById('prompt-overlay').classList.add('open');
+  }
+  function hideChatGPTPrompt() {
+    document.getElementById('prompt-overlay').classList.remove('open');
   }
 
   // 噪音偵測器 (第14頁)
