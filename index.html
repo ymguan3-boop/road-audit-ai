@@ -54,7 +54,7 @@
     .title-slide h1 { color: #fff; margin: 0.15em 0; font-size: 2.0em; line-height: 1.25; text-shadow: 0 0 40px rgba(0,136,255,0.4); }
     .title-slide h2 { font-size: 1.0em; }
     .title-slide p.subtitle { font-size: 0.55em; color: var(--text2); margin: 0.2em auto; max-width: 800px; line-height: 1.5; }
-    .title-slide .author { margin-top: 1.6em; font-size: 1em; color: var(--text2); letter-spacing: 0.05em; }
+    .title-slide .author { margin-top: 1.6em; font-size: 2em; font-weight: bold; color: var(--text2); letter-spacing: 0.05em; }
     .title-slide .video-center {
       display: flex; justify-content: center; align-items: center;
       width: 100%; margin: 0.5em 0;
@@ -497,35 +497,6 @@
   </div>
 </section>
 
-<!-- 第 4 頁：把AI放進審計流程 -->
-<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2>把 AI 放進審計流程</h2>
-  <p style="font-size:1.0em;">
-    💡 不是取代專業判斷，而是擴大資料閱讀、重複缺失辨識及證據整理能力
-  </p>
-  <div class="step-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 0.2em;">
-    <div class="step-card" style="padding: 24px 18px;">
-      <div class="step-num" style="font-size:3.2em;">1</div>
-      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=2" target="_self">ChatGPT<br>爬梳規定、機制、檢核措施</a></div>
-    </div>
-    <div class="step-card" style="padding: 24px 18px;">
-      <div class="step-num" style="font-size:3.2em;">2</div>
-      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=10" target="_self">NotebookLM<br>彙整各季評比成果報告</a></div>
-    </div>
-    <div class="step-card" style="padding: 24px 18px;">
-      <div class="step-num" style="font-size:3.2em;">3</div>
-      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=11" target="_self">Excel<br>分類建置資料庫</a></div>
-    </div>
-    <div class="step-card" style="padding: 24px 18px;">
-      <div class="step-num" style="font-size:3.2em;">4</div>
-      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=12" target="_self">QGIS + Python<br>地圖與資料複核</a></div>
-    </div>
-  </div>
-  <div class="quote-box" style="font-size:0.9em; margin-top:0.3em;">
-    讓 AI 快速鎖定問題，再由審計人員以專業判斷確認<strong>法規依據、數據口徑及改善責任</strong>。
-  </div>
-</section>
-
 <!-- 第 5 頁：三條驗證線 -->
 <section>
   <div class="img-slide">
@@ -693,6 +664,35 @@ function sortTable(col) {
       <div class="col-title">需要追蹤</div>
       <div class="col-desc">審計意見、機關回復、資訊發布及量化效益串成閉環</div>
     </div>
+  </div>
+</section>
+
+<!-- 第 4 頁：把AI放進審計流程 -->
+<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+  <h2>把 AI 放進審計流程</h2>
+  <p style="font-size:1.0em;">
+    💡 不是取代專業判斷，而是擴大資料閱讀、重複缺失辨識及證據整理能力
+  </p>
+  <div class="step-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 0.2em;">
+    <div class="step-card" style="padding: 24px 18px;">
+      <div class="step-num" style="font-size:3.2em;">1</div>
+      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=2" target="_self">ChatGPT<br>爬梳規定、機制、檢核措施</a></div>
+    </div>
+    <div class="step-card" style="padding: 24px 18px;">
+      <div class="step-num" style="font-size:3.2em;">2</div>
+      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=10" target="_self">NotebookLM<br>彙整各季評比成果報告</a></div>
+    </div>
+    <div class="step-card" style="padding: 24px 18px;">
+      <div class="step-num" style="font-size:3.2em;">3</div>
+      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=11" target="_self">Excel<br>分類建置資料庫</a></div>
+    </div>
+    <div class="step-card" style="padding: 24px 18px;">
+      <div class="step-num" style="font-size:3.2em;">4</div>
+      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=12" target="_self">QGIS + Python<br>地圖與資料複核</a></div>
+    </div>
+  </div>
+  <div class="quote-box" style="font-size:0.9em; margin-top:0.3em;">
+    讓 AI 快速鎖定問題，再由審計人員以專業判斷確認<strong>法規依據、數據口徑及改善責任</strong>。
   </div>
 </section>
 
