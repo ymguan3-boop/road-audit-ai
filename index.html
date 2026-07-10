@@ -366,9 +366,27 @@
       0% { opacity: 0; transform: translateY(12px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    #prompt-box .prompt-line, #prompt-box-2 .prompt-line {
+    #prompt-box .prompt-line, #prompt-box-2 .prompt-line, #prompt-box-3 .prompt-line {
       opacity: 0; animation: promptFadeIn 0.5s ease forwards;
     }
+    #prompt-overlay-3 {
+      position: fixed; inset: 0; z-index: 2000;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.6);
+    }
+    #prompt-overlay-3.open { display: flex; }
+    #prompt-box-3 {
+      background: rgba(10,12,28,0.98); border: 1px solid var(--accent2);
+      border-radius: 12px; padding: 28px 34px; max-width: 780px; max-height: 80vh; overflow-y: auto;
+      box-shadow: 0 0 50px rgba(79,195,247,0.3);
+      color: var(--text); font-size: 1.235em; line-height: 1.7;
+      text-align: left;
+    }
+    #prompt-close-3 {
+      display: block; margin-top: 16px; text-align: center;
+      color: var(--accent2); cursor: pointer; font-size: 0.9em;
+    }
+    #prompt-close-3:hover { color: #fff; }
 
     /* 其他 */
     .text-glow { text-shadow: 0 0 15px rgba(79,195,247,0.3); }
@@ -806,7 +824,7 @@ function sortTable(col) {
     </div>
     <div class="step-card" style="padding: 24px 18px;">
       <div class="step-num" style="font-size:3.2em;">3</div>
-      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=11" target="_self">Excel<br>分類建置資料庫</a></div>
+      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="javascript:void(0)" onclick="showExcelPrompt(event)">Excel<br>分類建置資料庫</a></div>
     </div>
     <div class="step-card" style="padding: 24px 18px;">
       <div class="step-num" style="font-size:3.2em;">4</div>
@@ -873,6 +891,22 @@ function sortTable(col) {
     <div class="prompt-line" style="animation-delay:2.9s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
     <div class="prompt-line" style="animation-delay:3.3s;padding-left:14px;">• 季度趨勢摘要與異常洞察報告：提取出常見缺失態樣、執行成效優良/落後的單位、以及政策執行的時間序列變化趨勢。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=10','_self')">（詳附件）</span></div>
     <div id="prompt-close-2" class="prompt-line" style="animation-delay:3.7s" onclick="hideNotebookLMPrompt()">［ 關閉 ］</div>
+  </div>
+</div>
+
+<div id="prompt-overlay-3" onclick="hideExcelPrompt()">
+  <div id="prompt-box-3" onclick="event.stopPropagation()">
+    <div class="prompt-line" style="animation-delay:0.0s">本階段技術的核心任務是「資料結構化與清洗，為空間分析打下地基」。</div>
+    <div class="prompt-line" style="animation-delay:0.3s;margin-top:10px;color:var(--warn)">AI 規劃師筆記：雖然 Excel 本身是電子試算表，但此階段需引入 AI 輔助的資料處理（Data Wrangler）概念。</div>
+    <div class="prompt-line" style="animation-delay:0.7s;margin-top:10px;font-weight:700;color:var(--accent2)">所需資料：</div>
+    <div class="prompt-line" style="animation-delay:1.0s;padding-left:14px;">• 前兩階段產出的結構化檢核點與各季缺失、成效數據。</div>
+    <div class="prompt-line" style="animation-delay:1.3s;padding-left:14px;">• 含有「地址、地號、工程管轄單位、座標」等基礎欄位的原始流水帳資料。</div>
+    <div class="prompt-line" style="animation-delay:1.7s;margin-top:10px;font-weight:700;color:var(--accent2)">使用的 AI 技術：</div>
+    <div class="prompt-line" style="animation-delay:2.0s;padding-left:14px;">• AI 輔助資料清洗與正規化（Data Cleaning LLM）：利用 Excel AI 函數（如 Copilot in Excel）或 Python (Pandas) 搭配 LLM，自動辨識重複資料、修補漏字（例如將「宜蘭縣壯圍鄉美成村」與錯字「美城村」進行模糊對齊）。</div>
+    <div class="prompt-line" style="animation-delay:2.5s;padding-left:14px;">• 文字特徵向量化與分類（Embedding & Classification）：將質性的「缺失原因描述」透過 AI 自動分類歸標（Tagging），例如自動歸類為「行政程序遲延」、「施工品質不良」或「經費配置不當」。</div>
+    <div class="prompt-line" style="animation-delay:3.0s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
+    <div class="prompt-line" style="animation-delay:3.4s;padding-left:14px;">• 標準化稽核資料庫（Relational Dataset）：包含「主鍵（ID）、時間、主體（單位/地址）、分類標籤、量化評分」的乾淨資料表，可直接對接後續的 GIS 系統。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=11','_self')">（詳附件）</span></div>
+    <div id="prompt-close-3" class="prompt-line" style="animation-delay:3.8s" onclick="hideExcelPrompt()">［ 關閉 ］</div>
   </div>
 </div>
 
@@ -1016,6 +1050,15 @@ function sortTable(col) {
   }
   function hideNotebookLMPrompt() {
     document.getElementById('prompt-overlay-2').classList.remove('open');
+  }
+  function showExcelPrompt(e) {
+    e.preventDefault();
+    const box = document.getElementById('prompt-box-3');
+    box.querySelectorAll('.prompt-line').forEach(el => { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; });
+    document.getElementById('prompt-overlay-3').classList.add('open');
+  }
+  function hideExcelPrompt() {
+    document.getElementById('prompt-overlay-3').classList.remove('open');
   }
 
   // 噪音偵測器 (第14頁)
