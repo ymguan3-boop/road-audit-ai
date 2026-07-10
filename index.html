@@ -339,16 +339,16 @@
       background: rgba(10,12,28,0.98); border: 1px solid var(--accent2);
       border-radius: 12px; padding: 28px 34px; max-width: 780px; max-height: 80vh; overflow-y: auto;
       box-shadow: 0 0 50px rgba(79,195,247,0.3);
-      color: var(--text); font-size: 0.95em; line-height: 1.7;
+      color: var(--text); font-size: 1.235em; line-height: 1.7;
       text-align: left;
     }
-    #prompt-box .prompt-att-link { color: var(--warn); font-weight: bold; cursor: pointer; text-decoration: underline; }
-    #prompt-box .prompt-att-link:hover { color: #fff; }
-    #prompt-close {
+    #prompt-box .prompt-att-link, #prompt-box-2 .prompt-att-link { color: var(--warn); font-weight: bold; cursor: pointer; text-decoration: underline; }
+    #prompt-box .prompt-att-link:hover, #prompt-box-2 .prompt-att-link:hover { color: #fff; }
+    #prompt-close, #prompt-close-2 {
       display: block; margin-top: 16px; text-align: center;
       color: var(--accent2); cursor: pointer; font-size: 0.9em;
     }
-    #prompt-close:hover { color: #fff; }
+    #prompt-close:hover, #prompt-close-2:hover { color: #fff; }
     #prompt-overlay-2 {
       position: fixed; inset: 0; z-index: 2000;
       display: none; align-items: center; justify-content: center;
@@ -359,21 +359,14 @@
       background: rgba(10,12,28,0.98); border: 1px solid var(--accent2);
       border-radius: 12px; padding: 28px 34px; max-width: 780px; max-height: 80vh; overflow-y: auto;
       box-shadow: 0 0 50px rgba(79,195,247,0.3);
-      color: var(--text); font-size: 0.95em; line-height: 1.7;
+      color: var(--text); font-size: 1.235em; line-height: 1.7;
       text-align: left;
     }
-    #prompt-box-2 .prompt-att-link { color: var(--warn); font-weight: bold; cursor: pointer; text-decoration: underline; }
-    #prompt-box-2 .prompt-att-link:hover { color: #fff; }
-    #prompt-close-2 {
-      display: block; margin-top: 16px; text-align: center;
-      color: var(--accent2); cursor: pointer; font-size: 0.9em;
-    }
-    #prompt-close-2:hover { color: #fff; }
     @keyframes promptFadeIn {
       0% { opacity: 0; transform: translateY(12px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    #prompt-box .prompt-line {
+    #prompt-box .prompt-line, #prompt-box-2 .prompt-line {
       opacity: 0; animation: promptFadeIn 0.5s ease forwards;
     }
 
@@ -1008,6 +1001,8 @@ function sortTable(col) {
   }
   function showChatGPTPrompt(e) {
     e.preventDefault();
+    const box = document.getElementById('prompt-box');
+    box.querySelectorAll('.prompt-line').forEach(el => { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; });
     document.getElementById('prompt-overlay').classList.add('open');
   }
   function hideChatGPTPrompt() {
@@ -1015,6 +1010,8 @@ function sortTable(col) {
   }
   function showNotebookLMPrompt(e) {
     e.preventDefault();
+    const box = document.getElementById('prompt-box-2');
+    box.querySelectorAll('.prompt-line').forEach(el => { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; });
     document.getElementById('prompt-overlay-2').classList.add('open');
   }
   function hideNotebookLMPrompt() {
