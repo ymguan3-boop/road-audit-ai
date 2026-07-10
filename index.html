@@ -932,24 +932,23 @@ function sortTable(col) {
   <div id="prompt-box-4" onclick="event.stopPropagation()">
     <div class="prompt-line" style="animation-delay:0.0s">本階段的核心任務是「結合地理空間分析與電腦視覺技術，進行空間特徵與實體證物的雙重交叉複核，精準鎖定異常點」。</div>
     <div class="prompt-line" style="animation-delay:0.5s;margin-top:10px;font-weight:700;color:var(--accent2)">所需資料：</div>
-    <div class="prompt-line" style="animation-delay:0.8s;padding-left:14px;">• <span style="color:var(--warn)">[新增]</span> 歷次驗收、估價報告中的工程現場照片（含 Metadata 如拍攝時間、GPS 資訊，若有）。</div>
-    <div class="prompt-line" style="animation-delay:1.1s;padding-left:14px;">• <span style="color:var(--warn)">[新增]</span> 歷史已核銷照片資料庫（作為比對基準）。</div>
+    <div class="prompt-line" style="animation-delay:0.8s;padding-left:14px;">• 歷次驗收、估價報告中的工程現場照片（含 Metadata 如拍攝時間、GPS 資訊，若有）。</div>
+    <div class="prompt-line" style="animation-delay:1.1s;padding-left:14px;">• 歷史已核銷照片資料庫（作為比對基準）。</div>
     <div class="prompt-line" style="animation-delay:1.4s;padding-left:14px;">• 階段 3 的標準化資料庫（含工程 ID、地址/座標、施工時間）。</div>
     <div class="prompt-line" style="animation-delay:1.7s;padding-left:14px;">• 政府開放資料空間圖資（村里界線、都市計畫圖、公有土地地籍圖等）。</div>
     <div class="prompt-line" style="animation-delay:2.1s;margin-top:10px;font-weight:700;color:var(--accent2)">使用的 AI 技術：</div>
-    <div class="prompt-line" style="animation-delay:2.4s;padding-left:14px;color:var(--warn);font-weight:700;">[核心新增] 電腦視覺與圖像相似度演算法 (CV & Image Similarity)：</div>
+    <div class="prompt-line" style="animation-delay:2.4s;padding-left:14px;font-weight:700;">電腦視覺與圖像相似度演算法 (CV & Image Similarity)：</div>
     <div class="prompt-line" style="animation-delay:2.7s;padding-left:28px;">• 利用 Python (OpenCV, PyTorch/TensorFlow) 搭配預訓練模型（如 ResNet, EfficientNet）提取照片的特徵向量（Embeddings）。</div>
     <div class="prompt-line" style="animation-delay:3.1s;padding-left:28px;">• 使用感知雜湊（Perceptual Hashing, pHash）或餘弦相似度（Cosine Similarity）計算新驗收照片與歷史資料庫照片的相似程度。</div>
-    <div class="prompt-line" style="animation-delay:3.5s;padding-left:14px;font-weight:700;">• <span style="color:var(--warn)">[新增]</span> 異常偵測模型 (Anomaly Detection)：設定閾值，自動篩選出特徵高度重疊（例如相似度 &gt; 95%）但應屬於不同工程案或不同估價期次的照片。</div>
+    <div class="prompt-line" style="animation-delay:3.5s;padding-left:14px;font-weight:700;">• 異常偵測模型 (Anomaly Detection)：設定閾值，自動篩選出特徵高度重疊（例如相似度 &gt; 95%）但應屬於不同工程案或不同估價期次的照片。</div>
     <div class="prompt-line" style="animation-delay:3.9s;padding-left:14px;font-weight:700;">• 地理空間 AI (GeoAI) 與程式碼生成：</div>
     <div class="prompt-line" style="animation-delay:4.2s;padding-left:28px;">• 用 Python 自動化 PyQGIS 腳本，進行座標轉換、緩衝區分析，並自動產出風險分布地圖。</div>
     <div class="prompt-line" style="animation-delay:4.5s;padding-left:28px;">• 將圖像比對出的「高風險重複照片案」之座標，自動匯入 GIS 進行空間標註。</div>
     <div class="prompt-line" style="animation-delay:4.9s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
-    <div class="prompt-line" style="animation-delay:5.2s;padding-left:14px;color:var(--warn);font-weight:700;">[關鍵產出]</div>
-    <div class="prompt-line" style="animation-delay:5.4s;padding-left:14px;">• 工程重複照片風險預警清單：自動列出哪些工程案的驗收照片，疑為拿過去舊案、或其他標案的照片進行「一照多用、重複估價」。</div>
-    <div class="prompt-line" style="animation-delay:5.8s;padding-left:14px;">• 虛實整合的風險地圖（Image-Enabled Risk Map）：在 GIS 地圖上，不僅能看到成效低落的區域，還能直接點擊高風險點位，查看被 AI 篩選出來的「疑似重複照片對照組」，供稽核人員快速目視確認。</div>
-    <div class="prompt-line" style="animation-delay:6.3s;padding-left:14px;">• 自動化「複核異常綜合報告」：整合空間邏輯謬誤（如：農業區蓋豪宅）與圖像防弊（如：重複照片估價）的綜合性稽核報告。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=12','_self')">（詳附件12）</span>、<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=13','_self')">（詳附件13）</span>、<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=14','_self')">（詳附件14）</span></div>
-    <div id="prompt-close-4" class="prompt-line" style="animation-delay:6.7s" onclick="hideQGISPrompt()">［ 關閉 ］</div>
+    <div class="prompt-line" style="animation-delay:5.2s;padding-left:14px;">• 工程重複照片風險預警清單：自動列出哪些工程案的驗收照片，疑為拿過去舊案、或其他標案的照片進行「一照多用、重複估價」。</div>
+    <div class="prompt-line" style="animation-delay:5.6s;padding-left:14px;">• 虛實整合的風險地圖（Image-Enabled Risk Map）：在 GIS 地圖上，不僅能看到成效低落的區域，還能直接點擊高風險點位，查看被 AI 篩選出來的「疑似重複照片對照組」，供稽核人員快速目視確認。</div>
+    <div class="prompt-line" style="animation-delay:6.1s;padding-left:14px;">• 自動化「複核異常綜合報告」：整合空間邏輯謬誤（如：農業區蓋豪宅）與圖像防弊（如：重複照片估價）的綜合性稽核報告。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=12','_self')">（詳附件12·13·14）</span></div>
+    <div id="prompt-close-4" class="prompt-line" style="animation-delay:6.5s" onclick="hideQGISPrompt()">［ 關閉 ］</div>
   </div>
 </div>
 
