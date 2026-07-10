@@ -316,25 +316,24 @@
     #tip-box .tl { display: block; }
     #tip-box .bl { display: block; color: #ff9100; font-size: 20px; }
 
-    /* 第8頁 toast */
-    #toast-improve {
-      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-      background: rgba(0,0,0,0.85); border: 1px solid #ffd700;
-      border-radius: 30px; padding: 14px 36px;
-      box-shadow: 0 0 40px rgba(255,215,0,0.3);
+    /* 第8頁 彈出視窗 (點擊頁面後置中顯示) */
+    #slide8-popup {
+      position: fixed; inset: 0; z-index: 2000;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.6);
+    }
+    #slide8-popup.show { display: flex; }
+    #slide8-popup .popup-box {
+      background: rgba(8,8,24,0.95); border: 2px solid #ffd700;
+      border-radius: 20px; padding: 48px 60px;
+      text-align: center;
+      box-shadow: 0 0 60px rgba(255,215,0,0.3);
+      max-width: 80%;
+    }
+    #slide8-popup .popup-box p {
       color: #ffd700; font-size: 2.4em; font-weight: bold;
-      white-space: nowrap; opacity: 0; transition: opacity 0.5s;
-      z-index: 100; pointer-events: none;
+      margin: 0; line-height: 1.5;
     }
-    #toast-improve.show { opacity: 1; }
-    #toast-trigger {
-      position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%);
-      background: rgba(255,215,0,0.12); border: 1px solid #ffd700;
-      border-radius: 20px; padding: 8px 24px;
-      color: #ffd700; font-size: 1.1em; cursor: pointer; z-index: 101;
-      transition: background 0.3s;
-    }
-    #toast-trigger:hover { background: rgba(255,215,0,0.25); }
 
     /* ChatGPT prompt overlay */
     #prompt-overlay {
@@ -620,7 +619,7 @@
 </section>
 
 <!-- 第 9 頁：審計發現與改善成果 -->
-<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E" onclick="if (!event.target.closest('th') && !event.target.closest('a')) showSlide8Popup()">
   <h2>審計發現與改善成果</h2>
   <p>✓ 促請改善 → 機關回應 → 量化效益</p>
   <table class="sort-table-full" id="sortTable">
@@ -645,9 +644,15 @@
       <tr><td>審計資訊發布</td><td>內部審核意見</td><td>發布重要政府審計資訊</td><td><a class="att-link" href="attachments.html?att=5" target="_self">附件5</a></td></tr>
     </tbody>
   </table>
-  <button id="toast-trigger" onclick="showToast()">💡 點擊查看改善提醒</button>
-  <div id="toast-improve">共10項改善成果，每1項都有改善前後對比！</div>
 </section>
+
+<!-- 第8頁 彈出視窗 -->
+<div id="slide8-popup" onclick="hideSlide8Popup()">
+  <div class="popup-box" onclick="event.stopPropagation()">
+    <p>經本室促請機關改善，量化效益成果共計10項！！！</p>
+    <div style="margin-top:32px;"><span onclick="hideSlide8Popup()" style="color:#888; font-size:1em; cursor:pointer; border:1px solid #888; border-radius:12px; padding:6px 24px;">關閉</span></div>
+  </div>
+</div>
 <script>
 let sortDir = [0,0,0,0];
 function sortTable(col) {
@@ -1059,9 +1064,8 @@ function sortTable(col) {
       const svg = document.querySelector('.radar-svg');
       if (svg) svg.querySelectorAll('animate').forEach(a => { try { a.beginElement(); } catch(e) {} });
     }
-    // 第8頁 toast - hide on slide leave
-    const toast = document.getElementById('toast-improve');
-    if (toast) toast.classList.remove('show');
+    // 離開slide時關閉第8頁彈出視窗
+    document.getElementById('slide8-popup')?.classList.remove('show');
   });
   Reveal.on('ready', e => renderAttPanel(0));
   document.addEventListener('click', e => {
@@ -1185,9 +1189,11 @@ function sortTable(col) {
     }
     setTimeout(() => { if (heart.parentNode) heart.remove(); }, 3000);
   }
-  function showToast() {
-    const t = document.getElementById('toast-improve');
-    if (t) t.classList.toggle('show');
+  function showSlide8Popup() {
+    document.getElementById('slide8-popup')?.classList.add('show');
+  }
+  function hideSlide8Popup() {
+    document.getElementById('slide8-popup')?.classList.remove('show');
   }
 </script>
 
