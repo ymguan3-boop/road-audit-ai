@@ -619,7 +619,7 @@
 </section>
 
 <!-- 第 9 頁：審計發現與改善成果 -->
-<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E" onclick="if (!event.target.closest('th') && !event.target.closest('a')) showSlide8Popup()">
+<section class="bg-deco scale-15" id="slide8-section" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <h2>審計發現與改善成果</h2>
   <p>✓ 促請改善 → 機關回應 → 量化效益</p>
   <table class="sort-table-full" id="sortTable">
@@ -1065,6 +1065,12 @@ function sortTable(col) {
     const btn = document.querySelector('.att-btn');
     if (!panel || !btn) return;
     if (!panel.contains(e.target) && !btn.contains(e.target)) panel.classList.remove('open');
+  });
+  document.addEventListener('click', e => {
+    const sec = document.getElementById('slide8-section');
+    if (sec && sec.contains(e.target) && !e.target.closest('th') && !e.target.closest('a')) {
+      showSlide8Popup();
+    }
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') hideTooltip(); });
   function showTooltip(e) {
