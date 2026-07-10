@@ -337,9 +337,9 @@
     #prompt-overlay.open { display: flex; }
     #prompt-box {
       background: rgba(10,12,28,0.98); border: 1px solid var(--accent2);
-      border-radius: 12px; padding: 32px 40px; max-width: 680px;
+      border-radius: 12px; padding: 28px 34px; max-width: 780px; max-height: 80vh; overflow-y: auto;
       box-shadow: 0 0 50px rgba(79,195,247,0.3);
-      color: var(--text); font-size: 1.1em; line-height: 1.8;
+      color: var(--text); font-size: 0.95em; line-height: 1.7;
       text-align: left;
     }
     #prompt-box .prompt-att-link { color: var(--warn); font-weight: bold; cursor: pointer; text-decoration: underline; }
@@ -349,6 +349,13 @@
       color: var(--accent2); cursor: pointer; font-size: 0.9em;
     }
     #prompt-close:hover { color: #fff; }
+    @keyframes promptFadeIn {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    #prompt-box .prompt-line {
+      opacity: 0; animation: promptFadeIn 0.5s ease forwards;
+    }
 
     /* 其他 */
     .text-glow { text-shadow: 0 0 15px rgba(79,195,247,0.3); }
@@ -825,8 +832,18 @@ function sortTable(col) {
 
 <div id="prompt-overlay" onclick="hideChatGPTPrompt()">
   <div id="prompt-box" onclick="event.stopPropagation()">
-    <p>運用OpenAI人工智慧程式(ChatGPT)下達PROMPT：請宜蘭縣政府為提升道路品質，已訂定之「規定」、「機制」及實施之「檢核措施」有哪些，請分項條列式顯示，並將來源出處或網址顯示於各項後方。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=2','_self')">（詳附件）</span></p>
-    <div id="prompt-close" onclick="hideChatGPTPrompt()">［ 關閉 ］</div>
+    <div class="prompt-line" style="animation-delay:0.0s">本階段技術的核心任務是「將複雜的法規與政策文本轉化為標準化的檢核指標」。</div>
+    <div class="prompt-line" style="animation-delay:0.4s;margin-top:10px;font-weight:700;color:var(--accent2)">所需資料：</div>
+    <div class="prompt-line" style="animation-delay:0.7s;padding-left:14px;">• 政府主管機關的相關法令條文、行政規則。</div>
+    <div class="prompt-line" style="animation-delay:1.0s;padding-left:14px;">• 特定專案的招標文件（投標須知、需求說明書）。</div>
+    <div class="prompt-line" style="animation-delay:1.3s;padding-left:14px;">• 既有的合約機制、官方公告的稽核與檢核措施文件（通常為 PDF 或 Word 檔）。</div>
+    <div class="prompt-line" style="animation-delay:1.7s;margin-top:10px;font-weight:700;color:var(--accent2)">使用的 AI 技術：</div>
+    <div class="prompt-line" style="animation-delay:2.0s;padding-left:14px;">• 大型語言模型（LLM）與長文本理解：利用 GPT-4o 等高脈絡視窗模型，解析動輒數萬字的條文。</div>
+    <div class="prompt-line" style="animation-delay:2.4s;padding-left:14px;">• 資訊萃取（Information Extraction）：設計精準的 Prompt（提示詞），命令 AI 識別出「主體、法律義務、罰則、檢核頻率」等關鍵實體（NER）。</div>
+    <div class="prompt-line" style="animation-delay:2.8s;padding-left:14px;">• 少樣本學習（Few-Shot Prompting）：提供 1~2 個標準的「法規轉檢核點」範例，確保 ChatGPT 輸出的格式與邏輯高度一致。</div>
+    <div class="prompt-line" style="animation-delay:3.2s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
+    <div class="prompt-line" style="animation-delay:3.6s;padding-left:14px;">• 結構化的「合規檢核矩陣」（Compliance Matrix）：將原本發散的條文，變成一條條明確的「檢核項目、適用對象、法定頻率、應備文件」清單。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=2','_self')">（詳附件）</span></div>
+    <div id="prompt-close" class="prompt-line" style="animation-delay:4.0s" onclick="hideChatGPTPrompt()">［ 關閉 ］</div>
   </div>
 </div>
 
