@@ -645,14 +645,6 @@
     </tbody>
   </table>
 </section>
-
-<!-- 第8頁 彈出視窗 -->
-<div id="slide8-popup" onclick="hideSlide8Popup()">
-  <div class="popup-box" onclick="event.stopPropagation()">
-    <p>經本室促請機關改善，量化效益成果共計10項！！！</p>
-    <div style="margin-top:32px;"><span onclick="hideSlide8Popup()" style="color:#888; font-size:1em; cursor:pointer; border:1px solid #888; border-radius:12px; padding:6px 24px;">關閉</span></div>
-  </div>
-</div>
 <script>
 let sortDir = [0,0,0,0];
 function sortTable(col) {
@@ -905,7 +897,7 @@ function sortTable(col) {
     <div class="prompt-line" style="animation-delay:2.4s;padding-left:14px;">• 資訊萃取（Information Extraction）：設計精準的 Prompt（提示詞），命令 AI 識別出「主體、法律義務、罰則、檢核頻率」等關鍵實體（NER）。</div>
     <div class="prompt-line" style="animation-delay:2.8s;padding-left:14px;">• 少樣本學習（Few-Shot Prompting）：提供 1~2 個標準的「法規轉檢核點」範例，確保 ChatGPT 輸出的格式與邏輯高度一致。</div>
     <div class="prompt-line" style="animation-delay:3.2s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
-    <div class="prompt-line" style="animation-delay:3.6s;padding-left:14px;">• 結構化的「合規檢核矩陣」（Compliance Matrix）：將原本發散的條文，變成一條條明確的「檢核項目、適用對象、法定頻率、應備文件」清單。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=2&from=11','_self')">（詳附件）</span></div>
+    <div class="prompt-line" style="animation-delay:3.6s;padding-left:14px;">• 結構化的「合規檢核矩陣」（Compliance Matrix）：將原本發散的條文，變成一條條明確的「檢核項目、適用對象、法定頻率、應備文件」清單。<span class="prompt-att-link" onclick="event.stopPropagation(); sessionStorage.setItem('returnSlide','11'); window.open('attachments.html?att=2&from=11','_self')">（詳附件）</span></div>
     <div id="prompt-close" class="prompt-line" style="animation-delay:4.0s" onclick="hideChatGPTPrompt()">［ 關閉 ］</div>
   </div>
 </div>
@@ -921,7 +913,7 @@ function sortTable(col) {
     <div class="prompt-line" style="animation-delay:2.1s;padding-left:14px;">• 多文件綜整分析（Multi-document Summarization）：跨檔案比對不同季度、不同鄉鎮或單位的數據與文字敘述。</div>
     <div class="prompt-line" style="animation-delay:2.5s;padding-left:14px;">• 語意搜尋與問答（Semantic Search）：透過自然語言詢問「哪些缺失在連續三季都反覆出現？」或「哪一個指標在第三季下滑最嚴重？」。</div>
     <div class="prompt-line" style="animation-delay:2.9s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
-    <div class="prompt-line" style="animation-delay:3.3s;padding-left:14px;">• 季度趨勢摘要與異常洞察報告：提取出常見缺失態樣、執行成效優良/落後的單位、以及政策執行的時間序列變化趨勢。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=10&from=11','_self')">（詳附件）</span></div>
+    <div class="prompt-line" style="animation-delay:3.3s;padding-left:14px;">• 季度趨勢摘要與異常洞察報告：提取出常見缺失態樣、執行成效優良/落後的單位、以及政策執行的時間序列變化趨勢。<span class="prompt-att-link" onclick="event.stopPropagation(); sessionStorage.setItem('returnSlide','11'); window.open('attachments.html?att=10&from=11','_self')">（詳附件）</span></div>
     <div id="prompt-close-2" class="prompt-line" style="animation-delay:3.7s" onclick="hideNotebookLMPrompt()">［ 關閉 ］</div>
   </div>
 </div>
@@ -937,7 +929,7 @@ function sortTable(col) {
     <div class="prompt-line" style="animation-delay:2.0s;padding-left:14px;">• AI 輔助資料清洗與正規化（Data Cleaning LLM）：利用 Excel AI 函數（如 Copilot in Excel）或 Python (Pandas) 搭配 LLM，自動辨識重複資料、修補漏字（例如將「宜蘭縣壯圍鄉美成村」與錯字「美城村」進行模糊對齊）。</div>
     <div class="prompt-line" style="animation-delay:2.5s;padding-left:14px;">• 文字特徵向量化與分類（Embedding & Classification）：將質性的「缺失原因描述」透過 AI 自動分類歸標（Tagging），例如自動歸類為「行政程序遲延」、「施工品質不良」或「經費配置不當」。</div>
     <div class="prompt-line" style="animation-delay:3.0s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
-    <div class="prompt-line" style="animation-delay:3.4s;padding-left:14px;">• 標準化稽核資料庫（Relational Dataset）：包含「主鍵（ID）、時間、主體（單位/地址）、分類標籤、量化評分」的乾淨資料表，可直接對接後續的 GIS 系統。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=11&from=11','_self')">（詳附件）</span></div>
+    <div class="prompt-line" style="animation-delay:3.4s;padding-left:14px;">• 標準化稽核資料庫（Relational Dataset）：包含「主鍵（ID）、時間、主體（單位/地址）、分類標籤、量化評分」的乾淨資料表，可直接對接後續的 GIS 系統。<span class="prompt-att-link" onclick="event.stopPropagation(); sessionStorage.setItem('returnSlide','11'); window.open('attachments.html?att=11&from=11','_self')">（詳附件）</span></div>
     <div id="prompt-close-3" class="prompt-line" style="animation-delay:3.8s" onclick="hideExcelPrompt()">［ 關閉 ］</div>
   </div>
 </div>
@@ -961,7 +953,7 @@ function sortTable(col) {
     <div class="prompt-line" style="animation-delay:4.9s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
     <div class="prompt-line" style="animation-delay:5.2s;padding-left:14px;">• 工程重複照片風險預警清單：自動列出哪些工程案的驗收照片，疑為拿過去舊案、或其他標案的照片進行「一照多用、重複估價」。</div>
     <div class="prompt-line" style="animation-delay:5.6s;padding-left:14px;">• 虛實整合的風險地圖（Image-Enabled Risk Map）：在 GIS 地圖上，不僅能看到成效低落的區域，還能直接點擊高風險點位，查看被 AI 篩選出來的「疑似重複照片對照組」，供稽核人員快速目視確認。</div>
-    <div class="prompt-line" style="animation-delay:6.1s;padding-left:14px;">• 自動化「複核異常綜合報告」：整合空間邏輯謬誤（如：農業區蓋豪宅）與圖像防弊（如：重複照片估價）的綜合性稽核報告。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=12&from=11','_self')">（詳附件12·13·14）</span></div>
+    <div class="prompt-line" style="animation-delay:6.1s;padding-left:14px;">• 自動化「複核異常綜合報告」：整合空間邏輯謬誤（如：農業區蓋豪宅）與圖像防弊（如：重複照片估價）的綜合性稽核報告。<span class="prompt-att-link" onclick="event.stopPropagation(); sessionStorage.setItem('returnSlide','11'); window.open('attachments.html?att=12&from=11','_self')">（詳附件12·13·14）</span></div>
     <div id="prompt-close-4" class="prompt-line" style="animation-delay:6.5s" onclick="hideQGISPrompt()">［ 關閉 ］</div>
   </div>
 </div>
@@ -1202,6 +1194,14 @@ function sortTable(col) {
   <h4>本頁對應附件</h4>
   <div id="att-panel-list"></div>
   <a href="attachments.html" class="all-link">📁 查看全部 17 份附件 →</a>
+</div>
+
+<!-- 第8頁 彈出視窗 -->
+<div id="slide8-popup" onclick="hideSlide8Popup()">
+  <div class="popup-box" onclick="event.stopPropagation()">
+    <p>經本室促請機關改善，量化效益成果共計10項！！！</p>
+    <div style="margin-top:32px;"><span onclick="hideSlide8Popup()" style="color:#888; font-size:1em; cursor:pointer; border:1px solid #888; border-radius:12px; padding:6px 24px;">關閉</span></div>
+  </div>
 </div>
 
 </body>
