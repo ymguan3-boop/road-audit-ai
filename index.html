@@ -349,6 +349,26 @@
       color: var(--accent2); cursor: pointer; font-size: 0.9em;
     }
     #prompt-close:hover { color: #fff; }
+    #prompt-overlay-2 {
+      position: fixed; inset: 0; z-index: 2000;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.6);
+    }
+    #prompt-overlay-2.open { display: flex; }
+    #prompt-box-2 {
+      background: rgba(10,12,28,0.98); border: 1px solid var(--accent2);
+      border-radius: 12px; padding: 28px 34px; max-width: 780px; max-height: 80vh; overflow-y: auto;
+      box-shadow: 0 0 50px rgba(79,195,247,0.3);
+      color: var(--text); font-size: 0.95em; line-height: 1.7;
+      text-align: left;
+    }
+    #prompt-box-2 .prompt-att-link { color: var(--warn); font-weight: bold; cursor: pointer; text-decoration: underline; }
+    #prompt-box-2 .prompt-att-link:hover { color: #fff; }
+    #prompt-close-2 {
+      display: block; margin-top: 16px; text-align: center;
+      color: var(--accent2); cursor: pointer; font-size: 0.9em;
+    }
+    #prompt-close-2:hover { color: #fff; }
     @keyframes promptFadeIn {
       0% { opacity: 0; transform: translateY(12px); }
       100% { opacity: 1; transform: translateY(0); }
@@ -789,7 +809,7 @@ function sortTable(col) {
     </div>
     <div class="step-card" style="padding: 24px 18px;">
       <div class="step-num" style="font-size:3.2em;">2</div>
-      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="attachments.html?att=10" target="_self">NotebookLM<br>彙整各季評比成果報告</a></div>
+      <div class="step-text" style="font-size:1.1em;"><a class="att-link" href="javascript:void(0)" onclick="showNotebookLMPrompt(event)">NotebookLM<br>彙整各季評比成果報告</a></div>
     </div>
     <div class="step-card" style="padding: 24px 18px;">
       <div class="step-num" style="font-size:3.2em;">3</div>
@@ -844,6 +864,22 @@ function sortTable(col) {
     <div class="prompt-line" style="animation-delay:3.2s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
     <div class="prompt-line" style="animation-delay:3.6s;padding-left:14px;">• 結構化的「合規檢核矩陣」（Compliance Matrix）：將原本發散的條文，變成一條條明確的「檢核項目、適用對象、法定頻率、應備文件」清單。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=2','_self')">（詳附件）</span></div>
     <div id="prompt-close" class="prompt-line" style="animation-delay:4.0s" onclick="hideChatGPTPrompt()">［ 關閉 ］</div>
+  </div>
+</div>
+
+<div id="prompt-overlay-2" onclick="hideNotebookLMPrompt()">
+  <div id="prompt-box-2" onclick="event.stopPropagation()">
+    <div class="prompt-line" style="animation-delay:0.0s">本階段技術的核心任務是「跨季、跨單位的多文本知識提煉與趨勢綜整」。</div>
+    <div class="prompt-line" style="animation-delay:0.4s;margin-top:10px;font-weight:700;color:var(--accent2)">所需資料：</div>
+    <div class="prompt-line" style="animation-delay:0.7s;padding-left:14px;">• 各季度、各單位提交的評比成果報告（多個 PDF、Word 或簡報檔案）。</div>
+    <div class="prompt-line" style="animation-delay:1.0s;padding-left:14px;">• 前一階段由 ChatGPT 產出的檢核措施標準（作為對照組）。</div>
+    <div class="prompt-line" style="animation-delay:1.4s;margin-top:10px;font-weight:700;color:var(--accent2)">使用的 AI 技術：</div>
+    <div class="prompt-line" style="animation-delay:1.7s;padding-left:14px;">• 檢索增強生成（RAG, Retrieval-Augmented Generation）：NotebookLM 內建的原生 RAG 機制，能確保 AI 只在進來的檔案範圍內回答，徹底避免「幻覺」。</div>
+    <div class="prompt-line" style="animation-delay:2.1s;padding-left:14px;">• 多文件綜整分析（Multi-document Summarization）：跨檔案比對不同季度、不同鄉鎮或單位的數據與文字敘述。</div>
+    <div class="prompt-line" style="animation-delay:2.5s;padding-left:14px;">• 語意搜尋與問答（Semantic Search）：透過自然語言詢問「哪些缺失在連續三季都反覆出現？」或「哪一個指標在第三季下滑最嚴重？」。</div>
+    <div class="prompt-line" style="animation-delay:2.9s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
+    <div class="prompt-line" style="animation-delay:3.3s;padding-left:14px;">• 季度趨勢摘要與異常洞察報告：提取出常見缺失態樣、執行成效優良/落後的單位、以及政策執行的時間序列變化趨勢。<span class="prompt-att-link" onclick="event.stopPropagation(); window.open('attachments.html?att=10','_self')">（詳附件）</span></div>
+    <div id="prompt-close-2" class="prompt-line" style="animation-delay:3.7s" onclick="hideNotebookLMPrompt()">［ 關閉 ］</div>
   </div>
 </div>
 
@@ -976,6 +1012,13 @@ function sortTable(col) {
   }
   function hideChatGPTPrompt() {
     document.getElementById('prompt-overlay').classList.remove('open');
+  }
+  function showNotebookLMPrompt(e) {
+    e.preventDefault();
+    document.getElementById('prompt-overlay-2').classList.add('open');
+  }
+  function hideNotebookLMPrompt() {
+    document.getElementById('prompt-overlay-2').classList.remove('open');
   }
 
   // 噪音偵測器 (第14頁)
