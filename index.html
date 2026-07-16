@@ -413,6 +413,37 @@
     }
     #prompt-close-3:hover { color: #fff; }
 
+    /* 流程圖 lightbox */
+    #flowchart-lightbox {
+      position: fixed; inset: 0; z-index: 3000;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.85);
+    }
+    #flowchart-lightbox.open { display: flex; }
+    #flowchart-lightbox-content {
+      position: relative;
+      max-width: 92vw; max-height: 92vh;
+      text-align: center;
+    }
+    #flowchart-lightbox-content img {
+      max-width: 92vw; max-height: 85vh;
+      border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.7);
+      object-fit: contain;
+    }
+    #flowchart-close {
+      display: inline-block; margin-top: 12px;
+      color: var(--accent2); cursor: pointer; font-size: 1.0em;
+      padding: 6px 28px; border: 1px solid var(--accent2); border-radius: 20px;
+      transition: all 0.2s;
+    }
+    #flowchart-close:hover { color: #fff; border-color: #fff; }
+    .prompt-flowchart-link {
+      color: var(--accent2); cursor: pointer; font-weight: 700;
+      text-decoration: underline; font-size: 1.05em;
+      transition: color 0.2s;
+    }
+    .prompt-flowchart-link:hover { color: #fff; }
+
     /* 其他 */
     .text-glow { text-shadow: 0 0 15px rgba(79,195,247,0.3); }
 
@@ -901,6 +932,7 @@ function sortTable(col) {
     <div class="prompt-line" style="animation-delay:2.8s;padding-left:14px;">• 少樣本學習（Few-Shot Prompting）：提供 1~2 個標準的「法規轉檢核點」範例，確保 ChatGPT 輸出的格式與邏輯高度一致。</div>
     <div class="prompt-line" style="animation-delay:3.2s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
     <div class="prompt-line" style="animation-delay:3.6s;padding-left:14px;">• 結構化的「合規檢核矩陣」（Compliance Matrix）：將原本發散的條文，變成一條條明確的「檢核項目、適用對象、法定頻率、應備文件」清單。<span class="prompt-att-link" onclick="event.stopPropagation(); sessionStorage.setItem('returnSlide','12'); window.open('attachments.html?att=2&from=12','_self')">（詳附件）</span></div>
+    <div class="prompt-line" style="animation-delay:3.85s;margin-top:10px;text-align:center;"><span class="prompt-flowchart-link" onclick="event.stopPropagation(); showFlowchart('images/flowchart-1-chatgpt.png')">📊 查看流程圖</span></div>
     <div id="prompt-close" class="prompt-line" style="animation-delay:4.0s" onclick="hideChatGPTPrompt()">［ 關閉 ］</div>
   </div>
 </div>
@@ -917,6 +949,7 @@ function sortTable(col) {
     <div class="prompt-line" style="animation-delay:2.5s;padding-left:14px;">• 語意搜尋與問答（Semantic Search）：透過自然語言詢問「哪些缺失在連續三季都反覆出現？」或「哪一個指標在第三季下滑最嚴重？」。</div>
     <div class="prompt-line" style="animation-delay:2.9s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
     <div class="prompt-line" style="animation-delay:3.3s;padding-left:14px;">• 季度趨勢摘要與異常洞察報告：提取出常見缺失態樣、執行成效優良/落後的單位、以及政策執行的時間序列變化趨勢。<span class="prompt-att-link" onclick="event.stopPropagation(); sessionStorage.setItem('returnSlide','12'); window.open('attachments.html?att=10&from=12','_self')">（詳附件）</span></div>
+    <div class="prompt-line" style="animation-delay:3.55s;margin-top:10px;text-align:center;"><span class="prompt-flowchart-link" onclick="event.stopPropagation(); showFlowchart('images/flowchart-2-notebooklm.png')">📊 查看流程圖</span></div>
     <div id="prompt-close-2" class="prompt-line" style="animation-delay:3.7s" onclick="hideNotebookLMPrompt()">［ 關閉 ］</div>
   </div>
 </div>
@@ -933,6 +966,7 @@ function sortTable(col) {
     <div class="prompt-line" style="animation-delay:2.5s;padding-left:14px;">• 文字特徵向量化與分類（Embedding & Classification）：將質性的「缺失原因描述」透過 AI 自動分類歸標（Tagging），例如自動歸類為「行政程序遲延」、「施工品質不良」或「經費配置不當」。</div>
     <div class="prompt-line" style="animation-delay:3.0s;margin-top:10px;font-weight:700;color:var(--accent2)">分析後可得到的成果：</div>
     <div class="prompt-line" style="animation-delay:3.4s;padding-left:14px;">• 標準化稽核資料庫（Relational Dataset）：包含「主鍵（ID）、時間、主體（單位/地址）、分類標籤、量化評分」的乾淨資料表，可直接對接後續的 GIS 系統。<span class="prompt-att-link" onclick="event.stopPropagation(); sessionStorage.setItem('returnSlide','12'); window.open('attachments.html?att=11&from=12','_self')">（詳附件）</span></div>
+    <div class="prompt-line" style="animation-delay:3.6s;margin-top:10px;text-align:center;"><span class="prompt-flowchart-link" onclick="event.stopPropagation(); showFlowchart('images/flowchart-3-excel.png')">📊 查看流程圖</span></div>
     <div id="prompt-close-3" class="prompt-line" style="animation-delay:3.8s" onclick="hideExcelPrompt()">［ 關閉 ］</div>
   </div>
 </div>
@@ -957,6 +991,7 @@ function sortTable(col) {
     <div class="prompt-line" style="animation-delay:5.2s;padding-left:14px;">• 工程重複照片風險預警清單：自動列出哪些工程案的驗收照片，疑為拿過去舊案、或其他標案的照片進行「一照多用、重複估價」。</div>
     <div class="prompt-line" style="animation-delay:5.6s;padding-left:14px;">• 虛實整合的風險地圖（Image-Enabled Risk Map）：在 GIS 地圖上，不僅能看到成效低落的區域，還能直接點擊高風險點位，查看被 AI 篩選出來的「疑似重複照片對照組」，供稽核人員快速目視確認。</div>
     <div class="prompt-line" style="animation-delay:6.1s;padding-left:14px;">• 自動化「複核異常綜合報告」：整合空間邏輯謬誤（如：農業區蓋豪宅）與圖像防弊（如：重複照片估價）的綜合性稽核報告。<span class="prompt-att-link" onclick="event.stopPropagation(); sessionStorage.setItem('returnSlide','12'); window.open('attachments.html?att=12&from=12','_self')">（詳附件12·13·14）</span></div>
+    <div class="prompt-line" style="animation-delay:6.3s;margin-top:10px;text-align:center;"><span class="prompt-flowchart-link" onclick="event.stopPropagation(); showFlowchart('images/flowchart-4-qgis.png')">📊 查看流程圖</span></div>
     <div id="prompt-close-4" class="prompt-line" style="animation-delay:6.5s" onclick="hideQGISPrompt()">［ 關閉 ］</div>
   </div>
 </div>
@@ -1196,6 +1231,13 @@ function sortTable(col) {
   function hideSlide8Popup() {
     document.getElementById('slide8-popup')?.classList.remove('show');
   }
+  function showFlowchart(imgSrc) {
+    document.getElementById('flowchart-img').src = imgSrc;
+    document.getElementById('flowchart-lightbox').classList.add('open');
+  }
+  function hideFlowchart() {
+    document.getElementById('flowchart-lightbox').classList.remove('open');
+  }
 </script>
 
 <button class="att-btn" onclick="toggleAttPanel()" title="開啟本頁對應的佐證附件">📎 佐證附件 <span class="badge">17</span></button>
@@ -1210,6 +1252,14 @@ function sortTable(col) {
   <div class="popup-box" onclick="event.stopPropagation()">
     <p>經本室促請機關改善，量化效益成果共計10項！！！</p>
     <div style="margin-top:32px;"><span onclick="hideSlide8Popup()" style="color:#888; font-size:1em; cursor:pointer; border:1px solid #888; border-radius:12px; padding:6px 24px;">關閉</span></div>
+  </div>
+</div>
+
+<!-- 流程圖 lightbox -->
+<div id="flowchart-lightbox" onclick="hideFlowchart()">
+  <div id="flowchart-lightbox-content" onclick="event.stopPropagation()">
+    <img id="flowchart-img" src="" alt="流程圖" />
+    <div id="flowchart-close" onclick="hideFlowchart()">✕ 關閉</div>
   </div>
 </div>
 
