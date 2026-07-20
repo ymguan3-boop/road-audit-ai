@@ -577,7 +577,7 @@
 </section>
 
 <!-- 簡報大綱 -->
-<section data-background-image="images/outline.png" data-background-size="contain" data-background-position="center"></section>
+<section data-background-image="images/outline-revised.png" data-background-size="contain" data-background-position="center"></section>
 
 <!-- 第 2 頁：運用生成式AI加強道路管理維護查核 -->
 <section>
@@ -587,40 +587,9 @@
 </section>
 
 <!-- 第 3 頁：問題意識 -->
-<section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
-  <h2>問題意識</h2>
-  <p style="font-size:1.7em;">道路管理不是單一工程問題，而是資料、制度與財源彼此連動的治理問題。</p>
-  <div class="stat-row" style="margin-top: 0.4em; gap: 18px;">
-    <div class="stat-card" onclick="showTooltip(event)" style="cursor:pointer; padding:16px 20px;" data-tip="宜蘭縣政府於100年1月24日公告|宜蘭縣道路挖掘行政規費收費標準">
-      <div class="num" style="color: var(--warn); font-size:3.8em;">13+</div>
-      <div class="label" style="font-size:0.9em;">年未調整之收費標準</div>
-    </div>
-    <div class="stat-card" onclick="sessionStorage.setItem('returnSlide','2'); location.href='attachments.html?att=16'" style="cursor:pointer;">
-      <div class="num" style="color: var(--accent2);">8/12</div>
-      <div class="label">道路基金累計短絀</div>
-    </div>
-    <div class="stat-card" onclick="sessionStorage.setItem('returnSlide','2'); location.href='attachments.html?att=17'" style="cursor:pointer;">
-      <div class="num" style="color: var(--danger);">230</div>
-      <div class="label">完工逾 15 日未更新圖資</div>
-    </div>
-  </div>
-  <div class="conclusion-grid" style="margin-top: 0.8em;">
-    <div class="conclusion-card caution ">
-      <div class="cc-title">⚠ 治理風險</div>
-      <ul>
-        <li>觀光交通需求增加，道路負荷加重</li>
-        <li>坑洞、人孔蓋不平整影響通行品質</li>
-        <li>涉及民眾安全及國家賠償風險</li>
-      </ul>
-    </div>
-    <div class="conclusion-card positive ">
-      <div class="cc-title">✓ 改善契機</div>
-      <ul>
-        <li>制度面缺口：收費標準逾 13 年未調</li>
-        <li>執行面缺口：8 個基金累計短絀</li>
-        <li>資料面缺口：230 件圖資未更新</li>
-      </ul>
-    </div>
+<section>
+  <div class="img-slide">
+    <img src="images/slide4-revised.png" alt="問題意識" />
   </div>
 </section>
 
@@ -659,23 +628,23 @@
   <table class="sort-table-full" id="sortTable">
     <thead>
       <tr>
-        <th onclick="sortTable(0)">項目 <span class="arrow" id="arr0"></span></th>
-        <th onclick="sortTable(1)">改善前 <span class="arrow" id="arr1"></span></th>
-        <th onclick="sortTable(2)">改善後 <span class="arrow" id="arr2"></span></th>
+        <th onclick="sortTable(0)" style="width:50px;">項次 <span class="arrow" id="arr0"></span></th>
+        <th onclick="sortTable(1)">項目名稱 <span class="arrow" id="arr1"></span></th>
+        <th onclick="sortTable(2)">改善後成果 <span class="arrow" id="arr2"></span></th>
         <th onclick="sortTable(3)" style="width:80px;">附件 <span class="arrow" id="arr3"></span></th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>道路挖掘行政規費收費標準</td><td>100年訂定後逾13年未調整</td><td>114年4月縣府修正施行</td><td><a class="att-link" href="attachments.html?att=6" target="_self">附件6</a></td></tr>
-      <tr><td>增加規費收入</td><td>無</td><td>114/5-7月增加50.1萬元</td><td><a class="att-link" href="attachments.html?att=7" target="_self">附件7</a></td></tr>
-      <tr><td>錯誤管線圖資修正</td><td>20,999筆錯誤</td><td>全數修正完畢</td><td><a class="att-link" href="attachments.html?att=12" target="_self">附件12</a></td></tr>
-      <tr><td>工作補充說明修正</td><td>6點</td><td>擴充至18點</td><td><a class="att-link" href="attachments.html?att=9" target="_self">附件9</a></td></tr>
-      <tr><td>南澳鄉宜路平追責</td><td>未查處人員責任</td><td>函文追究相關人員申誡</td><td><a class="att-link" href="attachments.html?att=8" target="_self">附件8</a></td></tr>
-      <tr><td>道路基金短絀改善</td><td>12個基金中8個累計短絀</td><td>促請縣府檢討收費標準</td><td><a class="att-link" href="attachments.html?att=3" target="_self">附件3</a></td></tr>
-      <tr><td>道路挖掘完工圖資更新</td><td>230件逾15日未更新</td><td>促請改善圖資更新時效</td><td><a class="att-link" href="attachments.html?att=12" target="_self">附件12</a></td></tr>
-      <tr><td>開口契約履約管理</td><td>照片管理待強化</td><td>契約管理機制強化</td><td><a class="att-link" href="attachments.html?att=9" target="_self">附件9</a></td></tr>
-      <tr><td>評比制度調整</td><td>部分評比分數與事實未符</td><td>函請檢討評比制度</td><td><a class="att-link" href="attachments.html?att=4" target="_self">附件4</a></td></tr>
-      <tr><td>審計資訊發布</td><td>內部審核意見</td><td>發布重要政府審計資訊</td><td><a class="att-link" href="attachments.html?att=5" target="_self">附件5</a></td></tr>
+      <tr><td>1</td><td>道路挖掘行政規費收費標準</td><td>114年4月縣府修正施行</td><td><a class="att-link" href="attachments.html?att=6" target="_self">附件6</a></td></tr>
+      <tr><td>2</td><td>增加規費收入</td><td>114/5-7月增加50.1萬元</td><td><a class="att-link" href="attachments.html?att=7" target="_self">附件7</a></td></tr>
+      <tr><td>3</td><td>錯誤管線圖資修正</td><td>20,999筆錯誤全數修正完畢</td><td><a class="att-link" href="attachments.html?att=12" target="_self">附件12</a></td></tr>
+      <tr><td>4</td><td>工作補充說明修正</td><td>由6點擴充至18點</td><td><a class="att-link" href="attachments.html?att=9" target="_self">附件9</a></td></tr>
+      <tr><td>5</td><td>南澳鄉宜路平追責</td><td>函文追究相關人員申誡</td><td><a class="att-link" href="attachments.html?att=8" target="_self">附件8</a></td></tr>
+      <tr><td>6</td><td>道路基金短絀改善</td><td>促請縣府檢討收費標準以改善12個基金中8個累計短絀</td><td><a class="att-link" href="attachments.html?att=3" target="_self">附件3</a></td></tr>
+      <tr><td>7</td><td>道路挖掘完工圖資更新</td><td>促請改善圖資更新時效（230件逾15日未更新）</td><td><a class="att-link" href="attachments.html?att=12" target="_self">附件12</a></td></tr>
+      <tr><td>8</td><td>開口契約履約管理</td><td>契約管理機制強化</td><td><a class="att-link" href="attachments.html?att=9" target="_self">附件9</a></td></tr>
+      <tr><td>9</td><td>評比制度調整</td><td>函請檢討評比制度（部分評比分數與事實未符）</td><td><a class="att-link" href="attachments.html?att=4" target="_self">附件4</a></td></tr>
+      <tr><td>10</td><td>審計資訊發布</td><td>發布重要政府審計資訊</td><td><a class="att-link" href="attachments.html?att=5" target="_self">附件5</a></td></tr>
     </tbody>
   </table>
 </section>
