@@ -622,72 +622,117 @@
 </section>
 
 <!-- 第 9 頁：審計發現與改善成果 -->
-<section>
-  <div class="img-slide">
-    <img src="images/slide9-revised.png" alt="審計發現與改善成果" />
-  </div>
+<section class="bg-deco scale-15" id="slide8-section" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
+  <h2>審計發現與改善成果</h2>
+  <p>✓ 促請改善 → 機關回應 → 量化效益</p>
+  <table class="sort-table-full" id="sortTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)" style="width:50px;">項次 <span class="arrow" id="arr0"></span></th>
+        <th onclick="sortTable(1)">項目名稱 <span class="arrow" id="arr1"></span></th>
+        <th onclick="sortTable(2)">改善後成果 <span class="arrow" id="arr2"></span></th>
+        <th onclick="sortTable(3)" style="width:80px;">附件 <span class="arrow" id="arr3"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>道路挖掘行政規費收費標準</td><td>114年4月縣府修正施行</td><td><a class="att-link" href="attachments.html?att=6" target="_self">附件6</a></td></tr>
+      <tr><td>2</td><td>增加規費收入</td><td>114/5-7月增加50.1萬元</td><td><a class="att-link" href="attachments.html?att=7" target="_self">附件7</a></td></tr>
+      <tr><td>3</td><td>錯誤管線圖資修正</td><td>20,999筆錯誤全數修正完畢</td><td><a class="att-link" href="attachments.html?att=12" target="_self">附件12</a></td></tr>
+      <tr><td>4</td><td>工作補充說明修正</td><td>由6點擴充至18點</td><td><a class="att-link" href="attachments.html?att=9" target="_self">附件9</a></td></tr>
+      <tr><td>5</td><td>南澳鄉宜路平追責</td><td>函文追究相關人員申誡</td><td><a class="att-link" href="attachments.html?att=8" target="_self">附件8</a></td></tr>
+      <tr><td>6</td><td>道路基金短絀改善</td><td>促請縣府檢討收費標準以改善12個基金中8個累計短絀</td><td><a class="att-link" href="attachments.html?att=3" target="_self">附件3</a></td></tr>
+      <tr><td>7</td><td>道路挖掘完工圖資更新</td><td>促請改善圖資更新時效（230件逾15日未更新）</td><td><a class="att-link" href="attachments.html?att=12" target="_self">附件12</a></td></tr>
+      <tr><td>8</td><td>開口契約履約管理</td><td>契約管理機制強化</td><td><a class="att-link" href="attachments.html?att=9" target="_self">附件9</a></td></tr>
+      <tr><td>9</td><td>評比制度調整</td><td>函請檢討評比制度（部分評比分數與事實未符）</td><td><a class="att-link" href="attachments.html?att=4" target="_self">附件4</a></td></tr>
+      <tr><td>10</td><td>審計資訊發布</td><td>發布重要政府審計資訊</td><td><a class="att-link" href="attachments.html?att=5" target="_self">附件5</a></td></tr>
+    </tbody>
+  </table>
 </section>
+<script>
+let sortDir = [0,0,0,0];
+function sortTable(col) {
+  const tbody = document.querySelector('#sortTable tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  sortDir[col] = sortDir[col] === 1 ? -1 : 1;
+  for (let i = 0; i < 4; i++) document.getElementById('arr'+i).textContent = i === col ? (sortDir[i] === 1 ? '▲' : '▼') : '';
+  rows.sort((a, b) => {
+    const va = a.cells[col].textContent.trim();
+    const vb = b.cells[col].textContent.trim();
+    const na = parseFloat(va.replace(/[^0-9.]/g,'')), nb = parseFloat(vb.replace(/[^0-9.]/g,''));
+    if (!isNaN(na) && !isNaN(nb)) return (na - nb) * sortDir[col];
+    return va.localeCompare(vb, 'zh') * sortDir[col];
+  });
+  rows.forEach(r => tbody.appendChild(r));
+}
+</script>
 
 <!-- 第 13 頁：AI放大審計價值 -->
 <section class="bg-deco scale-15" data-background-image="data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23060818'/%3E%3Cstop offset='40%25' stop-color='%230a0c24'/%3E%3Cstop offset='70%25' stop-color='%230c0c30'/%3E%3Cstop offset='100%25' stop-color='%2308081c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E">
   <div style="padding:24px;">
   <h2>AI 放大審計價值</h2>
-  <p style="font-size:1.35em; margin-bottom:0.6em; color:var(--text2);">延伸應用價值</p>
+  <p style="font-size:1.35em; margin-bottom:0.3em; color:var(--text2);">
+     把生成式 AI 放在審計專業流程中，放大資料整理、問題辨識及成果追蹤能力
+   </p>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:16px; height:calc(100% - 100px);">
-
-    <!-- Card 1: ChatGPT -->
-    <div style="background:rgba(30,30,30,0.95); border-radius:12px; padding:28px 24px; border:1px solid rgba(255,255,255,0.15); display:flex; flex-direction:column; justify-content:center;">
-      <div style="display:flex; align-items:baseline; gap:14px; margin-bottom:12px;">
-        <span style="font-size:3.2em; font-weight:900; color:#fff; line-height:1;">1</span>
-        <span style="font-size:1.8em; font-weight:800; color:#fff;">ChatGPT</span>
-      </div>
-      <div style="font-size:1.5em; color:#ccc; line-height:1.5; margin-bottom:16px;">爬梳規定、機制、檢核措施</div>
-      <div style="display:flex; gap:24px;">
-        <span class="prompt-flowchart-link" onclick="event.stopPropagation(); showFlowchart('images/flowchart-1-chatgpt.png')" style="font-size:1.1em;">(流程圖)</span>
-        <a href="attachments.html?att=2&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:1.1em; color:var(--accent2); text-decoration:underline; cursor:pointer;">(附件)</a>
+   <div style="display:flex; gap:14px; align-items:stretch;">
+    <div style="flex:7; min-width:0;">
+      <div style="text-align:left; font-size:1.35em; font-weight:700; color:#4dd0e1; margin-bottom:6px; letter-spacing:0.05em;">▎審計成果</div>
+      <div class="v-grid" style="grid-template-columns:1fr 1fr;">
+        <div class="v-card" style="border-top:3px solid #4dd0e1;">
+          <div class="v-icon" style="color:#4dd0e1;">📋</div>
+          <div class="v-title" style="color:#4dd0e1;">修正收費標準</div>
+          <div class="v-desc">縣府修正道路挖掘行政規費收費標準</div>
+          <a class="att-link" href="attachments.html?att=6&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #ffab40;">
+          <div class="v-icon" style="color:#ffab40;">💰</div>
+          <div class="v-title" style="color:#ffab40;">增加規費收入</div>
+          <div class="v-desc">114/5–7 月增加收入 50.1 萬元</div>
+          <a class="att-link" href="attachments.html?att=7&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #69f0ae;">
+          <div class="v-icon" style="color:#69f0ae;">🗺️</div>
+          <div class="v-title" style="color:#69f0ae;">圖資錯誤修正</div>
+          <div class="v-desc">20,999 筆錯誤管線圖資全數修正完畢</div>
+          <a class="att-link" href="attachments.html?att=12&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #ea80fc;">
+          <div class="v-icon" style="color:#ea80fc;">📝</div>
+          <div class="v-title" style="color:#ea80fc;">補充說明擴充</div>
+          <div class="v-desc">工作補充說明由 6 點擴充至 18 點</div>
+          <a class="att-link" href="attachments.html?att=9&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #ffd740;">
+          <div class="v-icon" style="color:#ffd740;">📄</div>
+          <div class="v-title" style="color:#ffd740;">列入審核報告</div>
+          <div class="v-desc">審計成果列入決算審核報告</div>
+          <a class="att-link" href="attachments.html?att=4&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #1de9b6;">
+          <div class="v-icon" style="color:#1de9b6;">📢</div>
+          <div class="v-title" style="color:#1de9b6;">資訊發布</div>
+          <div class="v-desc">發布重要政府審計資訊</div>
+          <a class="att-link" href="attachments.html?att=5&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
+        <div class="v-card" style="border-top:3px solid #ff5252;">
+          <div class="v-icon" style="color:#ff5252;">⚖️</div>
+          <div class="v-title" style="color:#ff5252;">制度改善</div>
+          <div class="v-desc">促成責任查處及制度改善</div>
+          <a class="att-link" href="attachments.html?att=3&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
       </div>
     </div>
-
-    <!-- Card 2: NotebookLM -->
-    <div style="background:rgba(30,30,30,0.95); border-radius:12px; padding:28px 24px; border:1px solid rgba(255,255,255,0.15); display:flex; flex-direction:column; justify-content:center;">
-      <div style="display:flex; align-items:baseline; gap:14px; margin-bottom:12px;">
-        <span style="font-size:3.2em; font-weight:900; color:#fff; line-height:1;">2</span>
-        <span style="font-size:1.8em; font-weight:800; color:#fff;">NotebookLM</span>
-      </div>
-      <div style="font-size:1.5em; color:#ccc; line-height:1.5; margin-bottom:16px;">彙整各季評比成果報告</div>
-      <div style="display:flex; gap:24px;">
-        <span class="prompt-flowchart-link" onclick="event.stopPropagation(); showFlowchart('images/flowchart-2-notebooklm.png')" style="font-size:1.1em;">(流程圖)</span>
-        <a href="attachments.html?att=10&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:1.1em; color:var(--accent2); text-decoration:underline; cursor:pointer;">(附件)</a>
+    <div style="flex:3; min-width:0; display:flex; flex-direction:column;">
+      <div style="text-align:left; font-size:1.35em; font-weight:700; color:#b388ff; margin-bottom:6px; letter-spacing:0.05em;">▎延伸應用價值</div>
+      <div class="v-grid-wide" style="flex:1;">
+        <div class="v-card" style="border-top:3px solid #b388ff; min-height:120px; justify-content:center;">
+          <div class="v-icon" style="color:#b388ff;">🔄</div>
+          <div class="v-title" style="color:#b388ff;">擴散應用</div>
+          <div class="v-desc">各項AI技術可延伸應用查詢跨域整合及分析各季成果報告書成果相關議題，以加速瞭解各成果報告書內容及比較差異性，有效提升工作效率</div>
+          <a class="att-link" href="attachments.html?att=14&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:0.75em;">查看詳情 →</a>
+        </div>
       </div>
     </div>
-
-    <!-- Card 3: Excel -->
-    <div style="background:rgba(30,30,30,0.95); border-radius:12px; padding:28px 24px; border:1px solid rgba(255,255,255,0.15); display:flex; flex-direction:column; justify-content:center;">
-      <div style="display:flex; align-items:baseline; gap:14px; margin-bottom:12px;">
-        <span style="font-size:3.2em; font-weight:900; color:#fff; line-height:1;">3</span>
-        <span style="font-size:1.8em; font-weight:800; color:#fff;">Excel</span>
-      </div>
-      <div style="font-size:1.5em; color:#ccc; line-height:1.5; margin-bottom:16px;">分類建置資料庫</div>
-      <div style="display:flex; gap:24px;">
-        <span class="prompt-flowchart-link" onclick="event.stopPropagation(); showFlowchart('images/flowchart-3-excel.png')" style="font-size:1.1em;">(流程圖)</span>
-        <a href="attachments.html?att=11&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:1.1em; color:var(--accent2); text-decoration:underline; cursor:pointer;">(附件)</a>
-      </div>
-    </div>
-
-    <!-- Card 4: QGIS + Python -->
-    <div style="background:rgba(30,30,30,0.95); border-radius:12px; padding:28px 24px; border:1px solid rgba(255,255,255,0.15); display:flex; flex-direction:column; justify-content:center;">
-      <div style="display:flex; align-items:baseline; gap:14px; margin-bottom:12px;">
-        <span style="font-size:3.2em; font-weight:900; color:#fff; line-height:1;">4</span>
-        <span style="font-size:1.8em; font-weight:800; color:#fff;">QGIS + Python</span>
-      </div>
-      <div style="font-size:1.5em; color:#ccc; line-height:1.5; margin-bottom:16px;">地圖與資料複核</div>
-      <div style="display:flex; gap:24px;">
-        <span class="prompt-flowchart-link" onclick="event.stopPropagation(); showFlowchart('images/flowchart-4-qgis-new.png')" style="font-size:1.1em;">(流程圖)</span>
-        <a href="attachments.html?att=12&from=9" target="_self" onclick="sessionStorage.setItem('returnSlide','9')" style="font-size:1.1em; color:var(--accent2); text-decoration:underline; cursor:pointer;">(附件)</a>
-      </div>
-    </div>
-
   </div>
   </div>
 </section>
