@@ -90,12 +90,36 @@
 
   let channel = null;
   let currentSlide = 0;
+  let hostOnline = false;
+  let idleTimer = null;
+  const IDLE_LIMIT = 10 * 60 * 1000;
 
   function updateUI() {
     document.getElementById('pageIndicator').textContent = (currentSlide + 1) + ' / ' + total;
     document.querySelectorAll('.slide-item').forEach((el, i) => {
       el.classList.toggle('active', i === currentSlide);
     });
+  }
+
+  // 閒置逾時自動斷線
+  function resetIdle() {
+    if (idleTimer) clearTimeout(idleTimer);
+    idleTimer = setTimeout(autoDisconnect, IDLE_LIMIT);
+  }
+  function autoDisconnect() {
+    setStatus('⏱ 閒置逾 10 分鐘，已自動斷線', 'disconnected');
+    try { channel.presence.leave(); } catch (e) {}
+    try { client.close(); } catch (e) {}
+  }
+
+  // 簡報（主持人端）離線時，手機自動斷線
+  function setHostOnline(on) {
+    hostOnline = on;
+    if (!on) {
+      setStatus('✖ 簡報已關閉，已斷線', 'disconnected');
+      try { channel.presence.leave(); } catch (e) {}
+      try { client.close(); } catch (e) {}
+    }
   }
 
   // Render slide list
@@ -114,6 +138,7 @@
     channel.publish('nav', { h: h });
     currentSlide = h;
     updateUI();
+    resetIdle();
   }
 
   function go(delta) {
@@ -121,8 +146,9 @@
   }
 
   // Ably connection
+  let client;
   try {
-    const client = new Ably.Realtime({ key: 'y9S__A.igJ5VQ:OI-7oLz4u4V4NdOoTRK90nUxJLhPo5s6KpQxKnWdFdc', clientId: 'mobile-' + Date.now() });
+    client = new Ably.Realtime({ key: 'y9S__A.igJ5VQ:OI-7oLz4u4V4NdOoTRK90nUxJLhPo5s6KpQxKnWdFdc', clientId: 'mobile-' + Date.now() });
     channel = client.channels.get('slide-remote-' + roomId);
 
     // Listen for current slide updates from host
@@ -130,7 +156,16 @@
       if (typeof msg.data.h === 'number') {
         currentSlide = msg.data.h;
         updateUI();
+        resetIdle();
       }
+    });
+
+    // 監控簡報（主持人）端 presence
+    channel.presence.subscribe('enter', m => {
+      if (m.clientId && m.clientId.indexOf('host-') === 0) { setHostOnline(true); resetIdle(); }
+    });
+    channel.presence.subscribe('leave', m => {
+      if (m.clientId && m.clientId.indexOf('host-') === 0) setHostOnline(false);
     });
 
     function setStatus(text, cls) {
@@ -142,6 +177,13 @@
     client.connection.on('connected', () => {
       setStatus('✅ 已連線', 'connected');
       try { channel.presence.enter(); } catch (e) {}
+      resetIdle();
+      // 連線後檢查簡報（主持人）是否在線
+      channel.presence.get((err, members) => {
+        if (err) return;
+        const hosts = members.filter(x => x.clientId && x.clientId.indexOf('host-') === 0);
+        setHostOnline(hosts.length > 0);
+      });
     });
     client.connection.on('connecting', () => {
       setStatus('⏳ 連線中...');
@@ -158,6 +200,7 @@
     client.connection.on('failed', () => {
       setStatus('❌ 連線失敗', 'disconnected');
     });
+    resetIdle();
   } catch (e) {
     document.getElementById('status').textContent = '❌ ' + e.message;
   }
