@@ -1122,6 +1122,9 @@
   });
   Reveal.on('ready', e => { if (e.indexh === 13) renderQRCode(); });
 
+  // 主簡報啟動時即連線 Ably，監聽手機遙控指令
+  initAblyRemote();
+
   // 當主簡報翻頁時，同步通知手機端
   Reveal.on('slidechanged', e => {
     if (ablyChannel) {
