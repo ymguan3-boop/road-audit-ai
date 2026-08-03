@@ -267,9 +267,27 @@
     }
     .quote-box strong { color: var(--accent2); }
 
-    /* 佐證附件按鈕 (右上角) */
-    .att-btn {
+    /* 右上角按鈕群 */
+    .top-btns {
       position: fixed; top: 14px; right: 14px; z-index: 1000;
+      display: flex; gap: 10px;
+    }
+
+    /* 全螢幕按鈕 */
+    .fs-btn {
+      background: rgba(0,96,192,0.85); color: #fff;
+      padding: 8px 14px; border-radius: 22px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      border: 2px solid rgba(79,195,247,0.4);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5), 0 0 12px rgba(0,96,192,0.3);
+      transition: all 0.2s;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      font-family: inherit;
+    }
+    .fs-btn:hover { background: var(--accent3); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,96,192,0.5); }
+
+    /* 佐證附件按鈕 */
+    .att-btn {
       background: rgba(0,96,192,0.85); color: #fff;
       padding: 8px 14px; border-radius: 22px;
       font-size: 13px; font-weight: 700; cursor: pointer;
@@ -296,39 +314,15 @@
     .att-panel a:hover { background: rgba(0,96,192,0.25); }
     .att-panel .all-link { margin-top: 6px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.15); color: var(--accent3); font-weight: 700; }
 
-    /* QR Code 遙控面板 */
-    .qr-remote-btn {
-      position: fixed; bottom: 14px; right: 14px; z-index: 1000;
-      background: rgba(0,96,192,0.85); color: #fff;
-      padding: 8px 14px; border-radius: 22px;
-      font-size: 13px; font-weight: 700; cursor: pointer;
-      border: 2px solid rgba(79,195,247,0.4);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.5), 0 0 12px rgba(0,96,192,0.3);
-      transition: all 0.2s; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 6px;
+    .qr-corner {
+      position: absolute; top: 10px; left: 10px; z-index: 9999;
+      background: rgba(10,12,28,0.92); border: 1px solid rgba(79,195,247,0.4);
+      border-radius: 12px; padding: 10px 12px; text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+      max-width: 180px;
     }
-    .qr-remote-btn:hover { background: var(--accent3); transform: translateY(-2px); }
-    .qr-overlay {
-      position: fixed; inset: 0; z-index: 2000;
-      background: rgba(10,12,28,0.92); display: none;
-      align-items: center; justify-content: center; flex-direction: column;
-      backdrop-filter: blur(8px);
-    }
-    .qr-overlay.open { display: flex; }
-    .qr-overlay .qr-box {
-      background: rgba(20,24,48,0.95); border: 1px solid var(--border);
-      border-radius: 16px; padding: 30px 36px; text-align: center;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
-    }
-    .qr-overlay .qr-box h3 { margin: 0 0 12px 0; color: var(--accent2); font-size: 1.1em; }
-    .qr-overlay .qr-box #qr-canvas { margin: 12px auto; }
-    .qr-overlay .qr-box .room-id { font-size: 0.8em; color: var(--accent); margin-top: 10px; word-break: break-all; }
-    .qr-overlay .qr-box .hint { font-size: 0.7em; color: #888; margin-top: 8px; }
-    .qr-overlay .qr-close {
-      margin-top: 16px; background: none; border: 1px solid rgba(255,255,255,0.2);
-      color: #fff; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 13px;
-    }
-    .qr-overlay .qr-close:hover { background: rgba(255,255,255,0.1); }
+    .qr-corner .qr-corner-label { font-size: 0.72em; color: var(--accent2); font-weight: 700; margin-bottom: 6px; }
+    .qr-corner #qr-corner-canvas { margin: 0 auto; background: #fff; border-radius: 6px; padding: 4px; display: inline-block; }
 
     /* 內文關鍵字連結 */
     .att-link { color: var(--accent2); border-bottom: 1px dashed var(--accent2); cursor: pointer; text-decoration: none; transition: all 0.2s; }
@@ -884,10 +878,9 @@
 <section>
   <div class="end-slide">
     <img src="images/slide15-revised.png" alt="結束及謝謝大家的聆聽" />
-    <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);text-align:center;">
-      <div onclick="showQR()" style="background:rgba(0,96,192,0.8);color:#fff;padding:8px 18px;border-radius:20px;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(0,0,0,0.4);border:1px solid rgba(79,195,247,0.4);">
-        📱 掃描 QR Code 遙控簡報
-      </div>
+    <div class="qr-corner" id="qr-corner">
+      <div class="qr-corner-label">📱 手機掃碼遙控簡報</div>
+      <div id="qr-corner-canvas"></div>
     </div>
     <div class="noise-detector" id="noiseDetector">
       <div class="mic-icon" id="micIcon" onclick="toggleNoiseDetection()" title="點擊啟動噪音偵測">🎤</div>
@@ -1108,21 +1101,25 @@
     }
   }
 
-  function showQR() {
-    const overlay = document.getElementById('qr-overlay');
-    const qrEl = document.getElementById('qr-canvas');
-    const roomEl = document.getElementById('qr-room-id');
+  function renderQRCode() {
+    const qrEl = document.getElementById('qr-corner-canvas');
+    if (!qrEl || qrEl.dataset.rendered) return;
     const total = Reveal.getTotalSlides();
-    const current = Reveal.getIndices().h;
     const base = location.origin + location.pathname.replace(/[^/]*$/, '');
     const url = base + 'mobile.html?room=' + roomId + '&total=' + total + '&slides=' + encodeURIComponent(slideNames.join(','));
-    qrEl.innerHTML = '';
-    new QRCode(qrEl, { text: url, width: 220, height: 220, colorDark: '#0060C0', colorLight: '#fff' });
-    roomEl.textContent = 'Room: ' + roomId;
-    overlay.classList.add('open');
-    if (!ablyClient) initAblyRemote();
+    try {
+      new QRCode(qrEl, { text: url, width: 140, height: 140, colorDark: '#0a0c1c', colorLight: '#fff', correctLevel: QRCode.CorrectLevel.M });
+      qrEl.dataset.rendered = '1';
+    } catch (e) {
+      console.warn('QR render failed:', e);
+    }
   }
-  function hideQR() { document.getElementById('qr-overlay').classList.remove('open'); }
+
+  // 到達最後一頁（結束頁）時產生 QR Code
+  Reveal.on('slidechanged', e => {
+    if (e.indexh === 13) renderQRCode();
+  });
+  Reveal.on('ready', e => { if (e.indexh === 13) renderQRCode(); });
 
   // 當主簡報翻頁時，同步通知手機端
   Reveal.on('slidechanged', e => {
@@ -1265,6 +1262,14 @@
   function hideSlide8Popup() {
     document.getElementById('slide8-popup')?.classList.remove('show');
   }
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      (document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen).call(document.documentElement);
+    } else {
+      (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    }
+  }
+
   function showFlowchart(imgSrc) {
     document.getElementById('flowchart-img').src = imgSrc;
     document.getElementById('flowchart-lightbox').classList.add('open');
@@ -1281,7 +1286,10 @@
   }
 </script>
 
-<button class="att-btn" onclick="toggleAttPanel()" title="開啟本頁對應的佐證附件">📎 佐證附件 <span class="badge">17</span></button>
+<div class="top-btns">
+  <button class="fs-btn" onclick="toggleFullscreen()" title="投放至全螢幕">⛶ 全螢幕</button>
+  <button class="att-btn" onclick="toggleAttPanel()" title="開啟本頁對應的佐證附件">📎 佐證附件 <span class="badge">17</span></button>
+</div>
 <div class="att-panel" id="att-panel">
   <h4>本頁對應附件</h4>
   <div id="att-panel-list"></div>
@@ -1311,20 +1319,6 @@
     <div id="att-lightbox-close" onclick="hideAttLightbox()">✕ 關閉</div>
   </div>
 </div>
-
-<!-- QR Code 遙控面板 -->
-<div class="qr-overlay" id="qr-overlay">
-  <div class="qr-box">
-    <h3>📱 手機掃碼遙控簡報</h3>
-    <div id="qr-canvas"></div>
-    <div class="room-id" id="qr-room-id"></div>
-    <div class="hint">手機掃描 QR Code 後可翻頁、跳頁</div>
-  </div>
-  <button class="qr-close" onclick="hideQR()">關閉</button>
-</div>
-
-<!-- QR Code 遙控浮動按鈕 -->
-<button class="qr-remote-btn" onclick="showQR()" title="手機遙控">📱 QR 遙控</button>
 
 </body>
 </html>
