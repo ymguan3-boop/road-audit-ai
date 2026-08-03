@@ -1105,10 +1105,12 @@
     const qrEl = document.getElementById('qr-corner-canvas');
     if (!qrEl || qrEl.dataset.rendered) return;
     const total = Reveal.getTotalSlides();
-    const base = location.origin + location.pathname.replace(/[^/]*$/, '');
-    const url = base + 'mobile.html?room=' + roomId + '&total=' + total + '&slides=' + encodeURIComponent(slideNames.join(','));
+    const url = new URL('mobile.html', location.href);
+    url.searchParams.set('room', roomId);
+    url.searchParams.set('total', String(total));
+    url.searchParams.set('slides', slideNames.join(','));
     try {
-      new QRCode(qrEl, { text: url, width: 140, height: 140, colorDark: '#0a0c1c', colorLight: '#fff', correctLevel: QRCode.CorrectLevel.M });
+      new QRCode(qrEl, { text: url.href, width: 150, height: 150, colorDark: '#000000', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
       qrEl.dataset.rendered = '1';
     } catch (e) {
       console.warn('QR render failed:', e);
