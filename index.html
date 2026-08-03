@@ -296,6 +296,40 @@
     .att-panel a:hover { background: rgba(0,96,192,0.25); }
     .att-panel .all-link { margin-top: 6px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.15); color: var(--accent3); font-weight: 700; }
 
+    /* QR Code 遙控面板 */
+    .qr-remote-btn {
+      position: fixed; bottom: 14px; right: 14px; z-index: 1000;
+      background: rgba(0,96,192,0.85); color: #fff;
+      padding: 8px 14px; border-radius: 22px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      border: 2px solid rgba(79,195,247,0.4);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5), 0 0 12px rgba(0,96,192,0.3);
+      transition: all 0.2s; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .qr-remote-btn:hover { background: var(--accent3); transform: translateY(-2px); }
+    .qr-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(10,12,28,0.92); display: none;
+      align-items: center; justify-content: center; flex-direction: column;
+      backdrop-filter: blur(8px);
+    }
+    .qr-overlay.open { display: flex; }
+    .qr-overlay .qr-box {
+      background: rgba(20,24,48,0.95); border: 1px solid var(--border);
+      border-radius: 16px; padding: 30px 36px; text-align: center;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    }
+    .qr-overlay .qr-box h3 { margin: 0 0 12px 0; color: var(--accent2); font-size: 1.1em; }
+    .qr-overlay .qr-box #qr-canvas { margin: 12px auto; }
+    .qr-overlay .qr-box .room-id { font-size: 0.8em; color: var(--accent); margin-top: 10px; word-break: break-all; }
+    .qr-overlay .qr-box .hint { font-size: 0.7em; color: #888; margin-top: 8px; }
+    .qr-overlay .qr-close {
+      margin-top: 16px; background: none; border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 13px;
+    }
+    .qr-overlay .qr-close:hover { background: rgba(255,255,255,0.1); }
+
     /* 內文關鍵字連結 */
     .att-link { color: var(--accent2); border-bottom: 1px dashed var(--accent2); cursor: pointer; text-decoration: none; transition: all 0.2s; }
     .att-link:hover { color: #fff; border-bottom-color: #fff; text-shadow: 0 0 8px rgba(79,195,247,0.4); }
@@ -850,6 +884,11 @@
 <section>
   <div class="end-slide">
     <img src="images/slide15-revised.png" alt="結束及謝謝大家的聆聽" />
+    <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);text-align:center;">
+      <div onclick="showQR()" style="background:rgba(0,96,192,0.8);color:#fff;padding:8px 18px;border-radius:20px;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(0,0,0,0.4);border:1px solid rgba(79,195,247,0.4);">
+        📱 掃描 QR Code 遙控簡報
+      </div>
+    </div>
     <div class="noise-detector" id="noiseDetector">
       <div class="mic-icon" id="micIcon" onclick="toggleNoiseDetection()" title="點擊啟動噪音偵測">🎤</div>
       <div class="heart-container" id="heartContainer"></div>
@@ -942,6 +981,8 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ably@2.1.0/dist/ably.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
   Reveal.initialize({
     hash: true,
@@ -1042,6 +1083,54 @@
     // 離開slide時關閉第8頁彈出視窗
     document.getElementById('slide8-popup')?.classList.remove('show');
   });
+  // QR Code 遙控
+  const slideNames = [
+    '封面','AI 工具鏈','問題意識','把AI放進審計流程','三條驗證線',
+    '收費標準','重複缺失','改善進制度','改善成果','AI均衡',
+    '何時導入','六步驟','AI放大價值','結束'
+  ];
+  const roomId = 'road-audit-' + Math.random().toString(36).slice(2, 8);
+  let ablyChannel = null;
+  let ablyClient = null;
+
+  function initAblyRemote() {
+    try {
+      ablyClient = new Ably.Realtime({ key: 'PLACEHOLDER_ABLY_KEY', clientId: 'host-' + Date.now() });
+      ablyChannel = ablyClient.channels.get('slide-remote-' + roomId);
+      ablyChannel.subscribe('nav', msg => {
+        const { h } = msg.data;
+        if (typeof h === 'number' && h >= 0 && h < Reveal.getTotalSlides()) {
+          Reveal.slide(h);
+        }
+      });
+    } catch (e) {
+      console.warn('Ably init failed:', e);
+    }
+  }
+
+  function showQR() {
+    const overlay = document.getElementById('qr-overlay');
+    const qrEl = document.getElementById('qr-canvas');
+    const roomEl = document.getElementById('qr-room-id');
+    const total = Reveal.getTotalSlides();
+    const current = Reveal.getIndices().h;
+    const base = location.origin + location.pathname.replace(/[^/]*$/, '');
+    const url = base + 'mobile.html?room=' + roomId + '&total=' + total + '&slides=' + encodeURIComponent(slideNames.join(','));
+    qrEl.innerHTML = '';
+    new QRCode(qrEl, { text: url, width: 220, height: 220, colorDark: '#0060C0', colorLight: '#fff' });
+    roomEl.textContent = 'Room: ' + roomId;
+    overlay.classList.add('open');
+    if (!ablyClient) initAblyRemote();
+  }
+  function hideQR() { document.getElementById('qr-overlay').classList.remove('open'); }
+
+  // 當主簡報翻頁時，同步通知手機端
+  Reveal.on('slidechanged', e => {
+    if (ablyChannel) {
+      ablyChannel.publish('sync', { h: e.indexh });
+    }
+  });
+
   Reveal.on('ready', e => renderAttPanel(0));
   document.addEventListener('click', e => {
     const panel = document.getElementById('att-panel');
@@ -1222,6 +1311,20 @@
     <div id="att-lightbox-close" onclick="hideAttLightbox()">✕ 關閉</div>
   </div>
 </div>
+
+<!-- QR Code 遙控面板 -->
+<div class="qr-overlay" id="qr-overlay">
+  <div class="qr-box">
+    <h3>📱 手機掃碼遙控簡報</h3>
+    <div id="qr-canvas"></div>
+    <div class="room-id" id="qr-room-id"></div>
+    <div class="hint">手機掃描 QR Code 後可翻頁、跳頁</div>
+  </div>
+  <button class="qr-close" onclick="hideQR()">關閉</button>
+</div>
+
+<!-- QR Code 遙控浮動按鈕 -->
+<button class="qr-remote-btn" onclick="showQR()" title="手機遙控">📱 QR 遙控</button>
 
 </body>
 </html>
