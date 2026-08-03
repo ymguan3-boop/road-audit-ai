@@ -135,6 +135,7 @@
     client.connection.on('connected', () => {
       document.getElementById('status').textContent = '✅ 已連線';
       document.getElementById('status').className = 'status connected';
+      try { channel.presence.enter(); } catch (e) {}
     });
     client.connection.on('failed', () => {
       document.getElementById('status').textContent = '❌ 連線失敗';

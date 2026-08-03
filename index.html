@@ -324,6 +324,16 @@
     .qr-corner .qr-corner-label { font-size: 0.72em; color: var(--accent2); font-weight: 700; margin-bottom: 6px; }
     .qr-corner #qr-corner-canvas { margin: 0 auto; background: #fff; border-radius: 6px; padding: 4px; display: inline-block; }
 
+    /* 主簡報端手機連線狀態 */
+    #host-conn-status {
+      position: fixed; bottom: 14px; left: 14px; z-index: 1000;
+      background: rgba(60,60,70,0.85); color: #ccc;
+      padding: 6px 14px; border-radius: 16px;
+      font-size: 12px; font-weight: 700; border: 1px solid rgba(255,255,255,0.15);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    #host-conn-status.on { background: rgba(0,150,80,0.9); color: #fff; border-color: rgba(0,200,100,0.5); box-shadow: 0 0 12px rgba(0,200,100,0.4); }
+
     /* 內文關鍵字連結 */
     .att-link { color: var(--accent2); border-bottom: 1px dashed var(--accent2); cursor: pointer; text-decoration: none; transition: all 0.2s; }
     .att-link:hover { color: #fff; border-bottom-color: #fff; text-shadow: 0 0 8px rgba(79,195,247,0.4); }
@@ -1086,6 +1096,13 @@
   let ablyChannel = null;
   let ablyClient = null;
 
+  function setConnStatus(on) {
+    const el = document.getElementById('host-conn-status');
+    if (!el) return;
+    el.textContent = on ? '📱 手機已連線' : '📱 手機未連線';
+    el.classList.toggle('on', !!on);
+  }
+
   function initAblyRemote() {
     try {
       ablyClient = new Ably.Realtime({ key: 'y9S__A.igJ5VQ:OI-7oLz4u4V4NdOoTRK90nUxJLhPo5s6KpQxKnWdFdc', clientId: 'host-' + Date.now() });
@@ -1096,16 +1113,34 @@
           Reveal.slide(h);
         }
       });
+      // 手機端 presence：進入/離開即更新連線指示燈
+      ablyChannel.presence.subscribe('enter', m => {
+        if (m.clientId && m.clientId.indexOf('mobile-') === 0) setConnStatus(true);
+      });
+      ablyChannel.presence.subscribe('leave', m => {
+        if (m.clientId && m.clientId.indexOf('mobile-') === 0) setConnStatus(false);
+      });
+      ablyClient.connection.on('connected', () => {
+        ablyChannel.presence.enter();
+        ablyChannel.presence.get((err, members) => {
+          if (err) return;
+          const mob = members.filter(x => x.clientId && x.clientId.indexOf('mobile-') === 0);
+          setConnStatus(mob.length > 0);
+        });
+      });
     } catch (e) {
       console.warn('Ably init failed:', e);
     }
   }
 
+  // GitHub Pages 部署位址（QR 掃描用手機必定連到這個網址）
+  const DEPLOY_BASE = 'https://ymguan3-boop.github.io/road-audit-ai/';
+
   function renderQRCode() {
     const qrEl = document.getElementById('qr-corner-canvas');
     if (!qrEl || qrEl.dataset.rendered) return;
     const total = Reveal.getTotalSlides();
-    const url = new URL('mobile.html', location.href);
+    const url = new URL('mobile.html', DEPLOY_BASE);
     url.searchParams.set('room', roomId);
     url.searchParams.set('total', String(total));
     try {
@@ -1116,11 +1151,11 @@
     }
   }
 
-  // 到達最後一頁（結束頁）時產生 QR Code
+  // 頁面載入即產生 QR Code（到達結束頁時保證已就緒）
+  Reveal.on('ready', () => renderQRCode());
   Reveal.on('slidechanged', e => {
     if (e.indexh === 13) renderQRCode();
   });
-  Reveal.on('ready', e => { if (e.indexh === 13) renderQRCode(); });
 
   // 主簡報啟動時即連線 Ably，監聽手機遙控指令
   initAblyRemote();
@@ -1267,10 +1302,17 @@
     document.getElementById('slide8-popup')?.classList.remove('show');
   }
   function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-      (document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen).call(document.documentElement);
+    const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+    if (!fsEl) {
+      const el = document.documentElement;
+      const req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+      if (req) {
+        const p = req.call(el);
+        if (p && p.catch) p.catch(() => {});
+      }
     } else {
-      (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      const ex = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+      if (ex) { try { ex.call(document); } catch (e) {} }
     }
   }
 
@@ -1294,6 +1336,7 @@
   <button class="fs-btn" onclick="toggleFullscreen()" title="投放至全螢幕">⛶ 全螢幕</button>
   <button class="att-btn" onclick="toggleAttPanel()" title="開啟本頁對應的佐證附件">📎 佐證附件 <span class="badge">17</span></button>
 </div>
+<div id="host-conn-status">📱 手機未連線</div>
 <div class="att-panel" id="att-panel">
   <h4>本頁對應附件</h4>
   <div id="att-panel-list"></div>
