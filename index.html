@@ -1093,6 +1093,7 @@
     '何時導入','六步驟','AI放大價值','結束'
   ];
   const roomId = 'road-audit-' + Math.random().toString(36).slice(2, 8);
+  window.__roomId = roomId; // 供除錯/測試
   let ablyChannel = null;
   let ablyClient = null;
 
