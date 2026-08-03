@@ -1108,7 +1108,6 @@
     const url = new URL('mobile.html', location.href);
     url.searchParams.set('room', roomId);
     url.searchParams.set('total', String(total));
-    url.searchParams.set('slides', slideNames.join(','));
     try {
       new QRCode(qrEl, { text: url.href, width: 150, height: 150, colorDark: '#000000', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
       qrEl.dataset.rendered = '1';
