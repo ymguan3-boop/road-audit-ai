@@ -1123,15 +1123,23 @@
       });
       ablyClient.connection.on('connected', () => {
         ablyChannel.presence.enter();
-        ablyChannel.presence.get((err, members) => {
-          if (err) return;
-          const mob = members.filter(x => x.clientId && x.clientId.indexOf('mobile-') === 0);
-          setConnStatus(mob.length > 0);
-        });
+        checkMobilePresence();
+        // 定時檢查手機是否仍在線（彌補 presence leave 延遲）
+        if (window.__presenceTimer) clearInterval(window.__presenceTimer);
+        window.__presenceTimer = setInterval(checkMobilePresence, 10000);
       });
     } catch (e) {
       console.warn('Ably init failed:', e);
     }
+  }
+
+  function checkMobilePresence() {
+    if (!ablyChannel) return;
+    ablyChannel.presence.get((err, members) => {
+      if (err) return;
+      const mob = members.filter(x => x.clientId && x.clientId.indexOf('mobile-') === 0);
+      setConnStatus(mob.length > 0);
+    });
   }
 
   // GitHub Pages 部署位址（QR 掃描用手機必定連到這個網址）

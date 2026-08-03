@@ -17,6 +17,7 @@
   .header .room { font-size:0.75em; color:#888; margin-top:4px; }
   .status { font-size:0.7em; color:#888; margin-bottom:12px; }
   .status.connected { color:#00C864; }
+  .status.disconnected { color:#FF9100; }
 
   .nav-controls {
     display: flex; gap: 12px; margin-bottom: 20px; width: 100%; max-width: 360px;
@@ -132,13 +133,30 @@
       }
     });
 
+    function setStatus(text, cls) {
+      const el = document.getElementById('status');
+      el.textContent = text;
+      el.className = 'status' + (cls ? ' ' + cls : '');
+    }
+
     client.connection.on('connected', () => {
-      document.getElementById('status').textContent = '✅ 已連線';
-      document.getElementById('status').className = 'status connected';
+      setStatus('✅ 已連線', 'connected');
       try { channel.presence.enter(); } catch (e) {}
     });
+    client.connection.on('connecting', () => {
+      setStatus('⏳ 連線中...');
+    });
+    client.connection.on('disconnected', () => {
+      setStatus('⚠️ 連線中斷，重連中...', 'disconnected');
+    });
+    client.connection.on('suspended', () => {
+      setStatus('⛔ 連線已暫停', 'disconnected');
+    });
+    client.connection.on('closed', () => {
+      setStatus('✖ 連線已關閉', 'disconnected');
+    });
     client.connection.on('failed', () => {
-      document.getElementById('status').textContent = '❌ 連線失敗';
+      setStatus('❌ 連線失敗', 'disconnected');
     });
   } catch (e) {
     document.getElementById('status').textContent = '❌ ' + e.message;
