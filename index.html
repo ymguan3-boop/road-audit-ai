@@ -1088,7 +1088,7 @@
 
   function initAblyRemote() {
     try {
-      ablyClient = new Ably.Realtime({ key: 'PLACEHOLDER_ABLY_KEY', clientId: 'host-' + Date.now() });
+      ablyClient = new Ably.Realtime({ key: 'y9S__A.igJ5VQ:OI-7oLz4u4V4NdOoTRK90nUxJLhPo5s6KpQxKnWdFdc', clientId: 'host-' + Date.now() });
       ablyChannel = ablyClient.channels.get('slide-remote-' + roomId);
       ablyChannel.subscribe('nav', msg => {
         const { h } = msg.data;
